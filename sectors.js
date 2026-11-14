@@ -102,7 +102,7 @@
     pop.setAttribute('role', 'dialog'); frame.appendChild(pop);
     var nav = el('div', 'display:flex; align-items:center; justify-content:center; gap:12px;');
     var prev = el('button', 'width:44px; height:44px; border-radius:12px; border:1px solid rgba(242,244,245,0.2); background:rgba(242,244,245,0.06); color:#F2F4F5; cursor:pointer; font-size:18px;', '‹');
-    var dots = el('div', 'display:flex; gap:8px; padding:12px 16px; border-radius:12px; background:rgba(242,244,245,0.06); border:1px solid rgba(242,244,245,0.12);');
+    var dots = el('div', 'display:flex; align-items:center; gap:0; padding:2px 6px; border-radius:12px; background:rgba(242,244,245,0.06); border:1px solid rgba(242,244,245,0.12);');
     var next = el('button', 'width:44px; height:44px; border-radius:12px; border:1px solid rgba(242,244,245,0.2); background:rgba(242,244,245,0.06); color:#F2F4F5; cursor:pointer; font-size:18px;', '›');
     prev.type = next.type = 'button';
     nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next);
@@ -199,7 +199,7 @@
     function renderDots() {
       dots.innerHTML = '';
       SECTORS.forEach(function (o, i) {
-        var b = el('button', 'width:10px; height:10px; padding:0; border:0; border-radius:50%; cursor:pointer; background:' + (i === idx ? '#F2F4F5' : 'rgba(242,244,245,0.35)') + ';');
+        var b = el('button', 'width:28px; height:28px; flex:none; padding:0; border:0; border-radius:50%; cursor:pointer; background:radial-gradient(circle, ' + (i === idx ? '#F2F4F5' : 'rgba(242,244,245,0.35)') + ' 0 5px, transparent 5.5px);');
         b.type = 'button'; b.setAttribute('aria-label', nm(o)); if (i === idx) b.setAttribute('aria-current', 'true');
         b.addEventListener('click', function () { go(i); });
         dots.appendChild(b);
