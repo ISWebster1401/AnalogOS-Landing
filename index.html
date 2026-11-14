@@ -88,7 +88,7 @@ a:hover{color:#FD9A7D}
       </span>
     </h1>
     <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; margin-top:clamp(28px,5vh,56px);">
-      <p data-hr="" style="margin:0; max-width:54ch; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.86); text-wrap:pretty;">{{ t.hero.sub }}</p>
+      <div data-hr="" style="display:flex; flex-direction:column; gap:14px; max-width:56ch;"><p style="margin:0; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.86); text-wrap:pretty;">{{ t.hero.sub }}</p><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.hero.forWho }}</span></div>
       <div data-hr="" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px 28px;">
         <button type="button" class="btn btn-primary" onClick="{{ goDemo }}" style="min-width:210px; justify-content:space-between; padding:15px 16px; font-size:15px;">{{ t.nav.demo }}<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
         <a href="#problema" onClick="{{ go }}" style="display:flex; align-items:center; gap:10px; color:#F2F4F5; text-decoration:none; font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2;"><path d="M12 4v15"></path><path d="m19 12-7 7-7-7"></path></svg>{{ t.hero.scroll }}</a>
@@ -259,24 +259,21 @@ a:hover{color:#FD9A7D}
           </div>
         </div>
         <div style="flex:1 1 300px; min-width:0; display:flex; flex-direction:column; justify-content:center;">
-          <div style="display:flex; flex-direction:column; gap:14px; padding:clamp(14px,2vw,24px); background:#04101A; border:2px solid rgba(242,244,245,0.14);">
-            <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.66);">{{ t.how.formTitle }}</span>
-            <div class="field">
-              <label>{{ t.how.type }}</label>
-              <div class="seg" style="display:flex; flex-wrap:wrap;">
-                <label class="seg-opt"><input type="radio" name="analogos-test" value="rover" checked="{{ isRover }}" onChange="{{ pickTest }}">{{ t.how.rover }}</label>
-                <label class="seg-opt"><input type="radio" name="analogos-test" value="drill" checked="{{ isDrill }}" onChange="{{ pickTest }}">{{ t.how.drill }}</label>
-                <label class="seg-opt"><input type="radio" name="analogos-test" value="habitat" checked="{{ isHabitat }}" onChange="{{ pickTest }}">{{ t.how.habitat }}</label>
-              </div>
+          <div style="display:flex; flex-direction:column; gap:14px; padding:clamp(14px,2vw,22px); background:#04101A; border:1px solid rgba(242,244,245,0.14); border-radius:18px;">
+            <div role="group" aria-label="{{ t.how.modes }}" style="display:flex; gap:6px; padding:4px; border-radius:9999px; background:rgba(242,244,245,0.06); width:max-content; max-width:100%; flex-wrap:wrap;">
+              <span style="padding:6px 12px; border-radius:9999px; background:#F2F4F5; color:#02070A; font-size:12.5px; font-weight:600;">{{ t.how.mode1 }}</span>
+              <span style="padding:6px 12px; border-radius:9999px; color:rgba(242,244,245,0.75); font-size:12.5px;">{{ t.how.mode2 }}</span>
             </div>
-            <sc-for list="{{ testParams }}" as="tp" hint-placeholder-count="3">
-              <div class="field">
-                <label>{{ tp.label }}</label>
-                <div class="input" style="display:flex; align-items:center; font-family:'Martian Mono', ui-monospace, monospace; font-size:12.5px;">{{ tp.value }}</div>
+            <div style="align-self:flex-end; max-width:88%; padding:12px 14px; border-radius:16px 16px 4px 16px; background:#0297DE; color:#02070A; font-size:14px; line-height:1.5;">{{ t.how.ask }}</div>
+            <div style="align-self:flex-start; max-width:94%; display:flex; flex-direction:column; gap:10px; padding:12px 14px; border-radius:16px 16px 16px 4px; background:rgba(242,244,245,0.07); border:1px solid rgba(242,244,245,0.12);">
+              <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.how.aiLabel }}</span>
+              <div style="display:flex; flex-wrap:wrap; gap:6px;">
+                <sc-for list="{{ reqs }}" as="q" hint-placeholder-count="5"><span style="display:inline-flex; gap:6px; align-items:baseline; padding:5px 9px; border-radius:9999px; border:1px solid rgba(242,244,245,0.18); font-size:12px;"><span style="color:rgba(242,244,245,0.6);">{{ q.k }}</span><span style="font-weight:600;">{{ q.v }}</span></span></sc-for>
               </div>
-            </sc-for>
-            <p style="margin:0; font-size:12.5px; line-height:1.5; color:rgba(242,244,245,0.72);">{{ t.how.note }}</p>
-            <button type="button" class="btn btn-secondary btn-block" onClick="{{ goDemo }}" style="justify-content:space-between; padding:11px 12px; color:#F2F4F5;">{{ t.how.search }}<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
+              <span style="font-size:12.5px; line-height:1.5; color:rgba(242,244,245,0.75);">{{ t.how.confirm }}</span>
+            </div>
+            <p style="margin:0; font-size:12px; line-height:1.5; color:rgba(242,244,245,0.6);">{{ t.how.note }}</p>
+            <button type="button" class="btn btn-secondary btn-block" onClick="{{ goDemo }}" style="justify-content:space-between; padding:11px 12px; color:#F2F4F5; border-radius:12px;">{{ t.how.search }}<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
           </div>
         </div>
         <div data-dim="" style="position:absolute; inset:0; opacity:0; pointer-events:none; background:#02070A;"></div>
@@ -312,6 +309,10 @@ a:hover{color:#FD9A7D}
           <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:8px 16px;">
             <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.66);">{{ t.how.example }}</span>
             <span style="padding:2px 7px; border:1px solid #7FC8EF; font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.03em; color:#7FC8EF;">{{ t.illus }}</span>
+          </div>
+          <div style="display:flex; align-items:center; gap:16px; padding:16px 18px; border-radius:16px; background:linear-gradient(120deg, rgba(2,151,222,0.22), rgba(2,151,222,0.06)); border:1px solid rgba(2,151,222,0.55);">
+            <div style="display:flex; flex-direction:column; gap:2px; flex:1; min-width:0;"><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.how.best }}</span><span style="font-family:var(--font-heading); font-weight:800; font-size:clamp(20px,2vw,28px);">Pampa Yungay</span><span style="font-size:12.5px; color:rgba(242,244,245,0.75);">{{ t.how.bestWhy }}</span></div>
+            <div style="display:flex; flex-direction:column; align-items:flex-end;"><span style="font-family:var(--font-heading); font-weight:800; font-size:clamp(28px,3vw,40px); color:#0297DE; line-height:1;">{{ bestS }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:rgba(242,244,245,0.6);">{{ t.how.simPct }}</span></div>
           </div>
           <table class="table" style="font-size:14px;">
             <thead><tr><th>{{ t.zone }}</th><th style="width:44px; color:#0297DE;">S</th><th style="width:44px; color:#7FC8EF;">C</th><th style="width:44px; color:#FC734D;">F</th></tr></thead>
@@ -559,7 +560,7 @@ class Component extends DCLogic {
       nav: { problem: 'Problem', jezero: 'Jezero', how: 'How it works', scores: 'Scores', team: 'Team', demo: 'Try', try: 'Try' },
       hero: { challenge: 'Challenge · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago, Chile',
         l1: ['Where','to','test','in','Chile'], l2: ["what's",'going','to','Mars.'],
-        sub: 'AnalogOS compares the topography of Mars (NASA MOLA) with Chilean terrain at the same scale, adds Sentinel-2 surface and NASA POWER climate, and ranks sectors for a rover mobility test with three separate outputs: Similarity, Confidence and Feasibility.',
+        sub: 'Describe your test in your own words. AnalogOS turns it into verifiable criteria, compares open NASA and ESA data with Mars at the same scale, and returns the best site on Earth with its similarity, the reasons and what to verify in the field.', forWho: 'For teams running planetary robotics test campaigns',
         scroll: 'Scroll · from Jezero to northern Chile', marker: 'Perseverance · Jezero rim', caption: 'Jezero crater · Ø 45 km · 18.38° N 77.58° E' },
       p: { kicker: 'The problem', phrase: "The problem isn't a lack of Mars-like places, it's that there's no fast, defensible way to know which one works for a specific test.", acc: ['fast,','defensible'],
         today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
@@ -576,12 +577,16 @@ class Component extends DCLogic {
           { date: 'Oct 2026', title: 'First extended mission begins', body: 'Rim exploration through ~2028.' }] },
       tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', jzPlace: 'Jezero crater · Mars', atPlace: 'Northern Chile · 3 screening sectors', jzCoord: '18.38° N 77.58° E', atCoord: '24.10° S 69.97° W',
         cap: 'Atacama is the benchmark, not the default answer.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to three screening sectors in northern Chile, with an arc arriving from Jezero' },
-      how: { kicker: 'How it works', h: 'From the question to the place, in three steps.',
-        s1t: 'You choose the test', s1b: "Tell us what you want to validate, such as a rover's autonomous navigation, and the terrain it needs: target slope, local relief and surface conditions.",
-        formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling · soon', habitat: 'Habitat · soon', search: 'Find candidate zones',
-        note: 'Traction and soil are checked in the field, not scored: a 30 m elevation model cannot see rocks or soil.',
-        s2t: 'We cross the data', s2b: 'NASADEM elevation is averaged to MOLA scale before computing slope, roughness and relief. Twelve monthly Sentinel-2 mosaics measure bare ground and NASA POWER adds aridity. Every source keeps its version and SHA-256.',
-        s3t: 'You see candidates', s3b: 'You get ranked sectors, each with Similarity, Confidence, Feasibility and weight stability (±20 %), plus what is analogous, where it fails and what to verify in the field.',
+      how: { kicker: 'How it works', h: 'From your words to the best site, in three steps.', modes: 'Two ways in', mode1: 'Find a place for my test', mode2: 'Evaluate this terrain',
+        ask: '“We are building a rover for autonomous navigation. We want to test it in Chile, on bare ground with relief variation, and compare alternatives with Yungay.”',
+        aiLabel: 'AnalogOS · proposed requirements', confirm: 'Weights and thresholds come from a documented profile. Confirm or edit before we search.',
+        reqs: [['Activity','autonomous navigation'],['Reference','Mars · Jezero (MOLA)'],['Operate in','Chile'],['Must','bare ground'],['Must','relief variation'],['Compare with','Pampa Yungay']],
+        best: 'Best match for your test', bestWhy: 'Terrain closest to the Jezero reference, 100 % bare ground, hyper-arid. Requires field review.', simPct: 'similarity',
+        s1t: 'You describe the test', s1b: 'Write what you need to validate, as you would explain it to a colleague. AI turns it into a structured proposal of requirements that you and your specialist confirm.',
+        formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling · soon', habitat: 'Habitat · soon', search: 'Try it in AnalogOS',
+        note: 'AI structures and explains; it never decides the score. Traction and soil are checked in the field: a ~480 m comparison cannot see a 30 cm obstacle.',
+        s2t: 'The engine computes', s2b: 'NASADEM elevation is averaged to MOLA scale before computing slope, roughness and relief. Twelve monthly Sentinel-2 mosaics measure bare ground and NASA POWER adds aridity. Every source keeps its version and SHA-256.',
+        s3t: 'You get the best site', s3b: 'One recommendation with its similarity, why it fits, which criterion hurts it, the alternatives, the missing evidence and what to measure on site. When the data cannot tell, it says so.',
         example: 'Example · rover autonomous navigation' },
       tests: {
         rover: [['Mars reference','MOLA · Jezero, 1.6° window'],['Median slope · local relief','2.2° · 47 m'],['Conditions','Bare ground, hyper-arid']],
@@ -605,7 +610,7 @@ class Component extends DCLogic {
             vk: 'Field checklist', big: '3 checks', bigCap: 'All three sectors are “requires review” until these are closed.', rows: [['Soil and traction','To verify'],['Rover-scale terrain','To verify'],['Restrictions and permits','To verify']] }] },
       map: { kicker: 'Arrival · Chile', h: 'From a Jezero reference to three sectors in Chile.',
         p: 'Tell us what you want to test and AnalogOS returns candidate zones with their three scores and their limits, so you can justify the choice.',
-        plaus: 'Atacama is a benchmark, not the default answer. Pampa Yungay ranks first on measured data, and the interior Cordón de Domeyko, far less visited, is a close second at 71.60. Next step: from three seed sectors to a national grid.',
+        plaus: 'A well-known site can be the right answer if it fits the test: Pampa Yungay ranks first on measured data, not on reputation, and its track record counts in the comparison. When you want new alternatives, AnalogOS separates them, like the far less visited Cordón de Domeyko at 71.60.',
         tableLabel: 'Preliminary result · science-screening-v2 · three 0.2° sectors · sorted by Similarity', no: 'No.', teamPin: 'Team · Santiago', proj: 'Natural Earth · transverse Mercator',
         alt: 'Map of Chile with the three science-screening-v2 sectors in the Antofagasta region',
         regions: { yungay: 'Screening sector · Antofagasta', domeyko: 'Interior sector · Antofagasta', mariaelena: 'Screening sector · Antofagasta' } },
@@ -627,7 +632,7 @@ class Component extends DCLogic {
       nav: { problem: 'Problema', jezero: 'Jezero', how: 'Cómo funciona', scores: 'Notas', team: 'Equipo', demo: 'Probar', try: 'Probar' },
       hero: { challenge: 'Desafío · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago de Chile',
         l1: ['Dónde','probar','en','Chile'], l2: ['lo','que','irá','a','Marte.'],
-        sub: 'AnalogOS compara la topografía de Marte (NASA MOLA) con el terreno chileno a la misma escala, suma superficie Sentinel-2 y clima NASA POWER, y ordena sectores para una prueba de movilidad de rover con tres salidas separadas: Similitud, Confianza y Factibilidad.',
+        sub: 'Describe tu prueba con tus palabras. AnalogOS la convierte en criterios verificables, compara datos abiertos de NASA y ESA con Marte a la misma escala y te devuelve el mejor lugar en la Tierra con su similitud, los motivos y qué verificar en terreno.', forWho: 'Para equipos que preparan campañas de prueba de robótica planetaria',
         scroll: 'Desliza · de Jezero al norte de Chile', marker: 'Perseverance · borde de Jezero', caption: 'Cráter Jezero · Ø 45 km · 18,38° N 77,58° E' },
       p: { kicker: 'El problema', phrase: 'El problema no es que falten lugares parecidos a Marte, sino que no hay forma rápida y defendible de saber cuál sirve para una prueba concreta.', acc: ['rápida','y','defendible'],
         today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
@@ -644,12 +649,16 @@ class Component extends DCLogic {
           { date: 'Oct. 2026', title: 'Comienza la primera misión extendida', body: 'Exploración del borde hasta ~2028.' }] },
       tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Norte de Chile · 3 sectores de screening', jzCoord: '18,38° N 77,58° E', atCoord: '24,10° S 69,97° O',
         cap: 'Atacama es el punto de referencia, no la respuesta predeterminada.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta tres sectores de screening en el norte de Chile, con un arco que llega desde Jezero' },
-      how: { kicker: 'Cómo funciona', h: 'De la pregunta al lugar, en tres pasos.',
-        s1t: 'Eliges la prueba', s1b: 'Indica qué quieres validar, como la navegación autónoma de un rover, y el terreno que necesita: pendiente objetivo, relieve local y condiciones de superficie.',
-        formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación · pronto', habitat: 'Hábitat · pronto', search: 'Buscar zonas candidatas',
-        note: 'La tracción y el suelo se verifican en terreno, no se puntúan: un modelo de elevación de 30 m no ve rocas ni suelo.',
-        s2t: 'Cruzamos datos', s2b: 'Promediamos la elevación NASADEM a escala MOLA antes de calcular pendiente, rugosidad y relieve. Doce mosaicos mensuales de Sentinel-2 miden el suelo desnudo y NASA POWER agrega la aridez. Cada fuente guarda su versión y su SHA-256.',
-        s3t: 'Ves candidatos', s3b: 'Recibes sectores ordenados, cada uno con Similitud, Confianza, Factibilidad y estabilidad ante cambios de pesos (±20 %), además de qué es análogo, dónde falla y qué verificar en terreno.',
+      how: { kicker: 'Cómo funciona', h: 'De tus palabras al mejor lugar, en tres pasos.', modes: 'Dos entradas', mode1: 'Busco un lugar para mi prueba', mode2: 'Quiero evaluar este terreno',
+        ask: '«Estamos desarrollando un rover para navegación autónoma. Queremos probarlo en Chile, sobre terreno sin vegetación y con variaciones de relieve, y comparar alternativas con Yungay.»',
+        aiLabel: 'AnalogOS · requisitos propuestos', confirm: 'Los pesos y umbrales vienen de un perfil documentado. Confírmalos o edítalos antes de buscar.',
+        reqs: [['Actividad','navegación autónoma'],['Referencia','Marte · Jezero (MOLA)'],['Operar en','Chile'],['Indispensable','suelo sin vegetación'],['Indispensable','variación de relieve'],['Comparar con','Pampa Yungay']],
+        best: 'Mejor opción para tu prueba', bestWhy: 'Terreno más cercano a la referencia de Jezero, 100 % sin vegetación, hiperárido. Requiere revisión en terreno.', simPct: 'similitud',
+        s1t: 'Describes la prueba', s1b: 'Escribe qué necesitas validar, como se lo explicarías a un colega. La IA lo convierte en una propuesta estructurada de requisitos que tú y tu especialista confirman.',
+        formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación · pronto', habitat: 'Hábitat · pronto', search: 'Pruébalo en AnalogOS',
+        note: 'La IA estructura y explica; nunca decide la nota. La tracción y el suelo se verifican en terreno: una comparación a ~480 m no ve un obstáculo de 30 cm.',
+        s2t: 'El motor calcula', s2b: 'Promediamos la elevación NASADEM a escala MOLA antes de calcular pendiente, rugosidad y relieve. Doce mosaicos mensuales de Sentinel-2 miden el suelo desnudo y NASA POWER agrega la aridez. Cada fuente guarda su versión y su SHA-256.',
+        s3t: 'Recibes el mejor lugar', s3b: 'Una recomendación con su similitud, por qué encaja, qué criterio la perjudica, las alternativas, la evidencia que falta y qué medir en el lugar. Cuando los datos no alcanzan, lo dice.',
         example: 'Ejemplo · navegación autónoma de rover' },
       tests: {
         rover: [['Referencia marciana','MOLA · Jezero, ventana de 1,6°'],['Pendiente mediana · relieve local','2,2° · 47 m'],['Condiciones','Suelo desnudo, hiperárido']],
@@ -673,7 +682,7 @@ class Component extends DCLogic {
             vk: 'Lista de terreno', big: '3 controles', bigCap: 'Los tres sectores quedan en «requiere revisión» hasta cerrarlos.', rows: [['Suelo y tracción','Por verificar'],['Terreno a escala del rover','Por verificar'],['Restricciones y permisos','Por verificar']] }] },
       map: { kicker: 'Llegada · Chile', h: 'De una referencia en Jezero a tres sectores en Chile.',
         p: 'Indica qué quieres probar y AnalogOS te devuelve zonas candidatas con sus tres notas y sus límites, para que puedas justificar la elección.',
-        plaus: 'Atacama es un punto de referencia, no la respuesta predeterminada. Pampa Yungay lidera por datos medidos, y el interior del Cordón de Domeyko, mucho menos visitado, queda muy cerca con 71,60. Siguiente paso: de tres sectores semilla a una grilla nacional.',
+        plaus: 'Un lugar conocido puede ser la respuesta correcta si sirve para la prueba: Pampa Yungay lidera por datos medidos, no por fama, y su experiencia previa cuenta en la comparación. Cuando buscas alternativas nuevas, AnalogOS las distingue, como el Cordón de Domeyko, mucho menos visitado, con 71,60.',
         tableLabel: 'Resultado preliminar · science-screening-v2 · tres sectores de 0,2° · ordenado por Similitud', no: 'N.º', teamPin: 'Equipo · Santiago', proj: 'Natural Earth · Mercator transversa',
         alt: 'Mapa de Chile con los tres sectores de science-screening-v2 en la región de Antofagasta',
         regions: { yungay: 'Sector de screening · Antofagasta', domeyko: 'Sector interior · Antofagasta', mariaelena: 'Sector de screening · Antofagasta' } },
@@ -1296,6 +1305,8 @@ class Component extends DCLogic {
       hMin: narrow ? '0px' : '78vh',
       cands, cands3: cands.slice(0, 3),
       ssRows: L.ss.rows.map((r) => ({ k: r[0], m: r[1], e: r[2] })),
+      reqs: L.how.reqs.map((r) => ({ k: r[0], v: r[1] })),
+      bestS: (en ? '75.67' : '75,67') + ' %',
       people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n, ini: n.charAt(0), ...this.photoOf(n) })),
       narrow,
       navLinksDisplay: narrow || this.state.navNarrow ? 'none' : 'flex',
