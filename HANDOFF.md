@@ -65,7 +65,7 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 
 ## 8. Pendientes
 0. **Esperar cambios del equipo de la app** (no será un chatbot más): cuando suban, `cd ~/dev/AnalogOS && git pull`, revisar README/docs/submission/artifacts y adaptar hero + "Cómo funciona" (hoy muestra el paso 1 como conversación).
-1. Fotos de **Rafa** y **Joaco** → `assets/team/rafa.jpg`, `joaco.jpg` (4:5, ~800×1000) y agregar el slug a `PHOTOS` en `index.html`.
+1. Foto de **Rafa** → `assets/team/rafa.jpg` (Joaco ya está) (4:5, ~800×1000) y agregar el slug a `PHOTOS` en `index.html`.
 2. Confirmar si se publica **g@hacker9house.com** como contacto (footer).
 3. Si el repo de Esteban se vuelve público, enlazarlo en el footer.
 4. QR: decidir destino (landing o app) y generarlo.

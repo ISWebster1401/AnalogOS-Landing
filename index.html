@@ -793,7 +793,7 @@ class Component extends DCLogic {
   SRC = [['MOLA MEGDR','NASA PDS'],['NASADEM','NASA Earthdata'],['Sentinel-2 L2A','Copernicus · ESA'],['POWER','NASA'],[null,'SERNAGEOMIN']];
   NAMES = ['Rafa','Joaco','Sebastián','Gustavo','Danilo'];
   /* team photos available in assets/team/<slug>.jpg — add a slug here when a new photo is uploaded */
-  PHOTOS = ['sebastian','gustavo','danilo'];
+  PHOTOS = ['joaco','sebastian','gustavo','danilo'];
   photoOf(n) { const slug = n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); const has = this.PHOTOS.indexOf(slug) >= 0; return { photo: has ? 'assets/team/' + slug + '.jpg' : 'data:,', pd: has ? 'block' : 'none' }; }
   HUDC = { mars: '#FC734D', chile: '#7FC8EF' };
 
