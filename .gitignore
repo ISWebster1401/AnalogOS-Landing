@@ -1,0 +1,7 @@
+# Export artifacts (avoid re-committing leftover export bundles)
+*.zip
+deploy/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
