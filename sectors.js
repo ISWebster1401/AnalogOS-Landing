@@ -17,7 +17,7 @@
       v: { slope: 3.207, rough: 16.564, relief: 75.125, bare: 1.0, arid: 7.30, therm: 47.66 },
       arms: [
         { k: 'relief', x: 34, y: 24, side: 'top', lx: 22 },
-        { k: 'slope', x: 30, y: 54, side: 'top', lx: 52, flip: true },
+        { k: 'slope', x: 60, y: 50, side: 'top', lx: 52 },
         { k: 'bare', x: 18, y: 78, side: 'bottom', lx: 10 },
         { k: 'infra', x: 84, y: 84, side: 'bottom', lx: 64 }] },
     { id: 'domeyko', name: 'Cordón de Domeyko', img: 'assets/earth-domeyko-s2.jpg', S: 71.60, C: 77.41, stab: 98.89, area: 453.2, ll: '23.30° S · 68.85° W',
@@ -111,7 +111,7 @@
       closePop(); open = i; btn.setAttribute('aria-expanded', 'true'); btn.lastChild.textContent = '−';
       pop.innerHTML = '<div style="display:flex; justify-content:space-between; gap:10px; align-items:baseline;"><strong style="font-family:var(--font-heading); font-size:16px;">' + d[0] + '</strong><span style="' + MONO + ' font-size:11px; color:#7FC8EF; white-space:nowrap;">' + d[1](s.v) + '</span></div><p style="margin:8px 0 0; color:rgba(242,244,245,0.82);">' + d[2] + '</p>';
       pop.style.display = 'block';
-      pop.style.left = clamp(a.lx, 2, 58) + '%';
+      pop.style.left = clamp(a.x > 62 ? a.x - 40 : a.x, 2, 58) + '%';
       if (a.side === 'top') { pop.style.top = '64px'; pop.style.bottom = 'auto'; } else { pop.style.bottom = '64px'; pop.style.top = 'auto'; }
     }
     function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
@@ -128,13 +128,12 @@
         btn.type = 'button'; btn.setAttribute('aria-expanded', 'false');
         var d = L.arm[a.k];
         btn.innerHTML = '<span style="display:flex; flex-direction:column; gap:1px;"><span style="font-size:13px; font-weight:600;">' + d[0] + '</span><span style="' + MONO + ' font-size:10px; color:#7FC8EF;">' + d[1](s.v) + '</span></span><span style="width:24px; height:24px; border-radius:6px; background:rgba(242,244,245,0.12); display:flex; align-items:center; justify-content:center; font-size:15px;">+</span>';
-        btn.style.left = clamp(a.lx, 0, 70) + '%';
+        var flip = a.x > 62;
+        btn.style.left = a.x + '%';
+        btn.style.transform = 'translate(' + (flip ? '-100%' : '0') + ',' + (top ? '-100%' : '0') + ')';
         btn.style.top = (top ? y0 + 3 : y0 - 3) + '%';
-        if (!top) btn.style.top = (y0 - 3) + '%';
         btn.addEventListener('click', function (e) { e.stopPropagation(); showPop(i, a, btn); });
-        /* connector from the label to the vertical arm */
-        var hook = el('span', 'position:absolute; height:1px; background:rgba(242,244,245,0.7); top:' + (top ? y0 + 3 : y0 - 3) + '%; left:' + Math.min(a.x, clamp(a.lx, 0, 70) + 2) + '%; width:' + Math.abs(a.x - (clamp(a.lx, 0, 70) + 2)) + '%;');
-        arms.appendChild(line); arms.appendChild(hook); arms.appendChild(dot); arms.appendChild(btn);
+        arms.appendChild(line); arms.appendChild(dot); arms.appendChild(btn);
       });
     }
 
