@@ -26,7 +26,15 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 - `demo.html`, `zones.json` — demo antigua; ya no se enlaza (fuera de alcance).
 - `docs/USE_CASES.md` — casos de uso investigados con fuentes.
 
-## 4. Datos científicos (fuente: Esteban12-hori/AnalogOS, `artifacts/science-v2/`)
+## 4. Datos científicos — ACTUAL: `science-screening-v3` (rama `dev` del repo oficial)
+- Piloto Chile–Argentina: 50 ventanas de ~20 km (≈22.274 km²), interior de Antofagasta y Puna de Catamarca y Salta. Embudo: 4 excluidas por coordenadas de muestreo publicadas, 2 por cercanía, 38 por cupo, 6 preseleccionadas (3 por país).
+- Ranking: 1 Antofagasta 25,0° S 69,7° O 94,87 / 77,45 / est. 99,33 · 2 Antofagasta 24,8° S 91,87 · 3 Antofagasta 25,2° S 90,35 · 4 Puna 26,2° S 63,85 · 5 Puna 26,4° S 53,68 · 6 Puna 25,8° S 49,43. Yungay = REF 75,67, fuera del ranking.
+- Candidato 1: pendiente 2,169° (Marte 2,226°), rugosidad 11,291 m (11,0), relieve 46,797 m (47,0), 100 % no vegetado, 10,96 mm/año.
+- Argentina baja por POWER de resolución gruesa (celda 0,5° × 0,625°, 562–767 mm/año). Ninguna ventana es "análogo nuevo".
+- Planificador (ADR-009): brief → borrador IA (Anthropic, servidor; solo métricas medidas, requiere número+unidad, cita literal) → el usuario confirma → motor determinista (imprescindibles primero; no evaluable nunca cuenta como cumplido) → estados Cumple / No cumple / No evaluable → "Priorizado para reconocimiento". Ejemplo real en `submission/evidence/m8-dev-ai-export.json`.
+- El botón "Try" sigue apuntando a analogos.vercel.app (main); el equipo subirá dev ahí. analogos-dev.vercel.app está protegido con login de Vercel.
+
+## 4b. Datos v2 (histórico; ya no se muestran en la landing) — fuente `artifacts/science-v2/`
 - Referencia Marte: MOLA MEGDR, ventana 1,6° × 1,6° en Jezero (18,38° N 77,58° E), ~451 m. Pendiente mediana 2,226°, dif. vecina 11,0 m, relieve 3×3 47,0 m.
 - Tierra: NASADEM promediado a ~475 m antes de calcular métricas; Sentinel-2 L2A 12 mosaicos mensuales 2025 (suelo no vegetado); NASA POWER 2001–2025 (precipitación, rango térmico).
 - Similitud por criterio: topografía `min/max`; aridez `1/(1+p/25)`; térmico `min(r/45,1)`; suelo = fracción. Pesos: pendiente 0,20 · rugosidad 0,20 · relieve 0,15 · suelo 0,20 · aridez 0,10 · térmico 0,05 · geología 0,10 (no puntúa aún). `S = 100·exp(Σ w'·ln(max(s,0,01)))` con pesos renormalizados.
