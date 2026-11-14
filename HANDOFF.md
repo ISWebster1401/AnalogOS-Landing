@@ -60,8 +60,8 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 2. Confirmar si se publica **g@hacker9house.com** como contacto (footer).
 3. Si el repo de Esteban se vuelve público, enlazarlo en el footer.
 4. QR: decidir destino (landing o app) y generarlo.
-5. Dato concreto en el hero ("3 sectores evaluados · Pampa Yungay 75,67 %").
+5. ~~Dato concreto en el hero~~ — hecho (chip "3 sectores evaluados · Mejor opción: Pampa Yungay 75,67 %").
 6. Sección "Lo que viene": grilla nacional, geología SERNAGEOMIN, restricciones oficiales, Luna (LOLA/Diviner), validación con 3–5 responsables de campañas.
-7. Usar `docs/USE_CASES.md` en la landing (p. ej. "Quién lo usa / para qué pruebas") — dato fuerte: NASA ARADS evaluó Yungay, Salar Grande y María Elena como sitios candidatos.
+7. ~~Casos de uso en la landing~~ — hecho: sección `#usos` ("Quién hace estas pruebas") con destacado ARADS y enlace a las fuentes en GitHub.
 8. Accesibilidad: contraste sobre la nebulosa, foco visible, textos alternativos.
 9. Opcional: dejar la imagen CTX de Jezero como archivo fijo para no depender de Mars Trek.
