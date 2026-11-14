@@ -25,7 +25,7 @@
 <script src="./space-bg.js"></script>
 <script src="./halftone-nebula.js"></script>
 <script src="./same-scale.js"></script>
-<style>[data-ss-mode][aria-pressed="true"]{background:#F2F4F5 !important;color:#02070A !important;}[data-ss="status"][data-err="1"]{color:#FC734D}[data-ss="handle"]{transition:width .35s cubic-bezier(.22,1,.36,1),height .35s cubic-bezier(.22,1,.36,1),box-shadow .16s}[data-ss="handle"] svg{transition:transform .35s cubic-bezier(.22,1,.36,1)}[data-ss="frame"][data-dragging] [data-ss="handle"]{width:56px !important;height:36px !important;cursor:grabbing}[data-ss="frame"][data-dragging] [data-chev="l"]{transform:translateX(-4px)}[data-ss="frame"][data-dragging] [data-chev="r"]{transform:translateX(4px)}[data-ss="handle"]:focus{outline:none}[data-ss="handle"]:focus-visible:not([data-quiet]){box-shadow:0 0 0 3px #0297DE,0 6px 18px rgba(0,0,0,0.35)}[data-ss="chipL"],[data-ss="chipR"]{transition:opacity .12s linear}@media (prefers-reduced-motion: reduce){[data-ss="handle"],[data-ss="handle"] svg{transition:none}}</style>
+<style>[data-ss-mode][aria-pressed="true"]{background:#F2F4F5 !important;color:#02070A !important;}[data-ss="status"][data-err="1"]{color:#FC734D}[data-ss="handle"]{transition:width .35s cubic-bezier(.22,1,.36,1),height .35s cubic-bezier(.22,1,.36,1),box-shadow .16s}[data-ss="handle"] svg{transition:transform .35s cubic-bezier(.22,1,.36,1)}[data-ss="frame"][data-dragging] [data-ss="handle"]{width:56px !important;height:36px !important;cursor:grabbing}[data-ss="frame"][data-dragging] [data-chev="l"]{transform:translateX(-4px)}[data-ss="frame"][data-dragging] [data-chev="r"]{transform:translateX(4px)}[data-ss="handle"]:focus{outline:none}[data-ss="handle"]:focus-visible:not([data-quiet]){box-shadow:0 0 0 3px #0297DE,0 6px 18px rgba(0,0,0,0.35)}[data-ss="chipL"],[data-ss="chipR"]{transition:opacity .12s linear}@media (max-width:640px){#chile table td,#chile table th{padding-left:4px !important;padding-right:4px !important}#chile table td:nth-child(n+3){font-size:12px !important}[data-hudbar]{display:none !important}}@media (prefers-reduced-motion: reduce){[data-ss="handle"],[data-ss="handle"] svg{transition:none}}</style>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#071827"></rect><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36 L100 100 L0 100 Z" fill="#02070A"></path><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36" fill="none" stroke="#FC734D" stroke-width="2"></path><rect x="66" y="34" width="6" height="6" fill="#0297DE"></rect><rect x="30" y="30" width="8" height="8" fill="#FC734D"></rect></svg></template>
 <style>
 html,body{margin:0;background:#02070A;color:#F2F4F5}
@@ -63,7 +63,7 @@ a:hover{color:#FD9A7D}
 </header>
 
 <sc-if value="{{ showHud }}" hint-placeholder-val="{{ true }}">
-  <div aria-hidden="true" style="position:fixed; left:clamp(16px,4vw,56px); bottom:16px; z-index:55; display:flex; align-items:center; gap:10px; max-width:calc(100vw - 32px); box-sizing:border-box; padding:8px 12px; background:#02070A; border:1px solid rgba(242,244,245,0.18); font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; pointer-events:none;">
+  <div data-hudbar="" aria-hidden="true" style="position:fixed; left:clamp(16px,4vw,56px); bottom:16px; z-index:55; display:flex; align-items:center; gap:10px; max-width:calc(100vw - 32px); box-sizing:border-box; padding:8px 12px; background:#02070A; border:1px solid rgba(242,244,245,0.18); font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.05em; text-transform:uppercase; pointer-events:none;">
     <span data-k="hudDot" style="width:8px; height:8px; flex:none; background:#FC734D;"></span>
     <span data-k="hudPlace" style="color:#F2F4F5;">{{ t.tr.jzPlace }}</span>
     <span data-k="hudCoord" style="color:#0297DE;">{{ t.tr.jzCoord }}</span>
@@ -513,7 +513,7 @@ a:hover{color:#FD9A7D}
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap:36px 20px; margin-top:32px;">
         <sc-for list="{{ people }}" as="m" hint-placeholder-count="5">
-          <div data-rv="" style="display:flex; flex-direction:column; gap:12px;"><div style="position:relative; width:100%; aspect-ratio:4 / 5; background:linear-gradient(160deg,#0A2236,#04101A); overflow:hidden; border-radius:14px;"><span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:800; font-size:44px; color:rgba(127,200,239,0.45);">{{ m.ini }}</span><img src="assets/team/{{ m.slug }}.jpg" alt="{{ m.n }}" loading="lazy" onerror="this.remove()" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05);"></div><div style="display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid rgba(242,244,245,0.24);"><span style="font-size:18px; font-weight:600;">{{ m.n }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.7);">{{ m.r }}</span></div></div>
+          <div data-rv="" style="display:flex; flex-direction:column; gap:12px;"><div style="position:relative; width:100%; aspect-ratio:4 / 5; background:linear-gradient(160deg,#0A2236,#04101A); overflow:hidden; border-radius:14px;"><span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:800; font-size:44px; color:rgba(127,200,239,0.45);">{{ m.ini }}</span><img src="{{ m.photo }}" alt="{{ m.n }}" loading="lazy" style="display:{{ m.pd }}; position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05);"></div><div style="display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid rgba(242,244,245,0.24);"><span style="font-size:18px; font-weight:600;">{{ m.n }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.7);">{{ m.r }}</span></div></div>
         </sc-for>
       </div>
     </div>
@@ -600,7 +600,7 @@ class Component extends DCLogic {
         regions: { yungay: 'Screening sector · Antofagasta', domeyko: 'Interior sector · Antofagasta', mariaelena: 'Screening sector · Antofagasta' } },
       ss: { kicker: 'Same scale · two planets', h: '20 km of Jezero next to 20 km of Pampa Yungay.',
         p: 'Same frame, same metres per pixel. Drag to compare. Switch to MOLA scale to see the ~460 m pixels at which AnalogOS actually compares terrain.',
-        marsTag: 'Mars · Jezero west rim and delta', earthTag: 'Earth · Pampa Yungay', loading: 'Loading CTX tiles from NASA Mars Trek…',
+        marsTag: 'Mars · Jezero', earthTag: 'Earth · Yungay', loading: 'Loading CTX tiles from NASA Mars Trek…',
         slider: 'Split between Mars (left) and Earth (right)', vt: '{v}% Mars', modeLabel: 'View mode', mImg: 'Imagery ~29 m', mMola: 'MOLA scale 463 m',
         rows: [['Frame','20.34 × 20.34 km','20.34 × 20.34 km'],['Median slope at ~460–480 m','Mars 2.2°','Yungay 3.2°'],['Local relief 3×3','Mars 47 m','Yungay 75 m']],
         note: 'The score compares elevation (MOLA vs NASADEM), not these images. MOLA mode only block-averages each picture to 463 m so you can see the scale of the comparison. Infrastructure visible in the south-east of Yungay is one of the pending restriction checks.',
@@ -667,7 +667,7 @@ class Component extends DCLogic {
         regions: { yungay: 'Sector de screening · Antofagasta', domeyko: 'Sector interior · Antofagasta', mariaelena: 'Sector de screening · Antofagasta' } },
       ss: { kicker: 'Misma escala · dos planetas', h: '20 km de Jezero junto a 20 km de Pampa Yungay.',
         p: 'Mismo encuadre, mismos metros por píxel. Arrastra para comparar. Cambia a escala MOLA para ver los píxeles de ~460 m a los que AnalogOS compara realmente el terreno.',
-        marsTag: 'Marte · borde oeste y delta de Jezero', earthTag: 'Tierra · Pampa Yungay', loading: 'Cargando mosaicos CTX desde NASA Mars Trek…',
+        marsTag: 'Marte · Jezero', earthTag: 'Tierra · Yungay', loading: 'Cargando mosaicos CTX desde NASA Mars Trek…',
         slider: 'División entre Marte (izquierda) y Tierra (derecha)', vt: '{v} % Marte', modeLabel: 'Modo de vista', mImg: 'Imagen ~29 m', mMola: 'Escala MOLA 463 m',
         rows: [['Encuadre','20,34 × 20,34 km','20,34 × 20,34 km'],['Pendiente mediana a ~460–480 m','Marte 2,2°','Yungay 3,2°'],['Relieve local 3×3','Marte 47 m','Yungay 75 m']],
         note: 'La nota compara elevación (MOLA frente a NASADEM), no estas imágenes. El modo MOLA solo promedia cada imagen a 463 m para que veas la escala de la comparación. La infraestructura visible al sureste de Yungay es una de las restricciones pendientes de revisar.',
@@ -679,6 +679,9 @@ class Component extends DCLogic {
   };
   SRC = [['MOLA MEGDR','NASA PDS'],['NASADEM','NASA Earthdata'],['Sentinel-2 L2A','Copernicus · ESA'],['POWER','NASA'],[null,'SERNAGEOMIN']];
   NAMES = ['Rafa','Joaco','Sebastián','Gustavo','Danilo'];
+  /* team photos available in assets/team/<slug>.jpg — add a slug here when a new photo is uploaded */
+  PHOTOS = ['gustavo','danilo'];
+  photoOf(n) { const slug = n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, ''); const has = this.PHOTOS.indexOf(slug) >= 0; return { photo: has ? 'assets/team/' + slug + '.jpg' : 'data:,', pd: has ? 'block' : 'none' }; }
   HUDC = { mars: '#FC734D', chile: '#7FC8EF' };
 
   get L() { return this.I18N[this.state.lang]; }
@@ -1278,7 +1281,7 @@ class Component extends DCLogic {
       hMin: narrow ? '0px' : '78vh',
       cands, cands3: cands.slice(0, 3),
       ssRows: L.ss.rows.map((r) => ({ k: r[0], m: r[1], e: r[2] })),
-      people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n, ini: n.charAt(0), slug: n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') })),
+      people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n, ini: n.charAt(0), ...this.photoOf(n) })),
       narrow,
       navLinksDisplay: narrow || this.state.navNarrow ? 'none' : 'flex',
       navBtnDisplay: this.state.tiny ? 'none' : 'flex',
