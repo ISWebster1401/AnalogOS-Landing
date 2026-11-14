@@ -25,6 +25,8 @@
 <script src="./liquid-nav.js"></script>
 <script src="./space-bg.js"></script>
 <script src="./halftone-nebula.js"></script>
+<script src="./same-scale.js"></script>
+<style>[data-ss-mode][aria-pressed="true"]{background:#F2F4F5 !important;color:#02070A !important;}[data-ss="range"]:focus-visible + *{outline:2px solid #0297DE}[data-ss="status"][data-err="1"]{color:#FC734D}</style>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#071827"></rect><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36 L100 100 L0 100 Z" fill="#02070A"></path><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36" fill="none" stroke="#FC734D" stroke-width="2"></path><rect x="66" y="34" width="6" height="6" fill="#0297DE"></rect><rect x="30" y="30" width="8" height="8" fill="#FC734D"></rect></svg></template>
 <style>
 html,body{margin:0;background:#02070A;color:#F2F4F5}
@@ -326,6 +328,40 @@ a:hover{color:#FD9A7D}
   </div>
 </section>
 
+<section id="escala" data-hud="chile" data-screen-label="Same scale" style="position:relative; background:transparent; padding:clamp(80px,12vh,140px) 0;">
+  <div style="max-width:1440px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
+    <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.7);"><span style="width:10px; height:10px; flex:none; background:#FC734D;"></span><span style="color:#F2F4F5;">2 × 20 km</span><span>{{ t.ss.kicker }}</span></div>
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; gap:24px clamp(24px,4vw,64px); margin-top:clamp(28px,4vh,48px);">
+      <h2 data-rv="" style="flex:1 1 360px; margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(32px,4.6vw,72px); line-height:1; letter-spacing:-0.03em;">{{ t.ss.h }}</h2>
+      <p data-rv="" style="flex:1 1 320px; margin:0; max-width:52ch; font-size:clamp(16px,1.2vw,18px); line-height:1.55; color:rgba(242,244,245,0.82);">{{ t.ss.p }}</p>
+    </div>
+    <div data-k="ss" data-mode="img" style="display:flex; flex-wrap:wrap; gap:clamp(24px,3vw,48px); align-items:flex-start; margin-top:clamp(40px,6vh,64px);">
+      <div style="flex:1 1 420px; max-width:680px; width:100%;">
+        <div style="position:relative; width:100%; aspect-ratio:1 / 1; background:#04101A; border:1px solid rgba(242,244,245,0.18); overflow:hidden; touch-action:pan-y;">
+          <canvas data-ss="earth" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></canvas>
+          <div data-ss="clip" style="position:absolute; inset:0;"><canvas data-ss="mars" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block;"></canvas></div>
+          <div data-ss="handle" aria-hidden="true" style="position:absolute; top:0; bottom:0; left:50%; width:2px; margin-left:-1px; background:#F2F4F5; box-shadow:0 0 0 1px rgba(2,7,10,0.5); pointer-events:none;"><span style="position:absolute; top:50%; left:50%; width:34px; height:34px; margin:-17px 0 0 -17px; border-radius:50%; background:#F2F4F5; color:#02070A; display:flex; align-items:center; justify-content:center; font:700 14px/1 sans-serif;">⇆</span></div>
+          <span style="position:absolute; left:10px; top:10px; padding:3px 7px; background:rgba(2,7,10,0.82); border:1px solid #FC734D; font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:#F2F4F5; pointer-events:none;">{{ t.ss.marsTag }}</span>
+          <span style="position:absolute; right:10px; top:10px; padding:3px 7px; background:rgba(2,7,10,0.82); border:1px solid #0297DE; font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:#F2F4F5; pointer-events:none;">{{ t.ss.earthTag }}</span>
+          <div style="position:absolute; left:10px; bottom:10px; display:flex; flex-direction:column; gap:4px; pointer-events:none;"><span style="display:block; width:24.58%; min-width:60px; height:4px; background:#F2F4F5; box-shadow:0 0 0 1px rgba(2,7,10,0.6);"></span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:#F2F4F5; text-shadow:0 0 4px #02070A;">5 km</span></div>
+          <span data-ss="status" style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); padding:4px 8px; background:rgba(2,7,10,0.82); font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:rgba(242,244,245,0.8); pointer-events:none;">{{ t.ss.loading }}</span>
+          <input data-ss="range" type="range" min="0" max="100" value="50" aria-label="{{ t.ss.slider }}" style="position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:ew-resize;">
+        </div>
+        <div role="group" aria-label="{{ t.ss.modeLabel }}" style="display:flex; margin-top:12px; border:1px solid rgba(242,244,245,0.3); width:max-content; max-width:100%;">
+          <button type="button" data-ss-mode="img" aria-pressed="true" style="min-height:38px; padding:0 14px; border:0; cursor:pointer; font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; letter-spacing:0.04em; background:transparent; color:#F2F4F5;">{{ t.ss.mImg }}</button>
+          <button type="button" data-ss-mode="mola" aria-pressed="false" style="min-height:38px; padding:0 14px; border:0; border-left:1px solid rgba(242,244,245,0.3); cursor:pointer; font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; letter-spacing:0.04em; background:transparent; color:#F2F4F5;">{{ t.ss.mMola }}</button>
+        </div>
+      </div>
+      <div style="flex:1 1 300px; display:flex; flex-direction:column; gap:20px; max-width:520px;">
+        <sc-for list="{{ ssRows }}" as="r" hint-placeholder-count="3">
+          <div style="display:flex; flex-direction:column; gap:6px; padding-top:12px; border-top:1px solid rgba(242,244,245,0.2);"><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.66);">{{ r.k }}</span><span style="display:flex; gap:18px; flex-wrap:wrap; font-family:var(--font-heading); font-weight:800; font-size:clamp(20px,1.8vw,26px);"><span style="color:#FC734D;">{{ r.m }}</span><span style="color:#0297DE;">{{ r.e }}</span></span></div>
+        </sc-for>
+        <p style="margin:0; font-size:14px; line-height:1.55; color:rgba(242,244,245,0.75);">{{ t.ss.note }}</p>
+        <p style="margin:0; font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; line-height:1.6; color:rgba(242,244,245,0.55);">{{ t.ss.attr }}</p>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="notas" data-hud="chile" data-screen-label="07 Scores" style="position:relative; background:transparent; padding:clamp(80px,12vh,140px) 0;">
   <div style="max-width:1440px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
     <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.7);"><span style="width:10px; height:10px; flex:none; background:#7FC8EF;"></span><span style="color:#F2F4F5;">05</span><span>{{ t.sc.kicker }}</span></div>
@@ -562,6 +598,13 @@ class Component extends DCLogic {
         tableLabel: 'Preliminary result · science-screening-v2 · three 0.2° sectors · sorted by Similarity', no: 'No.', teamPin: 'Team · Santiago', proj: 'Natural Earth · transverse Mercator',
         alt: 'Map of Chile with the three science-screening-v2 sectors in the Antofagasta region',
         regions: { yungay: 'Screening sector · Antofagasta', domeyko: 'Interior sector · Antofagasta', mariaelena: 'Screening sector · Antofagasta' } },
+      ss: { kicker: 'Same scale · two planets', h: '20 km of Jezero next to 20 km of Pampa Yungay.',
+        p: 'Same frame, same metres per pixel. Drag to compare. Switch to MOLA scale to see the ~460 m pixels at which AnalogOS actually compares terrain.',
+        marsTag: 'Mars · Jezero west rim and delta', earthTag: 'Earth · Pampa Yungay', loading: 'Loading CTX tiles from NASA Mars Trek…',
+        slider: 'Split between Mars (left) and Earth (right)', modeLabel: 'View mode', mImg: 'Imagery ~29 m', mMola: 'MOLA scale 463 m',
+        rows: [['Frame','20.34 × 20.34 km','20.34 × 20.34 km'],['Median slope at ~460–480 m','Mars 2.2°','Yungay 3.2°'],['Local relief 3×3','Mars 47 m','Yungay 75 m']],
+        note: 'The score compares elevation (MOLA vs NASADEM), not these images. MOLA mode only block-averages each picture to 463 m so you can see the scale of the comparison. Infrastructure visible in the south-east of Yungay is one of the pending restriction checks.',
+        attr: 'Mars: MRO CTX, NASA/JPL/MSSS, "Jezero_CTX_BlockAdj_dd" via NASA Mars Trek, centre 18.45° N 77.34° E. Earth: contains modified Copernicus Sentinel-2 data (Dec 2025 mosaic), AnalogOS visual context, centre 24.08° S 69.95° W.' },
       team: { kicker: 'Team', sub: 'Five members · Santiago, Chile', photo: 'Photo',
         roles: ['Design, narrative & QA','Data & engineering','Science & scoring model','Frontend & map','Lead, scope & pitch'] },
       foot: 'Open data: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · HLS inventory (NASA CMR) · Cartography: Natural Earth'
@@ -622,6 +665,13 @@ class Component extends DCLogic {
         tableLabel: 'Resultado preliminar · science-screening-v2 · tres sectores de 0,2° · ordenado por Similitud', no: 'N.º', teamPin: 'Equipo · Santiago', proj: 'Natural Earth · Mercator transversa',
         alt: 'Mapa de Chile con los tres sectores de science-screening-v2 en la región de Antofagasta',
         regions: { yungay: 'Sector de screening · Antofagasta', domeyko: 'Sector interior · Antofagasta', mariaelena: 'Sector de screening · Antofagasta' } },
+      ss: { kicker: 'Misma escala · dos planetas', h: '20 km de Jezero junto a 20 km de Pampa Yungay.',
+        p: 'Mismo encuadre, mismos metros por píxel. Arrastra para comparar. Cambia a escala MOLA para ver los píxeles de ~460 m a los que AnalogOS compara realmente el terreno.',
+        marsTag: 'Marte · borde oeste y delta de Jezero', earthTag: 'Tierra · Pampa Yungay', loading: 'Cargando mosaicos CTX desde NASA Mars Trek…',
+        slider: 'División entre Marte (izquierda) y Tierra (derecha)', modeLabel: 'Modo de vista', mImg: 'Imagen ~29 m', mMola: 'Escala MOLA 463 m',
+        rows: [['Encuadre','20,34 × 20,34 km','20,34 × 20,34 km'],['Pendiente mediana a ~460–480 m','Marte 2,2°','Yungay 3,2°'],['Relieve local 3×3','Marte 47 m','Yungay 75 m']],
+        note: 'La nota compara elevación (MOLA frente a NASADEM), no estas imágenes. El modo MOLA solo promedia cada imagen a 463 m para que veas la escala de la comparación. La infraestructura visible al sureste de Yungay es una de las restricciones pendientes de revisar.',
+        attr: 'Marte: MRO CTX, NASA/JPL/MSSS, «Jezero_CTX_BlockAdj_dd» vía NASA Mars Trek, centro 18,45° N 77,34° E. Tierra: contiene datos modificados de Copernicus Sentinel-2 (mosaico de dic. 2025), contexto visual de AnalogOS, centro 24,08° S 69,95° O.' },
       team: { kicker: 'Equipo', sub: 'Cinco integrantes · Santiago de Chile', photo: 'Foto',
         roles: ['Diseño, narrativa y QA','Datos e ingeniería','Ciencia y modelo de notas','Frontend y mapa','Líder, alcance y pitch'] },
       foot: 'Datos abiertos: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · inventario HLS (NASA CMR) · Cartografía: Natural Earth'
@@ -662,6 +712,7 @@ class Component extends DCLogic {
       const ctor = window.AnalogNebula;
       if (ctor) { try { this._nebula = ctor(sp, { root: document, clicks: false, subtle: true }); const st = this.k('stars'); if (this._nebula && st) st.style.display = 'none'; } catch (e) { console.error(e); } }
     }
+    if (window.AnalogSameScale && this.k('ss')) { try { this._ss = window.AnalogSameScale(this.k('ss')); } catch (e) { console.error(e); } }
     this.introHero(this.isReduced());
     this.initChrome(0);
     this._safety = setTimeout(() => { if (!this._built) { this._libs = false; this.rebuild(); } }, 9000);
@@ -692,6 +743,7 @@ class Component extends DCLogic {
     if (this._nav) this._nav.destroy();
     if (this._stars) this._stars.destroy();
     if (this._nebula) this._nebula.destroy();
+    if (this._ss) this._ss.destroy();
     if (this._spy) this._spy.disconnect();
     if (this._g) { try { this._g.renderer.dispose(); } catch (e) {} }
     this.teardown();
@@ -1225,6 +1277,7 @@ class Component extends DCLogic {
         rows: s.rows.map((r, j) => ({ label: r[0], val: r[1], bar: i === 1 && j < 2 ? 'flex' : 'none', w: i === 1 ? (j === 0 ? '38%' : '1%') : '0%' })) })),
       hMin: narrow ? '0px' : '78vh',
       cands, cands3: cands.slice(0, 3),
+      ssRows: L.ss.rows.map((r) => ({ k: r[0], m: r[1], e: r[2] })),
       people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n })),
       narrow,
       navLinksDisplay: narrow || this.state.navNarrow ? 'none' : 'flex',
