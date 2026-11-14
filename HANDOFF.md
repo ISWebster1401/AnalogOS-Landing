@@ -44,7 +44,7 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 - Header sin barra/borde/blur ni línea de progreso; solo un degradado suave.
 - Jezero: titular "La pendiente es lo que se transfiere entre planetas…" (μ ≥ tan θ como contexto, no como métrica del screening).
 - Perforación y Hábitat: "· pronto / próximo perfil".
-- Misma escala: CTX Jezero (NASA Mars Trek `Jezero_CTX_BlockAdj_dd`, compuesto en el navegador, centro 18,45° N 77,34° E) vs Sentinel-2 Yungay, 20,34 km, modo "escala MOLA 463 m". **Depende de Mars Trek en vivo** (igual que el globo).
+- Misma escala: CTX Jezero (NASA Mars Trek `Jezero_CTX_BlockAdj_dd`, centro 18,45° N 77,34° E, guardado como `assets/mars-jezero-ctx.jpg`) vs Sentinel-2 Yungay, 20,34 km, modo "escala MOLA 463 m". El globo sí sigue usando Mars Trek en vivo.
 - Configurador: brazos con "+" en escritorio; en ≤640 px puntos numerados + lista desplegable.
 - Fotos del equipo en blanco y negro → color al pasar el mouse.
 - En ≤640 px se oculta la barra fija de coordenadas (HUD).
@@ -56,6 +56,7 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 - Escritorio (1440 px) y celular (375 px, emulado): sin desbordes horizontales; ES/EN revisados en las secciones nuevas. Falta prueba en un teléfono real y auditoría de contraste.
 
 ## 8. Pendientes
+0. **Esperar cambios del equipo de la app** (no será un chatbot más): cuando suban, `cd ~/dev/AnalogOS && git pull`, revisar README/docs/submission/artifacts y adaptar hero + "Cómo funciona" (hoy muestra el paso 1 como conversación).
 1. Fotos de **Rafa** y **Joaco** → `assets/team/rafa.jpg`, `joaco.jpg` (4:5, ~800×1000) y agregar el slug a `PHOTOS` en `index.html`.
 2. Confirmar si se publica **g@hacker9house.com** como contacto (footer).
 3. Si el repo de Esteban se vuelve público, enlazarlo en el footer.
@@ -63,5 +64,5 @@ Prompt sugerido para abrir Claude Code en este repo: *"Lee CLAUDE.md y HANDOFF.m
 5. ~~Dato concreto en el hero~~ — hecho (chip "3 sectores evaluados · Mejor opción: Pampa Yungay 75,67 %").
 6. Sección "Lo que viene": grilla nacional, geología SERNAGEOMIN, restricciones oficiales, Luna (LOLA/Diviner), validación con 3–5 responsables de campañas.
 7. ~~Casos de uso en la landing~~ — hecho: sección `#usos` ("Quién hace estas pruebas") con destacado ARADS y enlace a las fuentes en GitHub.
-8. Accesibilidad: contraste sobre la nebulosa, foco visible, textos alternativos.
-9. Opcional: dejar la imagen CTX de Jezero como archivo fijo para no depender de Mars Trek.
+8. ~~Accesibilidad~~ — hecho: texto secundario a opacidad ≥0,72 y anillo de foco visible (#7FC8EF) para teclado.
+9. ~~Imagen fija de Jezero~~ — hecho: `assets/mars-jezero-ctx.jpg` (640 px, 20,34 km); Mars Trek solo como respaldo.
