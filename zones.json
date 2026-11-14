@@ -1,6 +1,14 @@
 {
  "illustrative": true,
  "epsilon": 0.01,
+ "mars_reference": {
+  "name": "Jezero crater · west rim",
+  "center": [
+   18.38,
+   77.58
+  ],
+  "zoom": 10
+ },
  "zones": [
   {
    "id": "valle",
