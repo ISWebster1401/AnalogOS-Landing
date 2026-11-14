@@ -21,7 +21,6 @@
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
-<script src="./image-slot.js"></script>
 <script src="./liquid-nav.js"></script>
 <script src="./space-bg.js"></script>
 <script src="./halftone-nebula.js"></script>
@@ -514,7 +513,7 @@ a:hover{color:#FD9A7D}
       </div>
       <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 160px), 1fr)); gap:36px 20px; margin-top:32px;">
         <sc-for list="{{ people }}" as="m" hint-placeholder-count="5">
-          <div data-rv="" style="display:flex; flex-direction:column; gap:12px;"><div class="grayscale" style="position:relative; width:100%; aspect-ratio:4 / 5; background:#0A1A26;"><image-slot id="team-{{ m.id }}" shape="rect" placeholder="{{ m.ph }}" style="position:absolute; inset:0; width:100%; height:100%;"></image-slot></div><div style="display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid rgba(242,244,245,0.24);"><span style="font-size:18px; font-weight:600;">{{ m.n }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.7);">{{ m.r }}</span></div></div>
+          <div data-rv="" style="display:flex; flex-direction:column; gap:12px;"><div style="position:relative; width:100%; aspect-ratio:4 / 5; background:linear-gradient(160deg,#0A2236,#04101A); overflow:hidden; border-radius:14px;"><span aria-hidden="true" style="position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--font-heading); font-weight:800; font-size:44px; color:rgba(127,200,239,0.45);">{{ m.ini }}</span><img src="assets/team/{{ m.slug }}.jpg" alt="{{ m.n }}" loading="lazy" onerror="this.remove()" style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; filter:grayscale(1) contrast(1.05);"></div><div style="display:flex; flex-direction:column; gap:4px; padding-top:10px; border-top:2px solid rgba(242,244,245,0.24);"><span style="font-size:18px; font-weight:600;">{{ m.n }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.7);">{{ m.r }}</span></div></div>
         </sc-for>
       </div>
     </div>
@@ -522,6 +521,7 @@ a:hover{color:#FD9A7D}
     <footer style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px 48px; margin-top:clamp(80px,12vh,140px); padding:24px 0 96px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.6; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.66);">
       <span style="color:#F2F4F5;">AnalogOS</span>
       <span>NASA Space Apps Challenge 2026 · {{ t.hero.city }}</span>
+      <a href="https://analogos.vercel.app/" style="color:#7FC8EF; text-decoration:none;">analogos.vercel.app ↗</a>
       <span style="max-width:70ch;">{{ t.foot }}</span>
     </footer>
   </div>
@@ -554,7 +554,7 @@ class Component extends DCLogic {
         today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
       src: [['Mars elevation · Jezero reference','~451 m'],['Earth elevation, averaged to MOLA scale','30 m → ~475 m'],['Non-vegetated surface · 12 monthly mosaics','~30 m'],['Aridity and surface temperature range','regional · 2001–2025'],['Lithology · next, not scored yet','1:1,000,000']],
       srcNames: ['Geological Map of Chile'],
-      j: { kicker: 'Jezero · Mars', h: 'Perseverance climbed slopes steeper than 20° with autonomous navigation.', law: 'Slope transfers between planets (μ ≥ tan θ)', minmu: 'slope ≥ 20° → minimum μ = tan 20° ≈ 0.36',
+      j: { kicker: 'Jezero · Mars', h: 'Slope is what transfers between planets. Perseverance proves it on Jezero’s rim.', law: 'Slope transfers between planets (μ ≥ tan θ)', minmu: 'slope ≥ 20° → minimum μ = tan 20° ≈ 0.36',
         why: 'Gravity appears on both sides of the inequality and cancels out: the friction a slope demands is the same on Mars and on Earth.',
         dist: 'Distance', elev: 'Elevation gain', avg: 'Average slope of the segment', mu: 'μ needed = tan θ', r0d: '0.00 km', r0t: '0.0°', r0m: '0.00', a1: '21.8°', a2: '22.8°',
         cap: 'Illustrative profile based on rover operations. The platform compares against a 1.6° × 1.6° MOLA window around Jezero (median slope 2.2°, local relief 47 m) at ~460–480 m.' },
@@ -567,15 +567,15 @@ class Component extends DCLogic {
         cap: 'Atacama is the benchmark, not the default answer.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to three screening sectors in northern Chile, with an arc arriving from Jezero' },
       how: { kicker: 'How it works', h: 'From the question to the place, in three steps.',
         s1t: 'You choose the test', s1b: "Tell us what you want to validate, such as a rover's autonomous navigation, and the terrain it needs: target slope, local relief and surface conditions.",
-        formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling', habitat: 'Habitat', search: 'Find candidate zones',
+        formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling · soon', habitat: 'Habitat · soon', search: 'Find candidate zones',
         note: 'Traction and soil are checked in the field, not scored: a 30 m elevation model cannot see rocks or soil.',
         s2t: 'We cross the data', s2b: 'NASADEM elevation is averaged to MOLA scale before computing slope, roughness and relief. Twelve monthly Sentinel-2 mosaics measure bare ground and NASA POWER adds aridity. Every source keeps its version and SHA-256.',
         s3t: 'You see candidates', s3b: 'You get ranked sectors, each with Similarity, Confidence, Feasibility and weight stability (±20 %), plus what is analogous, where it fails and what to verify in the field.',
         example: 'Example · rover autonomous navigation' },
       tests: {
         rover: [['Mars reference','MOLA · Jezero, 1.6° window'],['Median slope · local relief','2.2° · 47 m'],['Conditions','Bare ground, hyper-arid']],
-        drill: [['Target lithology','Sedimentary rock (geological map)'],['Local relief','< 50 m'],['Conditions','Aridity and bare ground']],
-        habitat: [['Target slope','≤ 5°'],['Flat area','≥ 1 ha'],['Conditions','Road access within 10 km']] },
+        drill: [['Status','Next profile · not scored yet'],['Target lithology','Sedimentary rock (SERNAGEOMIN)'],['Local relief','< 50 m']],
+        habitat: [['Status','Next profile · not scored yet'],['Target slope','≤ 5°'],['Flat area','≥ 1 ha']] },
       sc: { kicker: 'The three scores', h: 'Three separate scores',
         p: 'A place can look a lot like Mars and still have sparse data or be hard to use. That is why each candidate zone gets three scores instead of one.',
         exTest: 'Profile: Mars Rover Screening v2', exZone: 'Sector: Pampa Yungay · rank 1 of 3',
@@ -621,7 +621,7 @@ class Component extends DCLogic {
         today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
       src: [['Elevación de Marte · referencia Jezero','~451 m'],['Elevación terrestre, promediada a escala MOLA','30 m → ~475 m'],['Superficie no vegetada · 12 mosaicos mensuales','~30 m'],['Aridez y rango térmico superficial','regional · 2001–2025'],['Litología · siguiente, aún no puntúa','1:1.000.000']],
       srcNames: ['Mapa Geológico de Chile'],
-      j: { kicker: 'Jezero · Marte', h: 'Perseverance subió pendientes de más de 20° con navegación autónoma.', law: 'Pendiente: se transfiere entre planetas (μ ≥ tan θ)', minmu: 'pendiente ≥ 20° → μ mínimo = tan 20° ≈ 0,36',
+      j: { kicker: 'Jezero · Marte', h: 'La pendiente es lo que se transfiere entre planetas. Perseverance lo demuestra en el borde de Jezero.', law: 'Pendiente: se transfiere entre planetas (μ ≥ tan θ)', minmu: 'pendiente ≥ 20° → μ mínimo = tan 20° ≈ 0,36',
         why: 'La gravedad aparece a ambos lados de la desigualdad y se cancela: la fricción que exige una pendiente es la misma en Marte y en la Tierra.',
         dist: 'Distancia', elev: 'Desnivel', avg: 'Pendiente media del tramo', mu: 'μ necesario = tan θ', r0d: '0,00 km', r0t: '0,0°', r0m: '0,00', a1: '21,8°', a2: '22,8°',
         cap: 'Perfil ilustrativo basado en operaciones del rover. La plataforma compara contra una ventana MOLA de 1,6° × 1,6° en torno a Jezero (pendiente mediana 2,2°, relieve local 47 m) a ~460–480 m.' },
@@ -634,15 +634,15 @@ class Component extends DCLogic {
         cap: 'Atacama es el punto de referencia, no la respuesta predeterminada.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta tres sectores de screening en el norte de Chile, con un arco que llega desde Jezero' },
       how: { kicker: 'Cómo funciona', h: 'De la pregunta al lugar, en tres pasos.',
         s1t: 'Eliges la prueba', s1b: 'Indica qué quieres validar, como la navegación autónoma de un rover, y el terreno que necesita: pendiente objetivo, relieve local y condiciones de superficie.',
-        formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación', habitat: 'Hábitat', search: 'Buscar zonas candidatas',
+        formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación · pronto', habitat: 'Hábitat · pronto', search: 'Buscar zonas candidatas',
         note: 'La tracción y el suelo se verifican en terreno, no se puntúan: un modelo de elevación de 30 m no ve rocas ni suelo.',
         s2t: 'Cruzamos datos', s2b: 'Promediamos la elevación NASADEM a escala MOLA antes de calcular pendiente, rugosidad y relieve. Doce mosaicos mensuales de Sentinel-2 miden el suelo desnudo y NASA POWER agrega la aridez. Cada fuente guarda su versión y su SHA-256.',
         s3t: 'Ves candidatos', s3b: 'Recibes sectores ordenados, cada uno con Similitud, Confianza, Factibilidad y estabilidad ante cambios de pesos (±20 %), además de qué es análogo, dónde falla y qué verificar en terreno.',
         example: 'Ejemplo · navegación autónoma de rover' },
       tests: {
         rover: [['Referencia marciana','MOLA · Jezero, ventana de 1,6°'],['Pendiente mediana · relieve local','2,2° · 47 m'],['Condiciones','Suelo desnudo, hiperárido']],
-        drill: [['Litología objetivo','Roca sedimentaria (mapa geológico)'],['Relieve local','< 50 m'],['Condiciones','Aridez y suelo desnudo']],
-        habitat: [['Pendiente objetivo','≤ 5°'],['Superficie plana','≥ 1 ha'],['Condiciones','Camino a menos de 10 km']] },
+        drill: [['Estado','Próximo perfil · aún no puntúa'],['Litología objetivo','Roca sedimentaria (SERNAGEOMIN)'],['Relieve local','< 50 m']],
+        habitat: [['Estado','Próximo perfil · aún no puntúa'],['Pendiente objetivo','≤ 5°'],['Superficie plana','≥ 1 ha']] },
       sc: { kicker: 'Las tres notas', h: 'Tres notas separadas',
         p: 'Un lugar puede parecerse mucho a Marte y, aun así, tener datos escasos o ser difícil de usar. Por eso cada zona candidata recibe tres notas en vez de una.',
         exTest: 'Perfil: Mars Rover Screening v2', exZone: 'Sector: Pampa Yungay · puesto 1 de 3',
@@ -1278,7 +1278,7 @@ class Component extends DCLogic {
       hMin: narrow ? '0px' : '78vh',
       cands, cands3: cands.slice(0, 3),
       ssRows: L.ss.rows.map((r) => ({ k: r[0], m: r[1], e: r[2] })),
-      people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n })),
+      people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n, ini: n.charAt(0), slug: n.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '') })),
       narrow,
       navLinksDisplay: narrow || this.state.navNarrow ? 'none' : 'flex',
       navBtnDisplay: this.state.tiny ? 'none' : 'flex',
