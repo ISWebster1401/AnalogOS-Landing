@@ -38,7 +38,7 @@ a:hover{color:#FD9A7D}
 </style>
 </helmet>
 <div ref="{{ rootRef }}" style="--color-bg:#02070A; --color-accent:#FC734D; --color-accent-600:#FD9A7D; --color-accent-700:#E5603B; --color-text:#F2F4F5; --color-divider:rgba(242,244,245,0.24); --color-surface:#0C1D2A; position:relative; background:#02070A; color:#F2F4F5; font-family:var(--font-body); overflow-x:clip;">
-<div aria-hidden="true" style="position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(60% 50% at 0% 0%, rgba(22,92,134,0.34), rgba(22,92,134,0) 70%), radial-gradient(45% 40% at 100% 100%, rgba(252,115,77,0.13), rgba(252,115,77,0) 70%), #02070A;"><canvas data-k="stars" style="position:absolute; inset:0; width:100%; height:100%; opacity:0.36;"></canvas></div>
+<div aria-hidden="true" style="position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(60% 50% at 0% 0%, rgba(22,92,134,0.34), rgba(22,92,134,0) 70%), radial-gradient(45% 40% at 100% 100%, rgba(252,115,77,0.13), rgba(252,115,77,0) 70%), #02070A;"><div data-k="space" style="position:absolute; inset:0;"></div><canvas data-k="stars" style="position:absolute; inset:0; width:100%; height:100%; opacity:0.36;"></canvas></div>
 
 <header style="position:fixed; top:0; left:0; right:0; z-index:60; background:rgba(2,7,10,0.62); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid rgba(242,244,245,0.1);">
   <div style="height:64px; box-sizing:border-box; padding:0 clamp(12px,3vw,40px); display:flex; align-items:center; gap:clamp(8px,1.6vw,20px); color:#F2F4F5;">
@@ -72,8 +72,7 @@ a:hover{color:#FD9A7D}
 </sc-if>
 
 <section id="inicio" data-k="hero" data-hud="mars" data-screen-label="01 Hero" style="position:relative; min-height:100svh; box-sizing:border-box; padding-top:60px; display:flex; flex-direction:column; overflow:hidden; background:transparent;">
-  <div data-k="nebula" aria-hidden="true" style="position:absolute; z-index:0; inset:0; pointer-events:none; -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%); mask-image:linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);"></div>
-  <div aria-hidden="true" style="position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(2,7,10,0.72) 0%, rgba(2,7,10,0.35) 45%, rgba(2,7,10,0) 75%);"></div>
+  <div aria-hidden="true" style="position:absolute; z-index:0; left:-10%; top:8%; width:80%; height:70%; pointer-events:none; filter:blur(60px); opacity:0.55; background:radial-gradient(45% 55% at 30% 45%, rgba(2,151,222,0.55), rgba(2,151,222,0) 70%), radial-gradient(35% 45% at 62% 60%, rgba(252,115,77,0.45), rgba(252,115,77,0) 70%);"></div>
   <div data-k="heroInner" style="position:relative; z-index:2; flex:1 0 auto; width:100%; max-width:1440px; margin:0 auto; box-sizing:border-box; padding:clamp(20px,4vh,40px) clamp(16px,4vw,56px) 0; display:flex; flex-direction:column;">
     <div data-hr="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:12px 24px; font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.8);">
       <div style="border-top:2px solid rgba(242,244,245,0.3); padding-top:10px;">NASA Space Apps Challenge 2026</div>
@@ -658,12 +657,15 @@ class Component extends DCLogic {
     this._rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
     this._onRm = () => this.rebuild();
     this._rmq.addEventListener('change', this._onRm);
-    const nb = this.k('nebula');
-    // Hero background: ?bg=nebula (default) | asmr | none  -- set HERO_BG below to fix one for good
-    let bg = 'nebula';
+    // Full-page space background: ?bg=nebula (default) | asmr | none. Change SPACE_BG to fix one.
+    const SPACE_BG = 'nebula';
+    let bg = SPACE_BG;
     try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'asmr' || q === 'nebula' || q === 'none') bg = q; } catch (e) {}
-    const ctor = bg === 'asmr' ? window.AnalogASMR : bg === 'nebula' ? window.AnalogNebula : null;
-    if (nb && ctor) { try { this._nebula = ctor(nb, { root: this.k('hero') || nb }); } catch (e) { console.error(e); } }
+    const sp = this.k('space');
+    if (sp && bg !== 'none') {
+      const ctor = bg === 'asmr' ? window.AnalogASMR : window.AnalogNebula;
+      if (ctor) { try { this._nebula = ctor(sp, { root: document, clicks: false, subtle: true }); const st = this.k('stars'); if (this._nebula && st) st.style.display = 'none'; } catch (e) { console.error(e); } }
+    }
     this.introHero(this.isReduced());
     this.initChrome(0);
     this._safety = setTimeout(() => { if (!this._built) { this._libs = false; this.rebuild(); } }, 9000);

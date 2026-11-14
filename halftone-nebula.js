@@ -298,9 +298,12 @@ void main(){
 
   function AnalogNebula(container, opts) {
     opts = opts || {};
-    var P = Object.assign({}, DEFAULTS, opts.params || {});
+    var SUBTLE = { density: 0.36, threshold: 0.6, haze: 0.55, sparkles: 6, lens: 0.35, lensRadius: 220, lensPush: 0.2,
+      vignette: 0.35, grain: 0.02, starDrift: 0.6, drift: 0.025 };
+    var P = Object.assign({}, DEFAULTS, opts.subtle ? SUBTLE : {}, opts.params || {});
+    if (opts.subtle) { container.style.opacity = '0.55'; }
     var root = opts.root || container, interactive = opts.interactive !== false;
-    var maxDpr = opts.maxDpr || 1.5;
+    var maxDpr = opts.maxDpr || (opts.subtle ? 1 : 1.5), clicks = opts.clicks !== false;
     var canvas = document.createElement('canvas');
     canvas.setAttribute('aria-hidden', 'true');
     canvas.style.cssText = 'position:absolute; inset:0; display:block; width:100%; height:100%;';
@@ -353,7 +356,7 @@ void main(){
     function onMove(e) { if (!interactive) return; var p = toUv(e); targetX = p[0]; targetY = p[1]; inside = true; lastTouched = performance.now() / 1000; }
     function onLeave() { inside = false; }
     function onDown(e) {
-      if (!interactive || e.button > 0) return;
+      if (!interactive || !clicks || e.button > 0) return;
       if (e.target && e.target.closest && e.target.closest('a,button,input,textarea,select,label,[role=button]')) return;
       var p = toUv(e), now = clock(), rand = Math.random();
       targetX = p[0]; targetY = p[1]; inside = true; lastTouched = performance.now() / 1000;

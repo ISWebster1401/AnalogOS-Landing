@@ -11,6 +11,7 @@
     canvas.setAttribute('aria-hidden', 'true');
     canvas.style.cssText = 'position:absolute; inset:0; display:block; width:100%; height:100%;';
     container.appendChild(canvas);
+    if (opts.subtle) container.style.opacity = '0.7';
     var ctx = canvas.getContext('2d');
     var rmq = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     var width = 1, height = 1, dpr = 1, raf = 0, dead = false, visible = true, particles = [];
