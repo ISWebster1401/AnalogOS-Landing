@@ -336,14 +336,14 @@ a:hover{color:#FD9A7D}
     <div data-rv="" style="display:flex; flex-wrap:wrap; align-items:center; gap:8px 20px; margin-top:clamp(40px,6vh,64px); font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.72);"><span style="padding:2px 7px; border:1px solid #7FC8EF; color:#7FC8EF; text-transform:none; letter-spacing:0.03em;">{{ t.illus }}</span><span>{{ t.sc.exTest }}</span><span>{{ t.sc.exZone }}</span></div>
     <div data-k="gauges" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:48px clamp(24px,3vw,48px); margin-top:20px;">
       <sc-for list="{{ gauges }}" as="g" hint-placeholder-count="3">
-        <div data-gauge="" data-v="{{ g.v }}" style="display:flex; flex-direction:column; gap:22px; padding-top:24px; border-top:2px solid {{ g.c }};">
+        <div data-gauge="" data-v="{{ g.v }}" data-lab="{{ g.lab }}" style="display:flex; flex-direction:column; gap:22px; padding-top:24px; border-top:2px solid {{ g.c }};">
           <div style="position:relative; width:clamp(160px,15vw,220px); aspect-ratio:1 / 1;">
             <svg viewBox="0 0 200 200" aria-hidden="true" style="position:absolute; inset:0; width:100%; height:100%; display:block;">
               <circle cx="100" cy="100" r="74" style="fill:none; stroke:rgba(242,244,245,0.3); stroke-width:7; stroke-dasharray:1.2 22.05;"></circle>
               <circle cx="100" cy="100" r="90" style="fill:none; stroke:rgba(242,244,245,0.1); stroke-width:12;"></circle>
               <circle data-arc="" cx="100" cy="100" r="90" pathLength="1" transform="rotate(-90 100 100)" style="fill:none; stroke:{{ g.c }}; stroke-width:12; stroke-dasharray:1; stroke-dashoffset:{{ g.off }};"></circle>
             </svg>
-            <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;"><span data-num="" style="font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(44px,4vw,60px); line-height:1; letter-spacing:-0.03em; font-variant-numeric:tabular-nums;">{{ g.v }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:rgba(242,244,245,0.66);">/ 100</span></div>
+            <div style="position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;"><span data-num="" style="font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:{{ g.fs }}; line-height:1; letter-spacing:-0.03em; font-variant-numeric:tabular-nums;">{{ g.v }}</span><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; color:rgba(242,244,245,0.66);">{{ g.unit }}</span></div>
           </div>
           <div style="display:flex; flex-direction:column; gap:10px;">
             <h3 style="margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(22px,1.8vw,28px); line-height:1.1; letter-spacing:-0.015em;">{{ g.name }}</h3>
@@ -363,7 +363,7 @@ a:hover{color:#FD9A7D}
       <h2 data-rv="" style="flex:1 1 400px; margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(32px,4.6vw,72px); line-height:1; letter-spacing:-0.03em;">{{ t.ho.h }}</h2>
       <p data-rv="" style="flex:1 1 320px; margin:0; max-width:52ch; font-size:clamp(16px,1.2vw,18px); line-height:1.55; color:rgba(242,244,245,0.82);">{{ t.ho.p }}</p>
     </div>
-    <div data-rv="" style="display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:clamp(40px,6vh,64px); font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.72);"><span style="color:#F2F4F5;">{{ t.ho.ex }}</span><span>Valle de Marte</span><span>{{ t.ho.exTest }}</span></div>
+    <div data-rv="" style="display:flex; flex-wrap:wrap; gap:8px 20px; margin-top:clamp(40px,6vh,64px); font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.72);"><span style="color:#F2F4F5;">{{ t.ho.ex }}</span><span>Pampa Yungay</span><span>{{ t.ho.exTest }}</span></div>
     <div style="display:flex; flex-wrap:wrap; align-items:flex-start; gap:0 clamp(32px,5vw,96px); margin-top:20px;">
       <div style="flex:1 1 360px; min-width:0; display:flex; flex-direction:column;">
         <sc-for list="{{ honest }}" as="h" hint-placeholder-count="3">
@@ -445,14 +445,12 @@ a:hover{color:#FD9A7D}
             <path data-k="mapNeighbors" d="M136.9 -287.9L114.9 -289.1L111.7 -285.4L91.8 -280.7L64 -264L62.3 -252.7L56.2 -244.1L58.7 -230.9L44.1 -223.8L44.1 -213.5L37.8 -208.9L48 -187L61.6 -172.3L56.5 -161.8L72.5 -160.5L81.6 -147.5L102.8 -147L122.5 -161.4L121 -124.3L131.8 -121.5L145.4 -125.7L165.8 -86.3L160.6 -78.1L159.4 -60.9L158.8 -40.2L149.5 -28L153.6 -19L148.2 -10.8L158.1 9.8L143.3 36L137 48.5L125.1 54.7L101.8 40.7L99.7 30.7L53.2 6.7L10.5 -19.3L-8 -34L-18.4 -53.9L-14.6 -61.1L-35.7 -92.8L-60.5 -137.5L-84.6 -186L-94.8 -197L-102.9 -215L-122.3 -230.8L-140.1 -240.5L-132.3 -251.7L-144.6 -275.1L-137.2 -292.6L-117.7 -308.5L-114.7 -298.3L-121.6 -292.3L-120.8 -283.2L-110.7 -285.3L-100.6 -282.8L-90.2 -270.5L-76.4 -280.8L-71.9 -297.4L-57.1 -318.9L-27.6 -328.8L-1 -354.6L6.5 -370.5L3.2 -389.1L9.7 -391.4L25.9 -379.8L33.7 -368.3L45.1 -362L59.5 -336.4L77.6 -333.4L91 -339.9L99.9 -335.6L114.5 -337.7L133.2 -326.3L117.5 -301.5L124.7 -300.9L136.9 -287.9ZM145.4 -125.7L163.1 -123.5L175.5 -124L180.9 -131.3L202 -141L214.8 -150L246.3 -153.8L243.5 -135.4L246.3 -126L244.1 -109.6L269.6 -87.2L296.4 -82.4L305.5 -73L321.6 -67.6L331.2 -60.1L346.4 -59.7L360 -51.9L360.4 -37.5L364.8 -30.1L364.6 -19.4L357.6 -19.3L365.4 9.9L411 13.5L406.6 27.6L408.5 37.6L421 45.4L425.5 61.3L419.9 80.6L412.6 91L413.8 105.4L406.1 109.9L406.3 102.3L385.5 88L363.8 86.3L322.9 91.2L310.7 112.3L309.5 125.5L298.9 154.4L295.5 149L269.7 146.8L260 166.1L247.4 147.9L217.9 141L198.5 162.6L182.2 165.6L173.9 131.8L162 104.3L169.5 80.7L157.5 70.3L154.5 52.7L143.3 36L158.1 9.8L148.2 -10.8L153.6 -19L149.5 -28L158.8 -40.2L159.4 -60.9L160.6 -78.1L165.8 -86.3L145.4 -125.7ZM149.8 891.2L155.1 902.7L161.7 921.2L179.5 936.8L198.9 944.2L191.7 955.9L178.4 956.3L171.8 947.3L163.3 946.2L148.3 945.7L149.8 891.2ZM394.6 359.7L387 378.8L378.5 403.5L375.8 428L370.6 433L367.2 448.7L364.2 461.4L387.2 485.7L382.1 502.3L393 514.8L390.2 526.6L367 555.4L336.8 564.8L298 565.6L277.3 561.1L280 576L274.5 594L276.7 606.6L264.8 614.2L245.7 616L228.7 605.8L221.1 611.7L222.1 636.1L233.9 644.3L244.3 637.4L248.6 650.5L231.6 656.8L216.3 671L212.1 695.4L207.2 708.1L190.9 707.3L176.9 719.2L171.3 737.3L187 755.9L202.6 761.7L195.6 783.2L175.8 796L164.3 824.2L149.7 833.4L143.2 844.6L147.5 870.1L157.1 884.5L150.9 883.1L137.2 878.9L100.9 875.8L94.3 861.7L94.2 843.4L84 845.3L78.2 836.7L75.8 810.9L87.7 799.7L92.4 784.1L90.2 771.8L98.5 750.8L104.2 718.5L102.1 704.2L109.7 699.5L107.7 690.3L99.5 685.5L105.2 675.2L97.1 666.1L92.4 638L99.6 632.9L96 603.2L100 578.2L104.8 556.4L116.1 547.4L110.2 523.7L110 501.3L124.8 485.3L124.3 464.9L135.9 441.2L136.1 418.7L130.9 414.2L121.4 372.1L134.4 347.1L132.4 323.5L140.3 301.3L154.6 278.6L170.1 263.6L163.8 254L168.4 246.2L168.4 205.5L192.8 193.9L201.1 168.7L198.5 162.6L217.9 141L247.4 147.9L260 166.1L269.7 146.8L295.5 149L298.9 154.4L338.1 197L356.2 202.1L382.2 222.6L404.4 234.3L406.6 245.6L381.1 281.1L402.6 290L426.9 296.5L444.8 294.6L467.3 278L473.7 256.5L485.5 253L494.9 268.9L491.7 288.9L471.1 300.1L455 308.4L427.3 329.4L394.6 359.7ZM406.1 109.9L411.9 124.3L407.7 157.9L431.5 164.7L441.4 160.7L456.3 169L459.9 176.9L459.6 200L461.3 209.9L469.6 212L478.7 208.9L486.4 214.4L484.7 228.1L479.8 242.6L473.7 256.5L467.3 278L444.8 294.6L426.9 296.5L402.6 290L381.1 281.1L406.6 245.6L404.4 234.3L382.2 222.6L356.2 202.1L338.1 197L298.9 154.4L309.5 125.5L310.7 112.3L322.9 91.2L363.8 86.3L385.5 88L406.3 102.3L406.1 109.9ZM471.3 460.3L467.9 445.3L479.1 435L469.7 416.2L455.3 399.9L435.7 380.9L427.7 380.5L408.8 358.7L394.6 359.7L427.3 329.4L455 308.4L471.1 300.1L491.7 288.9L494.9 268.9L485.5 253L473.7 256.5L479.8 242.6L484.7 228.1L486.4 214.4L478.7 208.9L469.6 212L461.3 209.9L459.6 200L459.9 176.9L456.3 169L441.4 160.7L431.5 164.7L407.7 157.9L411.9 124.3L406.1 109.9L413.8 105.4L412.6 91L419.9 80.6L425.5 61.3L421 45.4L408.5 37.6L406.6 27.6L411 13.5L365.4 9.9L357.6 -19.3L364.6 -19.4L364.8 -30.1L360.4 -37.5L360 -51.9L346.4 -59.7L331.2 -60.1L321.6 -67.6L305.5 -73L296.4 -82.4L269.6 -87.2L244.1 -109.6L246.3 -126L243.5 -135.4L246.3 -153.8L214.8 -150L202 -141L180.9 -131.3L175.5 -124L163.1 -123.5L145.4 -125.7L131.8 -121.5L121 -124.3L122.5 -161.4L102.8 -147L81.6 -147.5L72.5 -160.5L56.5 -161.8L61.6 -172.3L48 -187L37.8 -208.9L44.1 -213.5L44.1 -223.8L58.7 -230.9L56.2 -244.1L62.3 -252.7L64 -264L91.8 -280.7L111.7 -285.4L114.9 -289.1L136.9 -287.9L147.9 -354.8L148.4 -365.4L144.7 -379.4L133.9 -388.3L134 -406L147.7 -410L152.6 -407.5L153.4 -416.8L139.1 -419.3L138.8 -434.6L186.3 -434.1L194.4 -442.5L201.1 -434.8L206 -420.4L210.6 -423.4L224 -410.5L243.1 -412.1L247.8 -419.6L266 -425.4L276.1 -429.4L278.9 -439.8L296.4 -446.9L295 -452L274.2 -454L270.7 -469.5L271.7 -485.9L260.6 -492.2L265.2 -494.5L283.3 -491.5L302.9 -485.5L309.9 -491.4L327.6 -495.4L354.9 -505L363.8 -514.5L360.5 -521.5L373.3 -522.8L379.1 -517.1L376.1 -506.2L384.7 -502.6L390.4 -491.1L383.7 -482.3L380 -461.1L386.4 -448.6L388.3 -437.1L403.6 -425.6L415.9 -424.4L418.6 -429.3L426.5 -430.4L437.8 -434.9L445.8 -441.6L459.8 -439.6L465.8 -440.5L479.5 -438.6L481.7 -443.7L477.5 -448.7L480 -456L490.1 -453.9L502 -456.6L516.6 -451.4L527.7 -446.3L535.5 -453.3L541.2 -452.3L544.7 -445.2L556.9 -447.1L566.7 -457L574.2 -476L588.8 -499.9L597.6 -501.3L604.3 -487.2L619.5 -442.1L633.5 -438L634.3 -420L615 -398.5L623 -390.7L669.2 -386.6L670 -360.2L690.1 -377.4L723.4 -367.7L767.9 -350.8L780.8 -334.8L776.1 -319.8L808 -327.5L861.2 -311.6L903.2 -311.5L944.4 -286.4L979.7 -252.3L1001.6 -242.6L1026.6 -239.8L1036.8 -229.8L1043.9 -191.2L1047.2 -172.7L1030.6 -124.8L1013.6 -107.3L968.4 -71.8L946.3 -41.8L922.4 -20L915.5 -20.4L904.8 -0.9L898.6 51.8L883.8 93.3L877.6 111L867.3 120.3L855.7 156L822.7 186.2L812.7 213.1L790.2 220.5L781.1 235.2L754.6 229.6L714.6 232.2L695.6 240.7L667.7 243.3L636.4 258.8L612.4 280.8L605.6 299.2L606.8 313.9L597.9 338.8L590.5 350.2L572.3 361.2L540 401L517.6 417.4L501.1 426.5L487.4 448.5L471.3 460.3Z" style="fill:none; stroke:rgba(242,244,245,0.24); stroke-width:1; stroke-linejoin:round; vector-effect:non-scaling-stroke;"></path>
             <path data-k="mapChileFill" d="M149.8 891.2L148.3 945.7L163.3 946.2L171.8 947.3L166.7 956.9L154.5 964L147.8 963L139.7 960.8L129.7 953.4L115.1 949.9L97.1 936.5L82.2 923.9L60.8 897.6L73.2 902.1L94.2 917.6L113.5 926L120.8 914.8L125.6 898.1L139.3 888.1L149.8 891.2ZM143.3 36L154.5 52.7L157.5 70.3L169.5 80.7L162 104.3L173.9 131.8L182.2 165.6L198.5 162.6L201.1 168.7L192.8 193.9L168.4 205.5L168.4 246.2L163.8 254L170.1 263.6L154.6 278.6L140.3 301.3L132.4 323.5L134.4 347.1L121.4 372.1L130.9 414.2L136.1 418.7L135.9 441.2L124.3 464.9L124.8 485.3L110 501.3L110.2 523.7L116.1 547.4L104.8 556.4L100 578.2L96 603.2L99.6 632.9L92.4 638L97.1 666.1L105.2 675.2L99.5 685.5L107.7 690.3L109.7 699.5L102.1 704.2L104.2 718.5L98.5 750.8L90.2 771.8L92.4 784.1L87.7 799.7L75.8 810.9L78.2 836.7L84 845.3L94.2 843.4L94.3 861.7L100.9 875.8L137.2 878.9L150.9 883.1L137.6 882.6L130.4 888.5L117.1 897.3L114.9 920.1L108.8 920.7L92.3 913.2L75 896.8L55.8 883.8L50.1 868.7L53.5 854.1L44.7 838.4L39.9 797L45.3 773.1L61.8 753.3L36 747.7L50.8 725.2L54.7 684.3L74.4 692.2L82.2 641.3L69.9 635.2L65.4 665.9L54 662.9L58.2 627.8L62.7 582.4L70.8 565.4L64.6 541.8L62.1 514.3L70.3 513.3L81.4 473.6L94.6 434.4L102.8 397.9L97.7 361.4L103.8 341.3L101 311.2L113.4 281.3L117.2 234.1L124.3 183.5L131.4 129L129.9 89L125.1 54.7L137 48.5L143.3 36Z" style="fill:rgba(127,200,239,0.13); stroke:none;"></path>
             <path data-k="mapChile" d="M149.8 891.2L148.3 945.7L163.3 946.2L171.8 947.3L166.7 956.9L154.5 964L147.8 963L139.7 960.8L129.7 953.4L115.1 949.9L97.1 936.5L82.2 923.9L60.8 897.6L73.2 902.1L94.2 917.6L113.5 926L120.8 914.8L125.6 898.1L139.3 888.1L149.8 891.2ZM143.3 36L154.5 52.7L157.5 70.3L169.5 80.7L162 104.3L173.9 131.8L182.2 165.6L198.5 162.6L201.1 168.7L192.8 193.9L168.4 205.5L168.4 246.2L163.8 254L170.1 263.6L154.6 278.6L140.3 301.3L132.4 323.5L134.4 347.1L121.4 372.1L130.9 414.2L136.1 418.7L135.9 441.2L124.3 464.9L124.8 485.3L110 501.3L110.2 523.7L116.1 547.4L104.8 556.4L100 578.2L96 603.2L99.6 632.9L92.4 638L97.1 666.1L105.2 675.2L99.5 685.5L107.7 690.3L109.7 699.5L102.1 704.2L104.2 718.5L98.5 750.8L90.2 771.8L92.4 784.1L87.7 799.7L75.8 810.9L78.2 836.7L84 845.3L94.2 843.4L94.3 861.7L100.9 875.8L137.2 878.9L150.9 883.1L137.6 882.6L130.4 888.5L117.1 897.3L114.9 920.1L108.8 920.7L92.3 913.2L75 896.8L55.8 883.8L50.1 868.7L53.5 854.1L44.7 838.4L39.9 797L45.3 773.1L61.8 753.3L36 747.7L50.8 725.2L54.7 684.3L74.4 692.2L82.2 641.3L69.9 635.2L65.4 665.9L54 662.9L58.2 627.8L62.7 582.4L70.8 565.4L64.6 541.8L62.1 514.3L70.3 513.3L81.4 473.6L94.6 434.4L102.8 397.9L97.7 361.4L103.8 341.3L101 311.2L113.4 281.3L117.2 234.1L124.3 183.5L131.4 129L129.9 89L125.1 54.7L137 48.5L143.3 36Z" pathLength="1" style="fill:none; stroke:#7FC8EF; stroke-width:2; stroke-linejoin:round; stroke-dasharray:1; stroke-dashoffset:0;"></path>
-            <polyline data-lead="" data-id="salargrande" points="133.5,119.4 222,92 236,92" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
-            <polyline data-lead="" data-id="valle" points="172.7,166.1 222,150 236,150" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
-            <polyline data-lead="" data-id="yungay" points="132.8,194.2 222,208 236,208" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
-            <polyline data-lead="" data-id="pajonales" points="159.7,220.8 222,266 236,266" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
-            <g data-dot="" data-id="salargrande"><circle data-ring="" cx="133.5" cy="119.4" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="133.5" cy="119.4" r="5" style="fill:#0297DE;"></circle></g>
-            <g data-dot="" data-id="valle"><circle data-ring="" cx="172.7" cy="166.1" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="172.7" cy="166.1" r="5" style="fill:#0297DE;"></circle></g>
-            <g data-dot="" data-id="yungay"><circle data-ring="" cx="132.8" cy="194.2" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="132.8" cy="194.2" r="5" style="fill:#0297DE;"></circle></g>
-            <g data-dot="" data-id="pajonales"><circle data-ring="" cx="159.7" cy="220.8" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="159.7" cy="220.8" r="5" style="fill:#0297DE;"></circle></g>
+            <polyline data-lead="" data-id="mariaelena" points="140.8,152.9 222,92 236,92" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
+            <polyline data-lead="" data-id="domeyko" points="158.6,176.2 222,150 236,150" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
+            <polyline data-lead="" data-id="yungay" points="133.8,194.9 222,208 236,208" style="fill:none; stroke:rgba(2,151,222,0.6); stroke-width:1; vector-effect:non-scaling-stroke;"></polyline>
+            <g data-dot="" data-id="mariaelena"><circle data-ring="" cx="140.8" cy="152.9" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="140.8" cy="152.9" r="5" style="fill:#0297DE;"></circle></g>
+            <g data-dot="" data-id="domeyko"><circle data-ring="" cx="158.6" cy="176.2" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="158.6" cy="176.2" r="5" style="fill:#0297DE;"></circle></g>
+            <g data-dot="" data-id="yungay"><circle data-ring="" cx="133.8" cy="194.9" r="5" style="fill:none; stroke:#0297DE; stroke-width:1.5; vector-effect:non-scaling-stroke;"></circle><circle data-core="" cx="133.8" cy="194.9" r="5" style="fill:#0297DE;"></circle></g>
             <rect x="114.7" y="419" width="8" height="8" style="fill:#F2F4F5;"></rect>
           </svg>
           <span style="position:absolute; left:0; top:9.74%; transform:translateY(-115%); padding:0 3px 0 0; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:rgba(242,244,245,0.55);">20° S</span>
@@ -463,11 +461,10 @@ a:hover{color:#FD9A7D}
           <span style="position:absolute; left:0; top:70.85%; transform:translateY(-115%); padding:0 3px 0 0; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:rgba(242,244,245,0.55);">45° S</span>
           <span style="position:absolute; left:0; top:83.04%; transform:translateY(-115%); padding:0 3px 0 0; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:rgba(242,244,245,0.55);">50° S</span>
           <span style="position:absolute; left:0; top:95.21%; transform:translateY(-115%); padding:0 3px 0 0; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:rgba(242,244,245,0.55);">55° S</span>
-          <div style="position:absolute; left:calc(47.11% + 6px); top:9.2%; transform:translateY(-50%);"><div data-mlabel="" data-id="salargrande" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">04 · Salar Grande</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 58</span><span style="color:#7FC8EF;">C 72</span><span style="color:#FC734D;">F 79</span></span></div></div>
-          <div style="position:absolute; left:calc(47.11% + 6px); top:15%; transform:translateY(-50%);"><div data-mlabel="" data-id="valle" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">01 · Valle de Marte</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 82</span><span style="color:#7FC8EF;">C 64</span><span style="color:#FC734D;">F 71</span></span></div></div>
-          <div style="position:absolute; left:calc(47.11% + 6px); top:20.8%; transform:translateY(-50%);"><div data-mlabel="" data-id="yungay" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">02 · Yungay</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 74</span><span style="color:#7FC8EF;">C 81</span><span style="color:#FC734D;">F 68</span></span></div></div>
-          <div style="position:absolute; left:calc(47.11% + 6px); top:26.6%; transform:translateY(-50%);"><div data-mlabel="" data-id="pajonales" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">03 · Salar de Pajonales</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 66</span><span style="color:#7FC8EF;">C 57</span><span style="color:#FC734D;">F 44</span></span></div></div>
-          <div style="position:absolute; left:calc(47.11% + 6px); top:31.5%; padding:2px 6px; border:1px solid #7FC8EF; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:#7FC8EF; white-space:nowrap;">{{ t.illus }}</div>
+          <div style="position:absolute; left:calc(47.11% + 6px); top:9.2%; transform:translateY(-50%);"><div data-mlabel="" data-id="mariaelena" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">03 · Pampa María Elena</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 49.99</span><span style="color:#7FC8EF;">C 77.44</span><span style="color:#FC734D;">F {{ t.fShort }}</span></span></div></div>
+          <div style="position:absolute; left:calc(47.11% + 6px); top:15%; transform:translateY(-50%);"><div data-mlabel="" data-id="domeyko" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">02 · Cordón de Domeyko</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 71.60</span><span style="color:#7FC8EF;">C 77.41</span><span style="color:#FC734D;">F {{ t.fShort }}</span></span></div></div>
+          <div style="position:absolute; left:calc(47.11% + 6px); top:20.8%; transform:translateY(-50%);"><div data-mlabel="" data-id="yungay" style="display:flex; flex-direction:column; gap:2px; white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace;"><span data-mname="" style="font-size:11px; color:#F2F4F5; transition:color .2s;">01 · Pampa Yungay</span><span style="display:flex; gap:8px; font-size:10px;"><span style="color:#0297DE;">S 75.67</span><span style="color:#7FC8EF;">C 77.45</span><span style="color:#FC734D;">F {{ t.fShort }}</span></span></div></div>
+          <div style="position:absolute; left:calc(47.11% + 6px); top:25.7%; padding:2px 6px; border:1px solid #7FC8EF; background:#04101A; font-family:'Martian Mono', ui-monospace, monospace; font-size:9.5px; color:#7FC8EF; white-space:nowrap;">{{ t.illus }}</div>
           <div style="position:absolute; left:calc(23.69% + 12px); top:42.3%; transform:translateY(-50%); white-space:nowrap; font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.03em; color:#F2F4F5;">{{ t.map.teamPin }}</div>
           <span style="position:absolute; right:0; top:0; font-family:'Martian Mono', ui-monospace, monospace; font-size:9px; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.5);">{{ t.map.proj }}</span>
         </div>
@@ -503,133 +500,134 @@ class Component extends DCLogic {
 
   P = [[0,0],[300,6],[650,14],[1000,30],[1300,52],[1520,78],[1640,112],[1760,160],[1850,196],[2050,226],[2400,248],[2750,268],[3000,292],[3140,330],[3240,372],[3330,408],[3420,434],[3700,462],[4000,486],[4350,508],[4650,520],[5000,512],[5400,494]];
   NAVIDS = ['problema', 'jezero', 'como', 'notas', 'equipo'];
-  CANDS = [[-22.9,-68.25],[-24.07,-70.02],[-25.15,-68.8],[-21,-70]];
-  CROWS = [['valle','01','Valle de Marte',82,64,71],['yungay','02','Yungay',74,81,68],['pajonales','03','Salar de Pajonales',66,57,44],['salargrande','04','Salar Grande',58,72,79]];
+  CANDS = [[-24.10,-69.97],[-23.32,-68.87],[-22.37,-69.67]];
+  /* science-screening-v2 (github.com/Esteban12-hori/AnalogOS · artifacts/science-v2) */
+  CROWS = [['yungay','01','Pampa Yungay',75.67,77.45,99.03],['domeyko','02','Cordón de Domeyko',71.60,77.41,98.89],['mariaelena','03','Pampa María Elena',49.99,77.44,98.41]];
   W = (s, acc) => s.split(' ').map((w) => ({ w, c: acc && acc.indexOf(w) >= 0 ? '#FC734D' : '#F2F4F5' }));
 
   I18N = {
     en: {
       title: "AnalogOS — Where to test in Chile what's going to Mars",
-      illus: 'Illustrative values, not results', zone: 'Zone',
+      illus: 'science-screening-v2 · preliminary, not a site approval', zone: 'Sector', fRev: 'Review', fShort: 'review', fUnit: 'status',
       nav: { problem: 'Problem', jezero: 'Jezero', how: 'How it works', scores: 'Scores', team: 'Team', demo: 'Try', try: 'Try' },
       hero: { challenge: 'Challenge · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago, Chile',
         l1: ['Where','to','test','in','Chile'], l2: ["what's",'going','to','Mars.'],
-        sub: 'AnalogOS crosses open data from NASA, ESA and Chilean agencies with the real topography of Mars (MOLA) and shows candidate zones for your test, each with three separate scores: Similarity, Confidence and Feasibility.',
-        scroll: 'Scroll · from Jezero to Atacama', marker: 'Perseverance · Jezero rim', caption: 'Jezero crater · Ø 45 km · 18.38° N 77.58° E' },
+        sub: 'AnalogOS compares the topography of Mars (NASA MOLA) with Chilean terrain at the same scale, adds Sentinel-2 surface and NASA POWER climate, and ranks sectors for a rover mobility test with three separate outputs: Similarity, Confidence and Feasibility.',
+        scroll: 'Scroll · from Jezero to northern Chile', marker: 'Perseverance · Jezero rim', caption: 'Jezero crater · Ø 45 km · 18.38° N 77.58° E' },
       p: { kicker: 'The problem', phrase: "The problem isn't a lack of Mars-like places, it's that there's no fast, defensible way to know which one works for a specific test.", acc: ['fast,','defensible'],
-        today: 'Today', t1: 'Test sites are chosen by reputation and appearance.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
-      src: [['Mars elevation','463 m/px'],['Earth elevation','30 m'],['Earth elevation','30 m'],['Aridity and vegetation cover','250 m – 1 km'],['Lithology','1:1,000,000']],
+        today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
+      src: [['Mars elevation · Jezero reference','~451 m'],['Earth elevation, averaged to MOLA scale','30 m → ~475 m'],['Non-vegetated surface · 12 monthly mosaics','~30 m'],['Aridity and surface temperature range','regional · 2001–2025'],['Lithology · next, not scored yet','1:1,000,000']],
       srcNames: ['Geological Map of Chile'],
       j: { kicker: 'Jezero · Mars', h: 'Perseverance climbed slopes steeper than 20° with autonomous navigation.', law: 'Slope transfers between planets (μ ≥ tan θ)', minmu: 'slope ≥ 20° → minimum μ = tan 20° ≈ 0.36',
         why: 'Gravity appears on both sides of the inequality and cancels out: the friction a slope demands is the same on Mars and on Earth.',
         dist: 'Distance', elev: 'Elevation gain', avg: 'Average slope of the segment', mu: 'μ needed = tan θ', r0d: '0.00 km', r0t: '0.0°', r0m: '0.00', a1: '21.8°', a2: '22.8°',
-        cap: 'Illustrative profile based on rover operations. In the platform, comparison is done at MOLA scale (463 m/px).' },
+        cap: 'Illustrative profile based on rover operations. The platform compares against a 1.6° × 1.6° MOLA window around Jezero (median slope 2.2°, local relief 47 m) at ~460–480 m.' },
       st: { kicker: 'Jezero, so far',
         stats: ['MOLA resolution', 'Jezero rim slopes', "Perseverance's off-world driving record (Oct 2026)"],
         items: [{ date: 'Feb 2021', title: 'Landing in Jezero crater', body: 'Perseverance lands on the floor of Jezero, an ancient lake basin.' },
           { date: 'Dec 2025', title: 'First AI-planned drives on another planet', body: "On Jezero's rim." },
           { date: 'Oct 2026', title: 'First extended mission begins', body: 'Rim exploration through ~2028.' }] },
-      tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', jzPlace: 'Jezero crater · Mars', atPlace: 'Atacama Desert · Chile', jzCoord: '18.38° N 77.58° E', atCoord: '24.50° S 69.25° W',
-        cap: 'Atacama Desert: the driest non-polar desert on Earth.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to the Atacama candidate zones. Dotted Earth rotating to Chile, with an arc arriving from Jezero and landing on the Atacama candidate zones' },
+      tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', jzPlace: 'Jezero crater · Mars', atPlace: 'Northern Chile · 3 screening sectors', jzCoord: '18.38° N 77.58° E', atCoord: '24.10° S 69.97° W',
+        cap: 'Atacama is the benchmark, not the default answer.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to three screening sectors in northern Chile, with an arc arriving from Jezero' },
       how: { kicker: 'How it works', h: 'From the question to the place, in three steps.',
         s1t: 'You choose the test', s1b: "Tell us what you want to validate, such as a rover's autonomous navigation, and the terrain it needs: target slope, local relief and surface conditions.",
         formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling', habitat: 'Habitat', search: 'Find candidate zones',
         note: 'Traction and soil are checked in the field, not scored: a 30 m elevation model cannot see rocks or soil.',
-        s2t: 'We cross the data', s2b: 'We compare the real topography of Mars (MOLA) with elevation, surface and geology data for Chile, all open: NASA, ESA and SERNAGEOMIN.',
-        s3t: 'You see candidates', s3b: 'You get candidate zones in Chile, each with Similarity, Confidence and Feasibility scores and the limits of the analogy in plain view.',
+        s2t: 'We cross the data', s2b: 'NASADEM elevation is averaged to MOLA scale before computing slope, roughness and relief. Twelve monthly Sentinel-2 mosaics measure bare ground and NASA POWER adds aridity. Every source keeps its version and SHA-256.',
+        s3t: 'You see candidates', s3b: 'You get ranked sectors, each with Similarity, Confidence, Feasibility and weight stability (±20 %), plus what is analogous, where it fails and what to verify in the field.',
         example: 'Example · rover autonomous navigation' },
       tests: {
-        rover: [['Target slope','≥ 20°'],['Local relief','100–300 m'],['Conditions','Aridity and bare ground']],
+        rover: [['Mars reference','MOLA · Jezero, 1.6° window'],['Median slope · local relief','2.2° · 47 m'],['Conditions','Bare ground, hyper-arid']],
         drill: [['Target lithology','Sedimentary rock (geological map)'],['Local relief','< 50 m'],['Conditions','Aridity and bare ground']],
         habitat: [['Target slope','≤ 5°'],['Flat area','≥ 1 ha'],['Conditions','Road access within 10 km']] },
       sc: { kicker: 'The three scores', h: 'Three separate scores',
         p: 'A place can look a lot like Mars and still have sparse data or be hard to use. That is why each candidate zone gets three scores instead of one.',
-        exTest: 'Test: rover autonomous navigation', exZone: 'Zone: Valle de Marte, San Pedro de Atacama',
-        items: [['Similarity','How closely the relief matches the Martian reference: slope, local relief and roughness, compared at MOLA scale.','MOLA · NASADEM · Copernicus DEM'],
-          ['Confidence','How solid the data behind the score is: resolution, coverage and age of each layer.','Metadata of each dataset'],
-          ['Feasibility','How viable it is to go and test: access, permits, climate and logistics.','Roads · protected areas · MODIS']] },
+        exTest: 'Profile: Mars Rover Screening v2', exZone: 'Sector: Pampa Yungay · rank 1 of 3',
+        items: [['Similarity','Weighted geometric mean of six criteria: slope, roughness and local relief vs MOLA Jezero, bare ground, aridity and thermal range. Geology is not scored yet.','MOLA · NASADEM · Sentinel-2 · NASA POWER'],
+          ['Confidence','How much evidence entered the score. Missing data lowers confidence, never similarity, and the two are never combined.','Quality per source · ADR-003'],
+          ['Feasibility','A category, never a promise: unknown, requires review, potentially feasible or excluded. Protected areas and access are still pending.','IDE Chile · NASADEM SWB · Sentinel-2']] },
       ho: { kicker: 'Scientific honesty', h: 'Every candidate zone comes with its limits in writing.',
         p: 'No analogy is perfect. Next to the scores, each result separates what the site reproduces, where it stops resembling Mars and what has to be checked in the field.',
-        ex: 'Example', exTest: 'Rover autonomous navigation', marsL: 'Mars', earthL: 'Earth',
+        ex: 'Example', exTest: 'Rover mobility screening v2', marsL: 'Mars', earthL: 'Earth',
         steps: [
-          { title: 'What the site reproduces', items: ['Slopes above 20°, comparable to the climb onto Jezero’s rim', 'Hundreds of metres of local relief', 'Hyper-arid, bare ground with almost no vegetation'],
-            vk: 'Reproduced', big: '≥ 20°', bigCap: 'Rim-like slopes over real relief, measured at MOLA scale.', rows: [['Slope','≥ 20°'],['Local relief','100–300 m'],['Surface','Bare, hyper-arid']] },
-          { title: 'Where the analogy fails', items: ['Gravity: 0.38 g on Mars, which changes wheel load and sinkage in loose soil', 'Atmosphere: Mars has less than 1% of Earth’s surface pressure', 'Temperature and radiation: the terrain does not reproduce them'],
+          { title: 'What the site reproduces', items: ['Median slope 3.2° vs 2.2° in the MOLA Jezero window', 'Local relief 75 m vs 47 m, both at ~460–480 m', '100 % non-vegetated surface in 12 monthly Sentinel-2 mosaics, 7.3 mm of rain a year'],
+            vk: 'Reproduced', big: '75.67', bigCap: 'Pampa Yungay similarity. It does not win by a “Mars analog” label: it wins on measured terrain, surface and aridity.', rows: [['Median slope','3.2° · Mars 2.2°'],['Local relief 3×3','75 m · Mars 47 m'],['Non-vegetated surface','100 %']] },
+          { title: 'Where the analogy fails', items: ['Gravity: 0.38 g on Mars, which changes wheel load and sinkage in loose soil', 'Atmosphere: Mars has less than 1% of Earth’s surface pressure', 'Scale: a ~460–480 m comparison cannot see wheel-scale hazards, and Sentinel-2 does not measure soil mechanics'],
             vk: 'Not reproduced', big: '0.38 g', bigCap: 'The slope rule transfers; loads, sinkage and the environment do not.', rows: [['Gravity','38% of Earth'],['Surface pressure','< 1% of Earth'],['Temperature and radiation','Not reproduced']] },
-          { title: 'What to verify in the field', items: ['Soil cohesion and bearing capacity (traction)', 'Real slope at rover scale, below the elevation model’s resolution', 'Access, permits and weather window'],
-            vk: 'Field checklist', big: '3 checks', bigCap: 'Before committing a test campaign, on site.', rows: [['Soil and traction','To verify'],['Rover-scale slope','To verify'],['Access, permits, weather','To verify']] }] },
-      map: { kicker: 'Arrival · Chile', h: 'From the rim of Jezero to a specific point in Chile.',
+          { title: 'What to verify in the field', items: ['Grain size, cohesion, dust, sinkage and traction for the rover', 'Obstacles, slope and roughness at centimetre to decimetre scale', 'Protected areas, urban limits, ownership, access and permits (IDE Chile)'],
+            vk: 'Field checklist', big: '3 checks', bigCap: 'All three sectors are “requires review” until these are closed.', rows: [['Soil and traction','To verify'],['Rover-scale terrain','To verify'],['Restrictions and permits','To verify']] }] },
+      map: { kicker: 'Arrival · Chile', h: 'From a Jezero reference to three sectors in Chile.',
         p: 'Tell us what you want to test and AnalogOS returns candidate zones with their three scores and their limits, so you can justify the choice.',
-        plaus: 'Atacama is our plausibility check, not our discovery: the goal is to surface less obvious sites that fit a specific test.',
-        tableLabel: 'Example result · rover autonomous navigation · sorted by Similarity', no: 'No.', teamPin: 'Team · Santiago', proj: 'Natural Earth · transverse Mercator',
-        alt: 'Map of Chile with four illustrative candidate zones in the Atacama region',
-        regions: { valle: 'San Pedro de Atacama · Antofagasta', yungay: 'Atacama Desert · Antofagasta', pajonales: 'Altiplano · Antofagasta', salargrande: 'Coast · Tarapacá' } },
+        plaus: 'Atacama is a benchmark, not the default answer. Pampa Yungay ranks first on measured data, and the interior Cordón de Domeyko, far less visited, is a close second at 71.60. Next step: from three seed sectors to a national grid.',
+        tableLabel: 'Preliminary result · science-screening-v2 · three 0.2° sectors · sorted by Similarity', no: 'No.', teamPin: 'Team · Santiago', proj: 'Natural Earth · transverse Mercator',
+        alt: 'Map of Chile with the three science-screening-v2 sectors in the Antofagasta region',
+        regions: { yungay: 'Screening sector · Antofagasta', domeyko: 'Interior sector · Antofagasta', mariaelena: 'Screening sector · Antofagasta' } },
       team: { kicker: 'Team', sub: 'Five members · Santiago, Chile', photo: 'Photo',
         roles: ['Design, narrative & QA','Data & engineering','Science & scoring model','Frontend & map','Lead, scope & pitch'] },
-      foot: 'Open data: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Copernicus DEM (ESA) · MODIS (NASA) · Geological Map of Chile (SERNAGEOMIN) · Cartography: Natural Earth'
+      foot: 'Open data: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · HLS inventory (NASA CMR) · Cartography: Natural Earth'
     },
     es: {
       title: 'AnalogOS — Dónde probar en Chile lo que irá a Marte',
-      illus: 'Valores ilustrativos, no resultados', zone: 'Zona',
+      illus: 'science-screening-v2 · preliminar, no aprueba sitios', zone: 'Sector', fRev: 'Revisar', fShort: 'revisar', fUnit: 'estado',
       nav: { problem: 'Problema', jezero: 'Jezero', how: 'Cómo funciona', scores: 'Notas', team: 'Equipo', demo: 'Probar', try: 'Probar' },
       hero: { challenge: 'Desafío · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago de Chile',
         l1: ['Dónde','probar','en','Chile'], l2: ['lo','que','irá','a','Marte.'],
-        sub: 'AnalogOS cruza datos abiertos de NASA, ESA y organismos chilenos con la topografía real de Marte (MOLA) y te muestra zonas candidatas para tu prueba, con tres notas separadas: Similitud, Confianza y Factibilidad.',
-        scroll: 'Desliza · de Jezero a Atacama', marker: 'Perseverance · borde de Jezero', caption: 'Cráter Jezero · Ø 45 km · 18,38° N 77,58° E' },
+        sub: 'AnalogOS compara la topografía de Marte (NASA MOLA) con el terreno chileno a la misma escala, suma superficie Sentinel-2 y clima NASA POWER, y ordena sectores para una prueba de movilidad de rover con tres salidas separadas: Similitud, Confianza y Factibilidad.',
+        scroll: 'Desliza · de Jezero al norte de Chile', marker: 'Perseverance · borde de Jezero', caption: 'Cráter Jezero · Ø 45 km · 18,38° N 77,58° E' },
       p: { kicker: 'El problema', phrase: 'El problema no es que falten lugares parecidos a Marte, sino que no hay forma rápida y defendible de saber cuál sirve para una prueba concreta.', acc: ['rápida','y','defendible'],
-        today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación y apariencia.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
-      src: [['Elevación de Marte','463 m/px'],['Elevación terrestre','30 m'],['Elevación terrestre','30 m'],['Aridez y cobertura vegetal','250 m – 1 km'],['Litología','1:1.000.000']],
+        today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
+      src: [['Elevación de Marte · referencia Jezero','~451 m'],['Elevación terrestre, promediada a escala MOLA','30 m → ~475 m'],['Superficie no vegetada · 12 mosaicos mensuales','~30 m'],['Aridez y rango térmico superficial','regional · 2001–2025'],['Litología · siguiente, aún no puntúa','1:1.000.000']],
       srcNames: ['Mapa Geológico de Chile'],
       j: { kicker: 'Jezero · Marte', h: 'Perseverance subió pendientes de más de 20° con navegación autónoma.', law: 'Pendiente: se transfiere entre planetas (μ ≥ tan θ)', minmu: 'pendiente ≥ 20° → μ mínimo = tan 20° ≈ 0,36',
         why: 'La gravedad aparece a ambos lados de la desigualdad y se cancela: la fricción que exige una pendiente es la misma en Marte y en la Tierra.',
         dist: 'Distancia', elev: 'Desnivel', avg: 'Pendiente media del tramo', mu: 'μ necesario = tan θ', r0d: '0,00 km', r0t: '0,0°', r0m: '0,00', a1: '21,8°', a2: '22,8°',
-        cap: 'Perfil ilustrativo basado en operaciones del rover. En la plataforma, la comparación se hace a escala MOLA (463 m/px).' },
+        cap: 'Perfil ilustrativo basado en operaciones del rover. La plataforma compara contra una ventana MOLA de 1,6° × 1,6° en torno a Jezero (pendiente mediana 2,2°, relieve local 47 m) a ~460–480 m.' },
       st: { kicker: 'Jezero, hasta hoy',
         stats: ['Resolución de MOLA', 'Pendientes del borde de Jezero', 'Récord de conducción fuera de la Tierra de Perseverance (oct. 2026)'],
         items: [{ date: 'Feb. 2021', title: 'Aterrizaje en el cráter Jezero', body: 'Perseverance se posa en el fondo de Jezero, la cuenca de un antiguo lago.' },
           { date: 'Dic. 2025', title: 'Primeras rutas planificadas por IA en otro planeta', body: 'En el borde de Jezero.' },
           { date: 'Oct. 2026', title: 'Comienza la primera misión extendida', body: 'Exploración del borde hasta ~2028.' }] },
-      tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Desierto de Atacama · Chile', jzCoord: '18,38° N 77,58° E', atCoord: '24,50° S 69,25° O',
-        cap: 'Desierto de Atacama: el desierto no polar más seco de la Tierra.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta las zonas candidatas de Atacama. Tierra de puntos que gira hacia Chile, con un arco que llega desde Jezero y aterriza en las zonas candidatas de Atacama' },
+      tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Norte de Chile · 3 sectores de screening', jzCoord: '18,38° N 77,58° E', atCoord: '24,10° S 69,97° O',
+        cap: 'Atacama es el punto de referencia, no la respuesta predeterminada.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta tres sectores de screening en el norte de Chile, con un arco que llega desde Jezero' },
       how: { kicker: 'Cómo funciona', h: 'De la pregunta al lugar, en tres pasos.',
         s1t: 'Eliges la prueba', s1b: 'Indica qué quieres validar, como la navegación autónoma de un rover, y el terreno que necesita: pendiente objetivo, relieve local y condiciones de superficie.',
         formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación', habitat: 'Hábitat', search: 'Buscar zonas candidatas',
         note: 'La tracción y el suelo se verifican en terreno, no se puntúan: un modelo de elevación de 30 m no ve rocas ni suelo.',
-        s2t: 'Cruzamos datos', s2b: 'Comparamos la topografía real de Marte (MOLA) con datos de elevación, superficie y geología de Chile, todos abiertos: NASA, ESA y SERNAGEOMIN.',
-        s3t: 'Ves candidatos', s3b: 'Recibes zonas candidatas en Chile, cada una con sus notas de Similitud, Confianza y Factibilidad, y con los límites de la analogía a la vista.',
+        s2t: 'Cruzamos datos', s2b: 'Promediamos la elevación NASADEM a escala MOLA antes de calcular pendiente, rugosidad y relieve. Doce mosaicos mensuales de Sentinel-2 miden el suelo desnudo y NASA POWER agrega la aridez. Cada fuente guarda su versión y su SHA-256.',
+        s3t: 'Ves candidatos', s3b: 'Recibes sectores ordenados, cada uno con Similitud, Confianza, Factibilidad y estabilidad ante cambios de pesos (±20 %), además de qué es análogo, dónde falla y qué verificar en terreno.',
         example: 'Ejemplo · navegación autónoma de rover' },
       tests: {
-        rover: [['Pendiente objetivo','≥ 20°'],['Relieve local','100–300 m'],['Condiciones','Aridez y suelo desnudo']],
+        rover: [['Referencia marciana','MOLA · Jezero, ventana de 1,6°'],['Pendiente mediana · relieve local','2,2° · 47 m'],['Condiciones','Suelo desnudo, hiperárido']],
         drill: [['Litología objetivo','Roca sedimentaria (mapa geológico)'],['Relieve local','< 50 m'],['Condiciones','Aridez y suelo desnudo']],
         habitat: [['Pendiente objetivo','≤ 5°'],['Superficie plana','≥ 1 ha'],['Condiciones','Camino a menos de 10 km']] },
       sc: { kicker: 'Las tres notas', h: 'Tres notas separadas',
         p: 'Un lugar puede parecerse mucho a Marte y, aun así, tener datos escasos o ser difícil de usar. Por eso cada zona candidata recibe tres notas en vez de una.',
-        exTest: 'Prueba: navegación autónoma de rover', exZone: 'Zona: Valle de Marte, San Pedro de Atacama',
-        items: [['Similitud','Cuánto se parece el relieve a la referencia marciana: pendiente, relieve local y rugosidad, comparados a escala MOLA.','MOLA · NASADEM · Copernicus DEM'],
-          ['Confianza','Qué tan sólidos son los datos detrás de la nota: resolución, cobertura y antigüedad de cada capa.','Metadatos de cada fuente'],
-          ['Factibilidad','Qué tan viable es ir a probar: acceso, permisos, clima y logística.','Caminos · áreas protegidas · MODIS']] },
+        exTest: 'Perfil: Mars Rover Screening v2', exZone: 'Sector: Pampa Yungay · puesto 1 de 3',
+        items: [['Similitud','Media geométrica ponderada de seis criterios: pendiente, rugosidad y relieve local frente a MOLA Jezero, suelo desnudo, aridez y rango térmico. La geología aún no puntúa.','MOLA · NASADEM · Sentinel-2 · NASA POWER'],
+          ['Confianza','Cuánta evidencia entró a la nota. Un dato faltante baja la confianza, nunca la similitud, y ambas nunca se combinan.','Calidad por fuente · ADR-003'],
+          ['Factibilidad','Una categoría, nunca una promesa: desconocida, requiere revisión, potencialmente factible o excluida. Áreas protegidas y acceso siguen pendientes.','IDE Chile · NASADEM SWB · Sentinel-2']] },
       ho: { kicker: 'Honestidad científica', h: 'Cada zona candidata trae sus límites por escrito.',
         p: 'Ninguna analogía es perfecta. Junto a las notas, cada resultado separa lo que el lugar reproduce, dónde deja de parecerse a Marte y qué hay que comprobar en terreno.',
-        ex: 'Ejemplo', exTest: 'Navegación autónoma de rover', marsL: 'Marte', earthL: 'Tierra',
+        ex: 'Ejemplo', exTest: 'Screening de movilidad de rover v2', marsL: 'Marte', earthL: 'Tierra',
         steps: [
-          { title: 'Qué reproduce el lugar', items: ['Pendientes de más de 20°, comparables al ascenso al borde de Jezero', 'Cientos de metros de relieve local', 'Suelo hiperárido y desnudo, casi sin vegetación'],
-            vk: 'Se reproduce', big: '≥ 20°', bigCap: 'Pendientes como las del borde sobre relieve real, medidas a escala MOLA.', rows: [['Pendiente','≥ 20°'],['Relieve local','100–300 m'],['Superficie','Desnuda, hiperárida']] },
-          { title: 'Dónde falla la analogía', items: ['Gravedad: 0,38 g en Marte, lo que cambia la carga sobre las ruedas y el hundimiento en suelo suelto', 'Atmósfera: la presión en Marte es menor al 1 % de la terrestre', 'Temperatura y radiación: el terreno no las reproduce'],
+          { title: 'Qué reproduce el lugar', items: ['Pendiente mediana de 3,2° frente a 2,2° en la ventana MOLA de Jezero', 'Relieve local de 75 m frente a 47 m, ambos a ~460–480 m', '100 % de superficie no vegetada en 12 mosaicos mensuales de Sentinel-2 y 7,3 mm de lluvia al año'],
+            vk: 'Se reproduce', big: '75,67', bigCap: 'Similitud de Pampa Yungay. No gana por la etiqueta de «análogo de Marte»: gana por terreno, superficie y aridez medidos.', rows: [['Pendiente mediana','3,2° · Marte 2,2°'],['Relieve local 3×3','75 m · Marte 47 m'],['Superficie no vegetada','100 %']] },
+          { title: 'Dónde falla la analogía', items: ['Gravedad: 0,38 g en Marte, lo que cambia la carga sobre las ruedas y el hundimiento en suelo suelto', 'Atmósfera: la presión en Marte es menor al 1 % de la terrestre', 'Escala: una comparación a ~460–480 m no ve peligros a escala de rueda, y Sentinel-2 no mide la mecánica del suelo'],
             vk: 'No se reproduce', big: '0,38 g', bigCap: 'La regla de la pendiente se transfiere; las cargas, el hundimiento y el ambiente no.', rows: [['Gravedad','38 % de la Tierra'],['Presión en superficie','< 1 % de la Tierra'],['Temperatura y radiación','No se reproducen']] },
-          { title: 'Qué verificar en terreno', items: ['Cohesión y capacidad de carga del suelo (tracción)', 'Pendiente real a la escala del rover, por debajo de la resolución del modelo de elevación', 'Acceso, permisos y ventana climática'],
-            vk: 'Lista de terreno', big: '3 controles', bigCap: 'Antes de comprometer una campaña de pruebas, en el lugar.', rows: [['Suelo y tracción','Por verificar'],['Pendiente a escala del rover','Por verificar'],['Acceso, permisos, clima','Por verificar']] }] },
-      map: { kicker: 'Llegada · Chile', h: 'Del borde de Jezero a un punto concreto en Chile.',
+          { title: 'Qué verificar en terreno', items: ['Granulometría, cohesión, polvo, hundimiento y tracción para el rover', 'Obstáculos, pendiente y rugosidad a escala centimétrica y decimétrica', 'Áreas protegidas, límites urbanos, propiedad, acceso y permisos (IDE Chile)'],
+            vk: 'Lista de terreno', big: '3 controles', bigCap: 'Los tres sectores quedan en «requiere revisión» hasta cerrarlos.', rows: [['Suelo y tracción','Por verificar'],['Terreno a escala del rover','Por verificar'],['Restricciones y permisos','Por verificar']] }] },
+      map: { kicker: 'Llegada · Chile', h: 'De una referencia en Jezero a tres sectores en Chile.',
         p: 'Indica qué quieres probar y AnalogOS te devuelve zonas candidatas con sus tres notas y sus límites, para que puedas justificar la elección.',
-        plaus: 'Atacama es nuestra prueba de plausibilidad, no nuestro descubrimiento: el objetivo es encontrar sitios menos obvios que sirvan para una prueba concreta.',
-        tableLabel: 'Ejemplo de resultado · navegación autónoma de rover · ordenado por Similitud', no: 'N.º', teamPin: 'Equipo · Santiago', proj: 'Natural Earth · Mercator transversa',
-        alt: 'Mapa de Chile con cuatro zonas candidatas ilustrativas en la región de Atacama',
-        regions: { valle: 'San Pedro de Atacama · Antofagasta', yungay: 'Desierto de Atacama · Antofagasta', pajonales: 'Altiplano · Antofagasta', salargrande: 'Costa · Tarapacá' } },
+        plaus: 'Atacama es un punto de referencia, no la respuesta predeterminada. Pampa Yungay lidera por datos medidos, y el interior del Cordón de Domeyko, mucho menos visitado, queda muy cerca con 71,60. Siguiente paso: de tres sectores semilla a una grilla nacional.',
+        tableLabel: 'Resultado preliminar · science-screening-v2 · tres sectores de 0,2° · ordenado por Similitud', no: 'N.º', teamPin: 'Equipo · Santiago', proj: 'Natural Earth · Mercator transversa',
+        alt: 'Mapa de Chile con los tres sectores de science-screening-v2 en la región de Antofagasta',
+        regions: { yungay: 'Sector de screening · Antofagasta', domeyko: 'Sector interior · Antofagasta', mariaelena: 'Sector de screening · Antofagasta' } },
       team: { kicker: 'Equipo', sub: 'Cinco integrantes · Santiago de Chile', photo: 'Foto',
         roles: ['Diseño, narrativa y QA','Datos e ingeniería','Ciencia y modelo de notas','Frontend y mapa','Líder, alcance y pitch'] },
-      foot: 'Datos abiertos: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Copernicus DEM (ESA) · MODIS (NASA) · Mapa Geológico de Chile (SERNAGEOMIN) · Cartografía: Natural Earth'
+      foot: 'Datos abiertos: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · inventario HLS (NASA CMR) · Cartografía: Natural Earth'
     }
   };
-  SRC = [['MOLA','NASA PDS'],['NASADEM','NASA Earthdata'],['Copernicus DEM','ESA'],['MODIS','NASA'],[null,'SERNAGEOMIN']];
+  SRC = [['MOLA MEGDR','NASA PDS'],['NASADEM','NASA Earthdata'],['Sentinel-2 L2A','Copernicus · ESA'],['POWER','NASA'],[null,'SERNAGEOMIN']];
   NAMES = ['Rafa','Joaco','Sebastián','Gustavo','Danilo'];
   HUDC = { mars: '#FC734D', chile: '#7FC8EF' };
 
@@ -865,11 +863,10 @@ class Component extends DCLogic {
     earthTex.colorSpace = T.SRGBColorSpace;
     const bumpTex = loader.load('https://cdn.21st.dev/assets/localized/839b12da2e4dd346b256cebae72e10c479a102c8980a22084c41275e4b9a0e12.png', () => this.renderGlobe());
     let zones = this.CROWS.map((r, i) => ({ id: r[0], name: r[2], S: r[3], lat: this.CANDS[i][0], lng: this.CANDS[i][1] }));
-    try { const zj = await (await fetch('zones.json', { cache: 'no-store' })).json(); zones = zj.zones.map((z) => ({ id: z.id, name: z.name, S: z.S, lat: z.center[0], lng: z.center[1] })); } catch (e) {}
     if (this._dead) return;
     const mars = makeGlobe(marsTex, null, '#FC734D', 0.45, [{ id: 'jezero', lat: 18.38, lng: 77.58 }], 0xFC734D);
     const earth = makeGlobe(earthTex, bumpTex, '#0297DE', 1.1, zones, 0x0297DE);
-    mars.goal = target(mars, 18.38, 77.58); earth.goal = target(earth, -24.5, -69.25);
+    mars.goal = target(mars, 18.38, 77.58); earth.goal = target(earth, -23.3, -69.5);
     const lab = this.k('globeLabels');
     lab.innerHTML = '';
     const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -878,7 +875,7 @@ class Component extends DCLogic {
     const mk = (m, isMars) => {
       const el = document.createElement(isMars ? 'span' : 'a');
       el.style.cssText = 'position:absolute;left:0;top:0;display:block;white-space:nowrap;padding:3px 7px;font:10.5px "Martian Mono",ui-monospace,monospace;letter-spacing:.02em;color:#F2F4F5;background:rgba(2,7,10,.86);border:1px solid ' + (isMars ? '#FC734D' : '#0297DE') + ';text-decoration:none;pointer-events:' + (isMars ? 'none' : 'auto') + ';opacity:0;transition:opacity .25s;will-change:transform;';
-      if (!isMars) { el.href = 'demo.html?zone=' + encodeURIComponent(m.id); }
+      if (!isMars) { el.href = window.TRY_URL || '#'; }
       lab.appendChild(el); m.el = el;
       const ln = document.createElementNS('http://www.w3.org/2000/svg', 'polyline'); ln.setAttribute('fill', 'none'); ln.setAttribute('stroke', isMars ? '#FC734D' : '#0297DE'); ln.setAttribute('stroke-width', '1'); ln.style.transition = 'opacity .25s'; svg.appendChild(ln); m.ln = ln;
       return el;
@@ -897,7 +894,7 @@ class Component extends DCLogic {
     if (!g) return;
     const L = this.L;
     g.mars.ms.forEach((m) => { m.el.textContent = L.tr.jzMarker; });
-    g.earth.ms.forEach((m) => { m.el.textContent = m.name + ' · S ' + m.S + '%'; m.el.setAttribute('aria-label', m.name + ' · S ' + m.S + '% · ' + L.tr.open); m.el.title = L.tr.open; });
+    g.earth.ms.forEach((m) => { const sv = this.state.lang === 'es' ? m.S.toFixed(2).replace('.', ',') : m.S.toFixed(2); m.el.textContent = m.name + ' · S ' + sv; m.el.setAttribute('aria-label', m.name + ' · S ' + sv + ' · ' + L.tr.open); m.el.title = L.tr.open; });
   }
   sizeGlobe() {
     const g = this._g;
@@ -1011,7 +1008,8 @@ class Component extends DCLogic {
       const v = +g.getAttribute('data-v');
       const arc = g.querySelector('[data-arc]');
       if (arc) arc.style.strokeDashoffset = String(1 - v / 100);
-      this.txt(g.querySelector('[data-num]'), String(v));
+      const lab = g.getAttribute('data-lab'), t2 = v.toFixed(2);
+      this.txt(g.querySelector('[data-num]'), lab || (this.state.lang === 'es' ? t2.replace('.', ',') : t2));
     });
   }
 
@@ -1118,7 +1116,10 @@ class Component extends DCLogic {
       const o = { v: 0 };
       arc.style.strokeDashoffset = '1';
       this.txt(num, '0');
-      gsap.to(o, { v, duration: 1.8, delay: i * 0.2, ease: 'power3.out', scrollTrigger: { trigger: gWrap, start: 'top 75%', once: true }, onUpdate: () => { arc.style.strokeDashoffset = String(1 - o.v / 100); this.txt(num, String(Math.round(o.v))); } });
+      const lab = g.getAttribute('data-lab');
+      if (lab) { this.txt(num, lab); return; }
+      const fmt2 = (x) => { const t = x.toFixed(2); return this.state.lang === 'es' ? t.replace('.', ',') : t; };
+      gsap.to(o, { v, duration: 1.8, delay: i * 0.2, ease: 'power3.out', scrollTrigger: { trigger: gWrap, start: 'top 75%', once: true }, onUpdate: () => { arc.style.strokeDashoffset = String(1 - o.v / 100); this.txt(num, fmt2(o.v)); } });
     });
 
     const mapTrig = () => ({ trigger: this.k('mapWrap'), start: 'top 75%', once: true });
@@ -1200,8 +1201,9 @@ class Component extends DCLogic {
       hero: Object.assign({}, L.hero, { l1: word(L.hero.l1), l2: word(L.hero.l2, true) }),
       p: Object.assign({}, L.p, { words: L.p.phrase.split(' ').map((w) => ({ w, c: L.p.acc.indexOf(w) >= 0 ? '#FC734D' : '#F2F4F5' })) })
     });
-    const cols = ['#0297DE', '#7FC8EF', '#FC734D'], gv = [82, 64, 71];
-    const cands = this.CROWS.map((r) => ({ id: r[0], no: r[1], name: r[2], region: L.map.regions[r[0]], s: r[3], c: r[4], f: r[5] }));
+    const cols = ['#0297DE', '#7FC8EF', '#FC734D'], gv = [75.67, 77.45, 0];
+    const dec2 = (v) => en ? v.toFixed(2) : v.toFixed(2).replace('.', ',');
+    const cands = this.CROWS.map((r) => ({ id: r[0], no: r[1], name: r[2], region: L.map.regions[r[0]], s: dec2(r[3]), c: dec2(r[4]), f: L.fRev }));
     return {
       rootRef: this.rootRef, t,
       go: this.go, goDemo: this.goDemo, pickTest: this.pickTest, hoverRow: this.hoverRow, leaveRow: this.leaveRow,
@@ -1218,7 +1220,7 @@ class Component extends DCLogic {
         { pre: '', to: 45.22, dec: 2, v: f(45.22, 2), suf: ' km', label: L.st.stats[2], c: '#7FC8EF' }
       ],
       tlMin: narrow ? '0px' : '42vh', tlPos: narrow ? 'static' : 'sticky',
-      gauges: L.sc.items.map((it, i) => ({ name: it[0], d: it[1], src: it[2], v: gv[i], c: cols[i], off: String(1 - gv[i] / 100) })),
+      gauges: L.sc.items.map((it, i) => ({ name: it[0], d: it[1], src: it[2], v: gv[i], lab: i === 2 ? L.fRev : '', unit: i === 2 ? L.fUnit : '/ 100', fs: i === 2 ? 'clamp(26px,2.4vw,34px)' : 'clamp(44px,4vw,60px)', c: cols[i], off: String(1 - gv[i] / 100) })),
       honest: L.ho.steps.map((s, i) => ({ n: '0' + (i + 1), title: s.title, items: s.items, vk: s.vk, big: s.big, bigCap: s.bigCap, c: ['#7FC8EF', '#FC734D', '#0297DE'][i], op: i === 0 ? '1' : '0',
         rows: s.rows.map((r, j) => ({ label: r[0], val: r[1], bar: i === 1 && j < 2 ? 'flex' : 'none', w: i === 1 ? (j === 0 ? '38%' : '1%') : '0%' })) })),
       hMin: narrow ? '0px' : '78vh',
