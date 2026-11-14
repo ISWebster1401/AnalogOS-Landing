@@ -24,6 +24,8 @@
 <script src="./image-slot.js"></script>
 <script src="./liquid-nav.js"></script>
 <script src="./space-bg.js"></script>
+<script src="./halftone-nebula.js"></script>
+<script src="./asmr-bg.js"></script>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#071827"></rect><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36 L100 100 L0 100 Z" fill="#02070A"></path><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36" fill="none" stroke="#FC734D" stroke-width="2"></path><rect x="66" y="34" width="6" height="6" fill="#0297DE"></rect><rect x="30" y="30" width="8" height="8" fill="#FC734D"></rect></svg></template>
 <style>
 html,body{margin:0;background:#02070A;color:#F2F4F5}
@@ -70,7 +72,8 @@ a:hover{color:#FD9A7D}
 </sc-if>
 
 <section id="inicio" data-k="hero" data-hud="mars" data-screen-label="01 Hero" style="position:relative; min-height:100svh; box-sizing:border-box; padding-top:60px; display:flex; flex-direction:column; overflow:hidden; background:transparent;">
-  <div aria-hidden="true" style="position:absolute; z-index:0; left:-10%; top:8%; width:80%; height:70%; pointer-events:none; filter:blur(60px); opacity:0.55; background:radial-gradient(45% 55% at 30% 45%, rgba(2,151,222,0.55), rgba(2,151,222,0) 70%), radial-gradient(35% 45% at 62% 60%, rgba(252,115,77,0.45), rgba(252,115,77,0) 70%);"></div>
+  <div data-k="nebula" aria-hidden="true" style="position:absolute; z-index:0; inset:0; pointer-events:none; -webkit-mask-image:linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%); mask-image:linear-gradient(to bottom, #000 0%, #000 72%, transparent 100%);"></div>
+  <div aria-hidden="true" style="position:absolute; z-index:1; inset:0; pointer-events:none; background:linear-gradient(90deg, rgba(2,7,10,0.72) 0%, rgba(2,7,10,0.35) 45%, rgba(2,7,10,0) 75%);"></div>
   <div data-k="heroInner" style="position:relative; z-index:2; flex:1 0 auto; width:100%; max-width:1440px; margin:0 auto; box-sizing:border-box; padding:clamp(20px,4vh,40px) clamp(16px,4vw,56px) 0; display:flex; flex-direction:column;">
     <div data-hr="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap:12px 24px; font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; line-height:1.5; letter-spacing:0.04em; text-transform:uppercase; color:rgba(242,244,245,0.8);">
       <div style="border-top:2px solid rgba(242,244,245,0.3); padding-top:10px;">NASA Space Apps Challenge 2026</div>
@@ -655,6 +658,12 @@ class Component extends DCLogic {
     this._rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
     this._onRm = () => this.rebuild();
     this._rmq.addEventListener('change', this._onRm);
+    const nb = this.k('nebula');
+    // Hero background: ?bg=nebula (default) | asmr | none  -- set HERO_BG below to fix one for good
+    let bg = 'nebula';
+    try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'asmr' || q === 'nebula' || q === 'none') bg = q; } catch (e) {}
+    const ctor = bg === 'asmr' ? window.AnalogASMR : bg === 'nebula' ? window.AnalogNebula : null;
+    if (nb && ctor) { try { this._nebula = ctor(nb, { root: this.k('hero') || nb }); } catch (e) { console.error(e); } }
     this.introHero(this.isReduced());
     this.initChrome(0);
     this._safety = setTimeout(() => { if (!this._built) { this._libs = false; this.rebuild(); } }, 9000);
@@ -684,6 +693,7 @@ class Component extends DCLogic {
     this.stopGlobeLoop();
     if (this._nav) this._nav.destroy();
     if (this._stars) this._stars.destroy();
+    if (this._nebula) this._nebula.destroy();
     if (this._spy) this._spy.disconnect();
     if (this._g) { try { this._g.renderer.dispose(); } catch (e) {} }
     this.teardown();
