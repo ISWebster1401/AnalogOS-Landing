@@ -13,69 +13,76 @@
       bare: v.bare, arid: 1 / (1 + v.arid / 25), therm: Math.min(v.therm / 45, 1) };
   }
   var SECTORS = [
-    { id: 'yungay', name: 'Pampa Yungay', img: 'assets/earth-yungay-s2.jpg', S: 75.67, C: 77.45, stab: 99.03, area: 450.5, ll: '24.08° S · 69.95° W',
+    { id: 'cl1', rank: '01', name: 'Antofagasta 25.0° S', region: 'cl', img: 'assets/s2-cl-win-s2500-w06970.jpg', S: 94.87, C: 77.45, stab: 99.33, area: 447.3, ll: '25.02° S · 69.72° W',
+      v: { slope: 2.169, rough: 11.291, relief: 46.797, bare: 1.0, arid: 10.96, therm: 53.82 },
+      arms: [{ k: 'slope', x: 40, y: 55, side: 'top' }, { k: 'relief', x: 62, y: 38, side: 'top' }, { k: 'tracks', x: 20, y: 78, side: 'bottom' }, { k: 'precedent', x: 74, y: 82, side: 'bottom' }] },
+    { id: 'cl2', rank: '02', name: 'Antofagasta 24.8° S', region: 'cl', img: 'assets/s2-cl-win-s2480-w06950.jpg', S: 91.87, C: 77.45, stab: 99.03, area: 448.0, ll: '24.82° S · 69.52° W',
+      v: { slope: 2.388, rough: 10.992, relief: 49.348, bare: 1.0, arid: 18.26, therm: 56.29 },
+      arms: [{ k: 'relief', x: 22, y: 48, side: 'top' }, { k: 'slope', x: 64, y: 40, side: 'top' }, { k: 'bare', x: 40, y: 78, side: 'bottom' }, { k: 'shared', x: 84, y: 84, side: 'bottom' }] },
+    { id: 'cl3', rank: '03', name: 'Antofagasta 25.2° S', region: 'cl', img: 'assets/s2-cl-win-s2520-w06950.jpg', S: 90.35, C: 77.36, stab: 99.08, area: 446.6, ll: '25.22° S · 69.52° W',
+      v: { slope: 2.375, rough: 12.242, relief: 47.68, bare: 1.0, arid: 18.26, therm: 56.29 },
+      arms: [{ k: 'relief', x: 32, y: 40, side: 'top' }, { k: 'rough', x: 78, y: 30, side: 'top' }, { k: 'bare', x: 20, y: 85, side: 'bottom' }, { k: 'shared', x: 72, y: 80, side: 'bottom' }] },
+    { id: 'ar1', rank: '04', name: 'Puna 26.2° S', region: 'ar', img: 'assets/s2-ar-win-s2620-w06750.jpg', S: 63.85, C: 77.00, stab: 95.88, area: 442.9, ll: '26.22° S · 67.52° W',
+      v: { slope: 2.568, rough: 12.654, relief: 55.867, bare: 0.994, arid: 588.05, therm: 68.34 },
+      arms: [{ k: 'relief', x: 8, y: 60, side: 'top' }, { k: 'rain', x: 48, y: 42, side: 'top' }, { k: 'water', x: 52, y: 86, side: 'bottom' }, { k: 'rough', x: 88, y: 66, side: 'bottom' }] },
+    { id: 'ar2', rank: '05', name: 'Puna 26.4° S', region: 'ar', img: 'assets/s2-ar-win-s2640-w06730.jpg', S: 53.68, C: 77.25, stab: 96.81, area: 442.2, ll: '26.42° S · 67.32° W',
+      v: { slope: 3.433, rough: 16.697, relief: 75.355, bare: 0.984, arid: 562.49, therm: 65.71 },
+      arms: [{ k: 'relief', x: 30, y: 10, side: 'top' }, { k: 'rain', x: 62, y: 40, side: 'top' }, { k: 'bare', x: 18, y: 84, side: 'bottom' }, { k: 'rough', x: 80, y: 66, side: 'bottom' }] },
+    { id: 'ar3', rank: '06', name: 'Puna 25.8° S', region: 'ar', img: 'assets/s2-ar-win-s2580-w06710.jpg', S: 49.43, C: 77.40, stab: 96.81, area: 444.4, ll: '25.82° S · 67.12° W',
+      v: { slope: 3.563, rough: 19.812, relief: 78.023, bare: 0.996, arid: 767.02, therm: 64.46 },
+      arms: [{ k: 'slope', x: 25, y: 40, side: 'top' }, { k: 'rain', x: 60, y: 30, side: 'top' }, { k: 'rough', x: 40, y: 72, side: 'bottom' }, { k: 'tracks', x: 78, y: 88, side: 'bottom' }] },
+    { id: 'ref', rank: 'REF', name: 'Pampa Yungay', region: 'ref', img: 'assets/earth-yungay-s2.jpg', S: 75.67, C: 77.45, stab: 99.03, area: 450.5, ll: '24.10° S · 69.97° W',
       v: { slope: 3.207, rough: 16.564, relief: 75.125, bare: 1.0, arid: 7.30, therm: 47.66 },
-      arms: [
-        { k: 'relief', x: 34, y: 24, side: 'top', lx: 22 },
-        { k: 'slope', x: 60, y: 50, side: 'top', lx: 52 },
-        { k: 'bare', x: 18, y: 78, side: 'bottom', lx: 10 },
-        { k: 'infra', x: 84, y: 84, side: 'bottom', lx: 64 }] },
-    { id: 'domeyko', name: 'Cordón de Domeyko', img: 'assets/earth-domeyko-s2.jpg', S: 71.60, C: 77.41, stab: 98.89, area: 453.2, ll: '23.30° S · 68.85° W',
-      v: { slope: 1.468, rough: 6.34, relief: 31.254, bare: 1.0, arid: 14.61, therm: 58.15 },
-      arms: [
-        { k: 'relief', x: 38, y: 30, side: 'top', lx: 22 },
-        { k: 'tracks', x: 66, y: 40, side: 'top', lx: 56 },
-        { k: 'bare', x: 30, y: 80, side: 'bottom', lx: 10 },
-        { k: 'therm', x: 72, y: 82, side: 'bottom', lx: 60 }] },
-    { id: 'mariaelena', name: 'Pampa María Elena', img: 'assets/earth-mariaelena-s2.jpg', S: 49.99, C: 77.44, stab: 98.41, area: 456.3, ll: '22.35° S · 69.65° W',
-      v: { slope: 0.763, rough: 3.723, relief: 17.652, bare: 0.998274, arid: 14.61, therm: 52.64 },
-      arms: [
-        { k: 'flat', x: 30, y: 58, side: 'top', lx: 14 },
-        { k: 'water', x: 96, y: 52, side: 'top', lx: 62 },
-        { k: 'infra', x: 86, y: 76, side: 'bottom', lx: 58 },
-        { k: 'bare', x: 22, y: 86, side: 'bottom', lx: 8 }] }
+      arms: [{ k: 'refknown', x: 34, y: 24, side: 'top' }, { k: 'slope', x: 60, y: 50, side: 'top' }, { k: 'bare', x: 18, y: 78, side: 'bottom' }, { k: 'infra', x: 84, y: 84, side: 'bottom' }] }
   ];
   var T = {
     en: {
-      dec: '.', profile: 'Profile · Mars Rover Screening v2', pick: 'Screening sector', sim: 'Similarity', conf: 'Confidence', stab: 'Stability ±20 %',
+      dec: '.', profile: 'Profile · Mars Rover Screening v3', pick: 'Search candidates', regions: { cl: 'Antofagasta interior · Chile', ar: 'Puna of Catamarca and Salta · Argentina', ref: 'Known reference · out of ranking' }, sim: 'Similarity', conf: 'Confidence', stab: 'Stability ±20 %',
       area: 'Area', crit: 'Criteria vs Jezero (MOLA)', weight: 'weight', notScored: 'Geology · not scored yet (weight 0.10)',
-      feas: 'Feasibility', feasV: 'Requires review', checks: ['Soil: grain size, cohesion, sinkage, traction', 'Terrain at centimetre–decimetre scale', 'Protected areas, urban limits, access, permits'],
+      feas: 'Feasibility', feasV: 'Requires review', checks: ['Soil: grain size, cohesion, sinkage, traction', 'Terrain at centimetre–decimetre scale', 'Protected areas, urban limits, access, permits (IDE Chile / IDERA)'],
       cta: 'Open in AnalogOS', prev: 'Previous sector', next: 'Next sector', close: 'Close',
-      note: 'Arms mark visible features; values are sector-wide medians at ~460–480 m.',
+      note: 'Arms mark visible features; values are window-wide medians at ~460–480 m.',
       attr: 'Contains modified Copernicus Sentinel-2 data (Dec 2025) · 20 km frame',
       names: { slope: 'Median slope', rough: 'Roughness (neighbour diff.)', relief: 'Local relief 3×3', bare: 'Non-vegetated surface', arid: 'Precipitation', therm: 'Surface thermal range' },
       arm: {
-        relief: ['Local relief', function (v) { return f(v.relief, 0) + ' m · Mars 47 m'; }, 'Median height difference in 3×3 windows at ~475 m. Ridges like these give the rover’s perception and path planning something to work on.'],
-        slope: ['Median slope', function (v) { return f(v.slope, 1) + '° · Mars 2.2°'; }, 'Computed after averaging NASADEM to MOLA scale. Slope is the property that transfers between planets (μ ≥ tan θ).'],
-        flat: ['Too flat', function (v) { return f(v.slope, 1) + '° · Mars 2.2°'; }, 'Slope, roughness and relief are all about a third of the Jezero reference. This is why the sector ranks last despite being just as dry.'],
+        relief: ['Local relief', function (v) { return f(v.relief, 1) + ' m · Mars 47 m'; }, 'Median height difference in 3×3 windows at ~475 m, compared with the Jezero MOLA window. Relief gives perception and path planning something to work on.'],
+        slope: ['Median slope', function (v) { return f(v.slope, 2) + '° · Mars 2.23°'; }, 'Median of the whole ~20 km window after averaging NASADEM to MOLA scale. It is not a point slope; slope is the property that transfers between planets (μ ≥ tan θ).'],
+        rough: ['Roughness', function (v) { return f(v.rough, 1) + ' m · Mars 11.0 m'; }, 'Median difference between neighbouring ~475 m cells. It does not see rocks or wheel-scale obstacles.'],
         bare: ['Bare ground', function (v) { return f(v.bare * 100, v.bare < 1 ? 1 : 0) + ' % non-vegetated'; }, 'Median of twelve monthly Sentinel-2 mosaics (SCL class 5). It measures exposed surface, not mineralogy or soil mechanics.'],
-        infra: ['Infrastructure', function () { return 'restriction · to review'; }, 'Facilities are visible in the frame. Urban limits, protected areas, ownership and access have not been intersected yet: the sector stays “requires review”.'],
-        tracks: ['Tracks and roads', function () { return 'access · to verify'; }, 'A network of tracks crosses the interior range. Useful for logistics, but access and permits still have to be confirmed on site.'],
-        therm: ['Thermal range', function (v) { return f(v.therm, 1) + ' °C / year'; }, 'NASA POWER climatology 2001–2025 (TS_MAX − TS_MIN). Saturates at 45 °C in the profile; it is a test requirement, not a Mars equivalence.'],
-        water: ['Permanent water', function () { return '0.15 % of pixels'; }, 'NASADEM SWB flags a trace of permanent water. The polygon is kept, but any campaign route must avoid those pixels.']
+        tracks: ['Tracks and structures', function () { return 'to check · official maps'; }, 'Linear tracks and structures are visible. They must be checked against official mapping (IDE Chile / IDERA): a ~440 km² window is not free land.'],
+        precedent: ['Regional precedent', function () { return '2003 sample · ~20 km'; }, 'The region has published precedents: a 2003 sampling coordinate lies about 20 km from the centre. AnalogOS does not present this window as a new analog.'],
+        shared: ['Shared climate cell', function (v) { return f(v.arid, 1) + ' mm/yr · POWER'; }, 'Same NASA POWER values as a neighbouring window: possibly the same climate cell, not independent observations.'],
+        rain: ['Coarse climate data', function (v) { return f(v.arid, 0) + ' mm/yr · POWER cell'; }, 'NASA POWER gives a 0.5° × 0.625° MERRA-2 cell, larger than the window: this is not rain measured on site. It explains most of the gap of the Argentine candidates; no weights were changed to compensate.'],
+        water: ['Permanent water', function () { return '0.10 % of pixels'; }, 'NASADEM SWB flags a trace of permanent water. The window is kept, but any campaign route must avoid those pixels.'],
+        refknown: ['Known reference', function () { return 'REF · out of ranking'; }, 'Yungay has two decades of field work (NASA ARADS among others). It is recomputed with the same rules and shown as a reference, never as a search result.'],
+        infra: ['Infrastructure', function () { return 'restriction · to review'; }, 'Facilities are visible in the frame. Urban limits, protected areas, ownership and access have not been intersected yet.']
       }
     },
     es: {
-      dec: ',', profile: 'Perfil · Mars Rover Screening v2', pick: 'Sector de screening', sim: 'Similitud', conf: 'Confianza', stab: 'Estabilidad ±20 %',
+      dec: ',', profile: 'Perfil · Mars Rover Screening v3', pick: 'Candidatos de la búsqueda', regions: { cl: 'Interior de Antofagasta · Chile', ar: 'Puna de Catamarca y Salta · Argentina', ref: 'Referencia conocida · fuera del ranking' }, sim: 'Similitud', conf: 'Confianza', stab: 'Estabilidad ±20 %',
       area: 'Área', crit: 'Criterios frente a Jezero (MOLA)', weight: 'peso', notScored: 'Geología · aún no puntúa (peso 0,10)',
-      feas: 'Factibilidad', feasV: 'Requiere revisión', checks: ['Suelo: granulometría, cohesión, hundimiento, tracción', 'Terreno a escala centimétrica y decimétrica', 'Áreas protegidas, límites urbanos, acceso, permisos'],
+      feas: 'Factibilidad', feasV: 'Requiere revisión', checks: ['Suelo: granulometría, cohesión, hundimiento, tracción', 'Terreno a escala centimétrica y decimétrica', 'Áreas protegidas, límites urbanos, acceso, permisos (IDE Chile / IDERA)'],
       cta: 'Abrir en AnalogOS', prev: 'Sector anterior', next: 'Sector siguiente', close: 'Cerrar',
-      note: 'Los brazos marcan rasgos visibles; los valores son medianas del sector a ~460–480 m.',
+      note: 'Los brazos marcan rasgos visibles; los valores son medianas de la ventana a ~460–480 m.',
       attr: 'Contiene datos modificados de Copernicus Sentinel-2 (dic. 2025) · encuadre de 20 km',
       names: { slope: 'Pendiente mediana', rough: 'Rugosidad (dif. vecina)', relief: 'Relieve local 3×3', bare: 'Superficie no vegetada', arid: 'Precipitación', therm: 'Rango térmico superficial' },
       arm: {
-        relief: ['Relieve local', function (v) { return f(v.relief, 0) + ' m · Marte 47 m'; }, 'Diferencia mediana de altura en ventanas 3×3 a ~475 m. Lomas como estas le dan trabajo a la percepción y a la planificación de rutas del rover.'],
-        slope: ['Pendiente mediana', function (v) { return f(v.slope, 1) + '° · Marte 2,2°'; }, 'Se calcula después de promediar NASADEM a escala MOLA. La pendiente es la propiedad que se transfiere entre planetas (μ ≥ tan θ).'],
-        flat: ['Demasiado plano', function (v) { return f(v.slope, 1) + '° · Marte 2,2°'; }, 'Pendiente, rugosidad y relieve son cerca de un tercio de la referencia de Jezero. Por eso el sector queda último aunque sea igual de seco.'],
+        relief: ['Relieve local', function (v) { return f(v.relief, 1) + ' m · Marte 47 m'; }, 'Diferencia mediana de altura en ventanas 3×3 a ~475 m, comparada con la ventana MOLA de Jezero. El relieve le da trabajo a la percepción y a la planificación de rutas.'],
+        slope: ['Pendiente mediana', function (v) { return f(v.slope, 2) + '° · Marte 2,23°'; }, 'Mediana de la ventana completa de ~20 km tras promediar NASADEM a escala MOLA. No es una pendiente puntual; la pendiente es la propiedad que se transfiere entre planetas (μ ≥ tan θ).'],
+        rough: ['Rugosidad', function (v) { return f(v.rough, 1) + ' m · Marte 11,0 m'; }, 'Diferencia mediana entre celdas vecinas de ~475 m. No ve rocas ni obstáculos a escala de rueda.'],
         bare: ['Suelo desnudo', function (v) { return f(v.bare * 100, v.bare < 1 ? 1 : 0) + ' % no vegetado'; }, 'Mediana de doce mosaicos mensuales de Sentinel-2 (clase SCL 5). Mide superficie expuesta, no mineralogía ni mecánica de suelo.'],
-        infra: ['Infraestructura', function () { return 'restricción · por revisar'; }, 'Se ven instalaciones en el encuadre. Aún no se cruzan límites urbanos, áreas protegidas, propiedad ni acceso: el sector queda en «requiere revisión».'],
-        tracks: ['Huellas y caminos', function () { return 'acceso · por verificar'; }, 'Una red de huellas cruza el cordón interior. Ayuda a la logística, pero el acceso y los permisos se confirman en terreno.'],
-        therm: ['Rango térmico', function (v) { return f(v.therm, 1) + ' °C / año'; }, 'Climatología NASA POWER 2001–2025 (TS_MAX − TS_MIN). En el perfil satura en 45 °C; es un requisito de prueba, no una equivalencia con Marte.'],
-        water: ['Agua permanente', function () { return '0,15 % de los píxeles'; }, 'NASADEM SWB detecta una traza de agua permanente. El polígono se conserva, pero la ruta de campaña debe evitar esos píxeles.']
+        tracks: ['Trazas y estructuras', function () { return 'por contrastar · cartografía'; }, 'Se ven trazas lineales y estructuras. Deben contrastarse con cartografía oficial (IDE Chile / IDERA): una ventana de ~440 km² no es terreno libre.'],
+        precedent: ['Antecedente regional', function () { return 'muestra 2003 · ~20 km'; }, 'La región tiene antecedentes publicados: una coordenada de muestreo de 2003 está a unos 20 km del centro. AnalogOS no presenta esta ventana como análogo nuevo.'],
+        shared: ['Celda climática compartida', function (v) { return f(v.arid, 1) + ' mm/año · POWER'; }, 'Mismos valores NASA POWER que una ventana vecina: posiblemente la misma celda climática, no observaciones independientes.'],
+        rain: ['Clima de resolución gruesa', function (v) { return f(v.arid, 0) + ' mm/año · celda POWER'; }, 'NASA POWER entrega una celda MERRA-2 de 0,5° × 0,625°, mayor que la ventana: no es lluvia medida en el sitio. Explica la mayor parte de la diferencia de los candidatos argentinos; no se cambiaron pesos para compensarlo.'],
+        water: ['Agua permanente', function () { return '0,10 % de los píxeles'; }, 'NASADEM SWB detecta una traza de agua permanente. La ventana se conserva, pero la ruta de campaña debe evitar esos píxeles.'],
+        refknown: ['Referencia conocida', function () { return 'REF · fuera del ranking'; }, 'Yungay tiene dos décadas de trabajo de campo (NASA ARADS, entre otros). Se recalcula con las mismas reglas y se muestra como referencia, nunca como resultado de la búsqueda.'],
+        infra: ['Infraestructura', function () { return 'restricción · por revisar'; }, 'Se ven instalaciones en el encuadre. Aún no se cruzan límites urbanos, áreas protegidas, propiedad ni acceso.']
       }
     }
   };
   var L = T.en;
+  function nm(s) { return L.dec === ',' ? s.name.replace('.', ',') : s.name; }
   function f(x, d) { var s = x.toFixed(d); return L.dec === ',' ? s.replace('.', ',') : s; }
   function el(tag, css, html) { var e = document.createElement(tag); if (css) e.style.cssText = css; if (html != null) e.innerHTML = html; return e; }
   var MONO = "font-family:'Martian Mono', ui-monospace, monospace;";
@@ -157,7 +164,8 @@
       var s = SECTORS[idx], sm = sims(s.v);
       var h = '';
       h += '<div style="' + MONO + ' font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.72);">' + L.profile + '</div>';
-      h += '<h3 style="margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(30px,3vw,44px); line-height:1; letter-spacing:-0.02em;">' + s.name + '</h3>';
+      h += '<div style="display:flex; flex-wrap:wrap; align-items:center; gap:10px;"><span style="padding:3px 9px; border-radius:9999px; border:1px solid ' + (s.region === 'ref' ? '#F2F4F5' : '#0297DE') + '; ' + MONO + ' font-size:10.5px; color:' + (s.region === 'ref' ? '#F2F4F5' : '#7FC8EF') + ';">' + (s.region === 'ref' ? 'REF' : '#' + s.rank) + '</span><span style="font-size:12.5px; color:rgba(242,244,245,0.72);">' + L.regions[s.region] + '</span></div>';
+      h += '<h3 style="margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(30px,3vw,44px); line-height:1; letter-spacing:-0.02em;">' + nm(s) + '</h3>';
       h += '<div style="' + MONO + ' font-size:11px; color:rgba(242,244,245,0.72);">' + s.ll + ' · ' + L.area + ' ' + f(s.area, 1) + ' km²</div>';
       h += '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:16px; border-radius:16px; background:rgba(242,244,245,0.05); border:1px solid rgba(242,244,245,0.1);">' +
         stat(f(s.S, 2), L.sim, '#0297DE') + stat(f(s.C, 2), L.conf, '#7FC8EF') + stat(f(s.stab, 2), L.stab, '#F2F4F5') + '</div>';
@@ -167,7 +175,7 @@
         var on = i === idx;
         h += '<button type="button" role="radio" aria-checked="' + on + '" data-pick="' + i + '" style="display:flex; align-items:center; gap:12px; width:100%; padding:10px 12px; border:0; border-radius:10px; background:' + (on ? 'rgba(242,244,245,0.08)' : 'transparent') + '; color:#F2F4F5; cursor:pointer; text-align:left; font-size:15px;">' +
           '<span style="width:18px; height:18px; flex:none; border-radius:50%; border:2px solid ' + (on ? '#F2F4F5' : 'rgba(242,244,245,0.5)') + '; display:flex; align-items:center; justify-content:center;">' + (on ? '<span style="width:8px; height:8px; border-radius:50%; background:#F2F4F5;"></span>' : '') + '</span>' +
-          '<span style="flex:1; font-weight:' + (on ? 600 : 400) + ';">' + o.name + '</span><span style="' + MONO + ' font-size:13px; color:#0297DE;">S ' + f(o.S, 2) + '</span></button>';
+          '<span style="' + MONO + ' font-size:11px; width:30px; color:rgba(242,244,245,0.72);">' + o.rank + '</span><span style="flex:1; font-weight:' + (on ? 600 : 400) + ';">' + nm(o) + '</span><span style="' + MONO + ' font-size:13px; color:#0297DE;">S ' + f(o.S, 2) + '</span></button>';
       });
       h += '</div>';
       h += '<div style="display:flex; flex-direction:column; gap:10px; padding:16px; border-radius:16px; background:rgba(242,244,245,0.05); border:1px solid rgba(242,244,245,0.1);"><div style="font-size:14px;"><strong>' + L.crit + '</strong></div>';
@@ -192,7 +200,7 @@
       dots.innerHTML = '';
       SECTORS.forEach(function (o, i) {
         var b = el('button', 'width:10px; height:10px; padding:0; border:0; border-radius:50%; cursor:pointer; background:' + (i === idx ? '#F2F4F5' : 'rgba(242,244,245,0.35)') + ';');
-        b.type = 'button'; b.setAttribute('aria-label', o.name); if (i === idx) b.setAttribute('aria-current', 'true');
+        b.type = 'button'; b.setAttribute('aria-label', nm(o)); if (i === idx) b.setAttribute('aria-current', 'true');
         b.addEventListener('click', function () { go(i); });
         dots.appendChild(b);
       });
@@ -202,7 +210,7 @@
       var s = SECTORS[idx];
       img.style.opacity = '0';
       var src = s.img; var im = new Image(); im.onload = function () { if (dead) return; img.src = src; img.style.opacity = '1'; }; im.src = src;
-      img.alt = s.name + ' · Sentinel-2';
+      img.alt = nm(s) + ' · Sentinel-2';
       prev.setAttribute('aria-label', L.prev); next.setAttribute('aria-label', L.next);
       foot.textContent = L.note + ' ' + L.attr;
       renderArms(); renderPanel(); renderDots();

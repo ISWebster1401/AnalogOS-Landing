@@ -158,7 +158,7 @@
     for (var i = 0; i < btns.length; i++) btns[i].addEventListener('click', onBtn);
     function start() {
       if (started) return; started = true;
-      loadImg('assets/earth-yungay-s2.jpg').then(function (im) { if (dead) return; srcE = im; redraw(); }).catch(function () {});
+      loadImg('assets/s2-cl-win-s2500-w06970.jpg').then(function (im) { if (dead) return; srcE = im; redraw(); }).catch(function () {});
       /* static copy of the same 20.34 km CTX frame first; live Mars Trek composition only as a fallback */
       loadImg('assets/mars-jezero-ctx.jpg').then(function (im) { if (dead) return; srcM = im; redraw(); if (status) status.style.display = 'none'; })
         .catch(function () {
