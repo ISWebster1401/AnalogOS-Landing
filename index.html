@@ -226,7 +226,7 @@ a:hover{color:#FD9A7D}
         <div style="display:flex; align-items:center; gap:12px; font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.78);"><span style="width:10px; height:10px; flex:none; background:#F2F4F5;"></span><span>{{ t.tr.kicker }}</span></div>
         <div style="position:relative; overflow:hidden; height:0.98em; font-family:var(--font-heading); font-weight:800; font-stretch:125%; font-size:clamp(60px,11vw,190px); line-height:0.9; letter-spacing:-0.045em;">
           <div data-k="trMars" style="position:absolute; left:0; top:0.04em; color:#FC734D;">{{ t.tr.mars }}</div>
-          <div data-k="trChile" style="position:absolute; left:0; top:0.04em; color:#7FC8EF; transform:translateY(110%);">Chile</div>
+          <div data-k="trChile" style="position:absolute; left:0; top:0.04em; color:#7FC8EF; transform:translateY(110%);">{{ t.tr.earth }}</div>
         </div>
         <div style="display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 24px; font-family:'Martian Mono', ui-monospace, monospace;">
           <span data-k="trCoord" style="font-size:clamp(13px,1.2vw,16px); color:#0297DE;">{{ t.tr.jzCoord }}</span>
@@ -632,7 +632,7 @@ class Component extends DCLogic {
         items: [{ date: 'Feb 2021', title: 'Landing in Jezero crater', body: 'Perseverance lands on the floor of Jezero, an ancient lake basin.' },
           { date: 'Dec 2025', title: 'First AI-planned drives on another planet', body: "On Jezero's rim." },
           { date: 'Oct 2026', title: 'First extended mission begins', body: 'Rim exploration through ~2028.' }] },
-      tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', jzPlace: 'Jezero crater · Mars', atPlace: 'Chile–Argentina pilot · 50 windows', jzCoord: '18.38° N 77.58° E', atCoord: '25.02° S 69.72° W',
+      tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', earth: 'Earth', jzPlace: 'Jezero crater · Mars', atPlace: 'Chile–Argentina pilot · 50 windows', jzCoord: '18.38° N 77.58° E', atCoord: '25.02° S 69.72° W',
         cap: 'Search instead of listing the famous analogs.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to the Chile–Argentina pilot candidates, with an arc arriving from Jezero' },
       how: { kicker: 'How it works', h: 'From your words to the best site, in three steps.', modes: 'Two ways in', mode1: 'Find a place for my test', mode2: 'Evaluate this terrain',
         ask: '“Autonomous navigation test for a Mars rover. Critical: median regional slope of the whole window at most 2.3 degrees. Preference: at least 95 % non-vegetated surface. I also need to check access permits.”',
@@ -721,7 +721,7 @@ class Component extends DCLogic {
         items: [{ date: 'Feb. 2021', title: 'Aterrizaje en el cráter Jezero', body: 'Perseverance se posa en el fondo de Jezero, la cuenca de un antiguo lago.' },
           { date: 'Dic. 2025', title: 'Primeras rutas planificadas por IA en otro planeta', body: 'En el borde de Jezero.' },
           { date: 'Oct. 2026', title: 'Comienza la primera misión extendida', body: 'Exploración del borde hasta ~2028.' }] },
-      tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Piloto Chile–Argentina · 50 ventanas', jzCoord: '18,38° N 77,58° E', atCoord: '25,02° S 69,72° O',
+      tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', earth: 'Tierra', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Piloto Chile–Argentina · 50 ventanas', jzCoord: '18,38° N 77,58° E', atCoord: '25,02° S 69,72° O',
         cap: 'Buscar en vez de listar los análogos famosos.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta los candidatos del piloto Chile–Argentina, con un arco que llega desde Jezero' },
       how: { kicker: 'Cómo funciona', h: 'De tus palabras al mejor lugar, en tres pasos.', modes: 'Dos entradas', mode1: 'Busco un lugar para mi prueba', mode2: 'Quiero evaluar este terreno',
         ask: '«Ensayo de navegación autónoma de un rover para Marte. Imprescindible: pendiente mediana regional de la ventana completa como máximo 2,3 grados. Preferencia: al menos 95 % de superficie no vegetada. También necesito verificar permisos de acceso.»',
@@ -1032,7 +1032,7 @@ class Component extends DCLogic {
     const earthTex = loader.load('https://cdn.21st.dev/assets/localized/228deba2e4b600146bdcb6cfa359b8ead6aacc2b1c13550a29cd82824cfa1c01.jpg', () => this.renderGlobe());
     earthTex.colorSpace = T.SRGBColorSpace;
     const bumpTex = loader.load('https://cdn.21st.dev/assets/localized/839b12da2e4dd346b256cebae72e10c479a102c8980a22084c41275e4b9a0e12.png', () => this.renderGlobe());
-    let zones = this.CROWS.map((r, i) => ({ id: r[0], name: r[2], S: r[3], lat: this.CANDS[i][0], lng: this.CANDS[i][1] }));
+    let zones = this.CROWS.map((r, i) => ({ id: r[0], no: r[1], name: r[2], S: r[3], lat: this.CANDS[i][0], lng: this.CANDS[i][1] }));
     if (this._dead) return;
     const mars = makeGlobe(marsTex, null, '#FC734D', 0.45, [{ id: 'jezero', lat: 18.38, lng: 77.58 }], 0xFC734D);
     const earth = makeGlobe(earthTex, bumpTex, '#0297DE', 1.1, zones, 0x0297DE);
@@ -1064,7 +1064,7 @@ class Component extends DCLogic {
     if (!g) return;
     const L = this.L;
     g.mars.ms.forEach((m) => { m.el.textContent = L.tr.jzMarker; });
-    g.earth.ms.forEach((m) => { const sv = this.state.lang === 'es' ? m.S.toFixed(2).replace('.', ',') : m.S.toFixed(2); m.el.textContent = m.name + ' · S ' + sv; m.el.setAttribute('aria-label', m.name + ' · S ' + sv + ' · ' + L.tr.open); m.el.title = L.tr.open; });
+    g.earth.ms.forEach((m) => { const sv = this.state.lang === 'es' ? m.S.toFixed(2).replace('.', ',') : m.S.toFixed(2); m.el.textContent = this.state.narrow ? (m.no + ' · ' + sv) : (m.name + ' · S ' + sv); m.el.setAttribute('aria-label', m.name + ' · S ' + sv + ' · ' + L.tr.open); m.el.title = L.tr.open; });
   }
   sizeGlobe() {
     const g = this._g;
