@@ -159,8 +159,12 @@
     function start() {
       if (started) return; started = true;
       loadImg('assets/earth-yungay-s2.jpg').then(function (im) { if (dead) return; srcE = im; redraw(); }).catch(function () {});
-      marsFrame().then(function (c) { if (dead) return; srcM = c; redraw(); if (status) status.style.display = 'none'; })
-        .catch(function () { if (status) status.setAttribute('data-err', '1'); });
+      /* static copy of the same 20.34 km CTX frame first; live Mars Trek composition only as a fallback */
+      loadImg('assets/mars-jezero-ctx.jpg').then(function (im) { if (dead) return; srcM = im; redraw(); if (status) status.style.display = 'none'; })
+        .catch(function () {
+          marsFrame().then(function (c) { if (dead) return; srcM = c; redraw(); if (status) status.style.display = 'none'; })
+            .catch(function () { if (status) status.setAttribute('data-err', '1'); });
+        });
     }
     var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) { if (es.some(function (e) { return e.isIntersecting; })) { start(); io.disconnect(); } }, { rootMargin: '600px 0px' }) : null;
     if (io) io.observe(root); else start();
