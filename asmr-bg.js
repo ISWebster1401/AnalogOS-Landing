@@ -15,17 +15,17 @@
     var rmq = window.matchMedia ? matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
     var width = 1, height = 1, dpr = 1, raf = 0, dead = false, visible = true, particles = [];
     var mouse = { x: -1000, y: -1000 };
-    var MAGNETIC_RADIUS = 260, VORTEX = 0.07, PULL = 0.12, DENSITY = 0.00045;
+    var MAGNETIC_RADIUS = 260, VORTEX = 0.07, PULL = 0.12, DENSITY = 0.0008;
     var BG = '2, 7, 10';
-    var COLORS = ['40, 62, 78', '40, 62, 78', '40, 62, 78', '2, 151, 222', '242, 244, 245'];
+    var COLORS = ['74, 112, 140', '74, 112, 140', '74, 112, 140', '2, 151, 222', '2, 151, 222', '242, 244, 245'];
 
     function P() { this.reset(); }
     P.prototype.reset = function () {
       this.x = Math.random() * width; this.y = Math.random() * height;
-      this.size = Math.random() * 1.5 + 0.5;
+      this.size = Math.random() * 1.8 + 0.8;
       this.vx = (Math.random() - 0.5) * 0.2; this.vy = (Math.random() - 0.5) * 0.2;
       this.color = COLORS[(Math.random() * COLORS.length) | 0];
-      this.alpha = Math.random() * 0.4 + 0.15;
+      this.alpha = Math.random() * 0.45 + 0.3;
       this.rot = Math.random() * Math.PI * 2; this.rs = (Math.random() - 0.5) * 0.05; this.glow = 0;
     };
     P.prototype.update = function () {
@@ -59,7 +59,7 @@
       width = Math.max(r.width, 1); height = Math.max(r.height, 1);
       canvas.width = Math.round(width * dpr); canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      var n = Math.min(1400, Math.round(width * height * DENSITY));
+      var n = Math.min(1800, Math.round(width * height * DENSITY));
       particles = []; for (var i = 0; i < n; i++) particles.push(new P());
       ctx.fillStyle = 'rgb(' + BG + ')'; ctx.fillRect(0, 0, width, height);
       if (rmq.matches) drawStill();
