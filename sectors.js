@@ -109,7 +109,7 @@
       var s = SECTORS[idx], d = L.arm[a.k];
       if (open === i) { closePop(); return; }
       closePop(); open = i; btn.setAttribute('aria-expanded', 'true'); btn.lastChild.textContent = '−';
-      pop.innerHTML = '<div style="display:flex; justify-content:space-between; gap:10px; align-items:baseline;"><strong style="font-family:var(--font-heading); font-size:16px;">' + d[0] + '</strong><span style="' + MONO + ' font-size:11px; color:#7FC8EF; white-space:nowrap;">' + d[1](s.v) + '</span></div><p style="margin:8px 0 0; color:rgba(242,244,245,0.82);">' + d[2] + '</p>';
+      pop.innerHTML = '<div style="display:flex; flex-wrap:wrap; justify-content:space-between; gap:4px 10px; align-items:baseline;"><strong style="font-family:var(--font-heading); font-size:16px;">' + d[0] + '</strong><span style="' + MONO + ' font-size:11px; color:#7FC8EF; text-align:right;">' + d[1](s.v) + '</span></div><p style="margin:8px 0 0; color:rgba(242,244,245,0.82);">' + d[2] + '</p>';
       pop.style.display = 'block';
       pop.style.left = clamp(a.x > 62 ? a.x - 40 : a.x, 2, 58) + '%';
       if (a.side === 'top') { pop.style.top = '64px'; pop.style.bottom = 'auto'; } else { pop.style.bottom = '64px'; pop.style.top = 'auto'; }
