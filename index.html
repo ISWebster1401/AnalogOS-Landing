@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>/* Destino del botón "Try" — cambiar aquí */ window.TRY_URL = "demo.html";</script>
+<script>/* Destino del botón "Try" — cambiar aquí */ window.TRY_URL = "https://analogos.vercel.app/";</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -25,9 +25,6 @@
 <script src="./liquid-nav.js"></script>
 <script src="./space-bg.js"></script>
 <script src="./halftone-nebula.js"></script>
-<script src="./asmr-bg.js"></script>
-<script src="./fluid-bg.js"></script>
-<script src="./mesh-bg.js"></script>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#071827"></rect><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36 L100 100 L0 100 Z" fill="#02070A"></path><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36" fill="none" stroke="#FC734D" stroke-width="2"></path><rect x="66" y="34" width="6" height="6" fill="#0297DE"></rect><rect x="30" y="30" width="8" height="8" fill="#FC734D"></rect></svg></template>
 <style>
 html,body{margin:0;background:#02070A;color:#F2F4F5}
@@ -42,7 +39,7 @@ a:hover{color:#FD9A7D}
 <div ref="{{ rootRef }}" style="--color-bg:#02070A; --color-accent:#FC734D; --color-accent-600:#FD9A7D; --color-accent-700:#E5603B; --color-text:#F2F4F5; --color-divider:rgba(242,244,245,0.24); --color-surface:#0C1D2A; position:relative; background:#02070A; color:#F2F4F5; font-family:var(--font-body); overflow-x:clip;">
 <div aria-hidden="true" style="position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(60% 50% at 0% 0%, rgba(22,92,134,0.34), rgba(22,92,134,0) 70%), radial-gradient(45% 40% at 100% 100%, rgba(252,115,77,0.13), rgba(252,115,77,0) 70%), #02070A;"><div data-k="space" style="position:absolute; inset:0;"></div><canvas data-k="stars" style="position:absolute; inset:0; width:100%; height:100%; opacity:0.36;"></canvas></div>
 
-<header style="position:fixed; top:0; left:0; right:0; z-index:60; background:rgba(2,7,10,0.62); -webkit-backdrop-filter:blur(12px); backdrop-filter:blur(12px); border-bottom:1px solid rgba(242,244,245,0.1);">
+<header style="position:fixed; top:0; left:0; right:0; z-index:60; background:linear-gradient(to bottom, rgba(2,7,10,0.55) 0%, rgba(2,7,10,0.22) 60%, rgba(2,7,10,0) 100%);">
   <div style="height:64px; box-sizing:border-box; padding:0 clamp(12px,3vw,40px); display:flex; align-items:center; gap:clamp(8px,1.6vw,20px); color:#F2F4F5;">
     <a href="#inicio" onClick="{{ go }}" style="display:flex; align-items:center; gap:10px; flex:none; text-decoration:none;">
       <img src="assets/analogos-emblem.png" alt="" width="52" height="32" style="display:block; width:52px; height:32px; object-fit:contain; flex:none;">
@@ -60,7 +57,7 @@ a:hover{color:#FD9A7D}
       <div style="display:{{ navBtnDisplay }};"><button type="button" onClick="{{ goDemo }}" style="display:inline-flex; align-items:center; gap:12px; min-height:40px; padding:0 14px 0 16px; border:0; border-radius:999px; background:#FC734D; color:#02070A; font-family:var(--font-heading); font-weight:800; font-size:14px; white-space:nowrap; cursor:pointer; box-shadow:0 8px 24px -10px rgba(252,115,77,0.8);" style-hover="background:#FD9A7D;" style-active="background:#E5603B;">{{ t.nav.try }}<svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button></div>
     </div>
   </div>
-  <div style="position:absolute; left:0; right:0; bottom:0; height:2px; pointer-events:none;">
+  <div style="display:none;">
     <div data-k="progress" style="height:100%; width:100%; background:#0297DE; transform-origin:0 50%; transform:scaleX(0);"></div>
   </div>
 </header>
@@ -659,13 +656,13 @@ class Component extends DCLogic {
     this._rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
     this._onRm = () => this.rebuild();
     this._rmq.addEventListener('change', this._onRm);
-    // Full-page space background: ?bg=nebula (default) | asmr | fluid | mesh | none. Change SPACE_BG to fix one.
+    // Full-page space background: halftone nebula (?bg=none turns it off).
     const SPACE_BG = 'nebula';
     let bg = SPACE_BG;
-    try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'asmr' || q === 'nebula' || q === 'fluid' || q === 'mesh' || q === 'none') bg = q; } catch (e) {}
+    try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'none') bg = q; } catch (e) {}
     const sp = this.k('space');
     if (sp && bg !== 'none') {
-      const ctor = bg === 'asmr' ? window.AnalogASMR : bg === 'fluid' ? window.AnalogFluid : bg === 'mesh' ? window.AnalogMesh : window.AnalogNebula;
+      const ctor = window.AnalogNebula;
       if (ctor) { try { this._nebula = ctor(sp, { root: document, clicks: false, subtle: true }); const st = this.k('stars'); if (this._nebula && st) st.style.display = 'none'; } catch (e) { console.error(e); } }
     }
     this.introHero(this.isReduced());
