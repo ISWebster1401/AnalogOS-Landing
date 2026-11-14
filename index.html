@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>/* Destino del botón "Try" — cambiar aquí */ window.TRY_URL = "demo.html";</script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -510,7 +511,7 @@ class Component extends DCLogic {
     en: {
       title: "AnalogOS Chile — Where to test in Chile what's going to Mars",
       illus: 'Illustrative values, not results', zone: 'Zone',
-      nav: { problem: 'Problem', jezero: 'Jezero', how: 'How it works', scores: 'Scores', team: 'Team', demo: 'See demo', try: 'Try the demo' },
+      nav: { problem: 'Problem', jezero: 'Jezero', how: 'How it works', scores: 'Scores', team: 'Team', demo: 'Try', try: 'Try' },
       hero: { challenge: 'Challenge · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago, Chile',
         l1: ['Where','to','test','in','Chile'], l2: ["what's",'going','to','Mars.'],
         sub: 'AnalogOS crosses open data from NASA, ESA and Chilean agencies with the real topography of Mars (MOLA) and shows candidate zones for your test, each with three separate scores: Similarity, Confidence and Feasibility.',
@@ -529,7 +530,7 @@ class Component extends DCLogic {
           { date: 'Dec 2025', title: 'First AI-planned drives on another planet', body: "On Jezero's rim." },
           { date: 'Oct 2026', title: 'First extended mission begins', body: 'Rim exploration through ~2028.' }] },
       tr: { kicker: 'Transit · Mars → Earth', mars: 'Mars', jzPlace: 'Jezero crater · Mars', atPlace: 'Atacama Desert · Chile', jzCoord: '18.38° N 77.58° E', atCoord: '24.50° S 69.25° W',
-        cap: 'Atacama Desert: the driest non-polar desert on Earth.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Open in demo', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to the Atacama candidate zones. Dotted Earth rotating to Chile, with an arc arriving from Jezero and landing on the Atacama candidate zones' },
+        cap: 'Atacama Desert: the driest non-polar desert on Earth.', arc: 'Jezero · Mars', attr: 'Imagery: NASA / USGS', jzMarker: 'Jezero rim · reference', open: 'Try', globeAlt: 'Mars globe turning to Jezero crater, then Earth turning to the Atacama candidate zones. Dotted Earth rotating to Chile, with an arc arriving from Jezero and landing on the Atacama candidate zones' },
       how: { kicker: 'How it works', h: 'From the question to the place, in three steps.',
         s1t: 'You choose the test', s1b: "Tell us what you want to validate, such as a rover's autonomous navigation, and the terrain it needs: target slope, local relief and surface conditions.",
         formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling', habitat: 'Habitat', search: 'Find candidate zones',
@@ -570,7 +571,7 @@ class Component extends DCLogic {
     es: {
       title: 'AnalogOS Chile — Dónde probar en Chile lo que irá a Marte',
       illus: 'Valores ilustrativos, no resultados', zone: 'Zona',
-      nav: { problem: 'Problema', jezero: 'Jezero', how: 'Cómo funciona', scores: 'Notas', team: 'Equipo', demo: 'Ver demo', try: 'Probar la demo' },
+      nav: { problem: 'Problema', jezero: 'Jezero', how: 'Cómo funciona', scores: 'Notas', team: 'Equipo', demo: 'Probar', try: 'Probar' },
       hero: { challenge: 'Desafío · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago de Chile',
         l1: ['Dónde','probar','en','Chile'], l2: ['lo','que','irá','a','Marte.'],
         sub: 'AnalogOS cruza datos abiertos de NASA, ESA y organismos chilenos con la topografía real de Marte (MOLA) y te muestra zonas candidatas para tu prueba, con tres notas separadas: Similitud, Confianza y Factibilidad.',
@@ -589,7 +590,7 @@ class Component extends DCLogic {
           { date: 'Dic. 2025', title: 'Primeras rutas planificadas por IA en otro planeta', body: 'En el borde de Jezero.' },
           { date: 'Oct. 2026', title: 'Comienza la primera misión extendida', body: 'Exploración del borde hasta ~2028.' }] },
       tr: { kicker: 'Tránsito · Marte → Tierra', mars: 'Marte', jzPlace: 'Cráter Jezero · Marte', atPlace: 'Desierto de Atacama · Chile', jzCoord: '18,38° N 77,58° E', atCoord: '24,50° S 69,25° O',
-        cap: 'Desierto de Atacama: el desierto no polar más seco de la Tierra.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Abrir en la demo', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta las zonas candidatas de Atacama. Tierra de puntos que gira hacia Chile, con un arco que llega desde Jezero y aterriza en las zonas candidatas de Atacama' },
+        cap: 'Desierto de Atacama: el desierto no polar más seco de la Tierra.', arc: 'Jezero · Marte', attr: 'Imágenes: NASA / USGS', jzMarker: 'Borde de Jezero · referencia', open: 'Probar', globeAlt: 'Globo de Marte que gira hasta el cráter Jezero y luego la Tierra que gira hasta las zonas candidatas de Atacama. Tierra de puntos que gira hacia Chile, con un arco que llega desde Jezero y aterriza en las zonas candidatas de Atacama' },
       how: { kicker: 'Cómo funciona', h: 'De la pregunta al lugar, en tres pasos.',
         s1t: 'Eliges la prueba', s1b: 'Indica qué quieres validar, como la navegación autónoma de un rover, y el terreno que necesita: pendiente objetivo, relieve local y condiciones de superficie.',
         formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación', habitat: 'Hábitat', search: 'Buscar zonas candidatas',
@@ -1166,7 +1167,7 @@ class Component extends DCLogic {
     e.preventDefault();
     this.scrollToId(href.slice(1));
   };
-  goDemo = () => { window.location.href = 'demo.html'; };
+  goDemo = () => { window.location.href = window.TRY_URL || 'demo.html'; };
   pickTest = (e) => this.setState({ test: e.target.value });
   highlight(id, on) {
     const root = this.rootRef.current;
