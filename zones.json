@@ -1,1050 +1,1050 @@
 {
- "illustrative": true,
- "epsilon": 0.01,
- "mars_reference": {
-  "name": "Jezero crater · west rim",
-  "center": [
-   18.38,
-   77.58
-  ],
-  "zoom": 10
- },
- "zones": [
-  {
-   "id": "valle",
-   "name": "Valle de Marte",
-   "region": "San Pedro de Atacama · Antofagasta",
-   "center": [
-    -22.9,
-    -68.25
-   ],
-   "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-     [
-      [
-       -68.1442,
-       -22.9
-      ],
-      [
-       -68.161,
-       -22.7972
-      ],
-      [
-       -68.2845,
-       -22.7609
-      ],
-      [
-       -68.3711,
-       -22.8463
-      ],
-      [
-       -68.3553,
-       -22.9467
-      ],
-      [
-       -68.2832,
-       -23.0339
-      ],
-      [
-       -68.1549,
-       -23.0098
-      ],
-      [
-       -68.1442,
-       -22.9
-      ]
-     ]
-    ]
-   },
-   "S": 97,
-   "C": 64,
-   "F": 71,
-   "params": [
-    {
-     "key": "slope_median",
-     "label": "Median slope",
-     "unit": "°",
-     "value": 11.2,
-     "ideal": [
-      6,
-      14
-     ],
-     "tolerance": [
-      3,
-      20
-     ],
-     "s": 1,
-     "w": 0.3,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → median"
-    },
-    {
-     "key": "slope_p90",
-     "label": "Slope P90",
-     "unit": "°",
-     "value": 21.5,
-     "ideal": [
-      14,
-      24
-     ],
-     "tolerance": [
-      9,
-      30
-     ],
-     "s": 1,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → 90th percentile"
-    },
-    {
-     "key": "local_relief",
-     "label": "Local relief",
-     "unit": "m",
-     "value": 310,
-     "ideal": [
-      150,
-      400
-     ],
-     "tolerance": [
-      80,
-      600
-     ],
-     "s": 1,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "max − min elevation in a 5 km moving window → zone median"
-    },
-    {
-     "key": "tri",
-     "label": "TRI",
-     "unit": "m",
-     "value": 34,
-     "ideal": [
-      12,
-      30
-     ],
-     "tolerance": [
-      6,
-      45
-     ],
-     "s": 0.84,
-     "w": 0.2,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "hypothesis",
-     "method": "Riley terrain ruggedness index on the 463 m grid → zone mean"
-    }
-   ],
-   "conditions": [
-    {
-     "key": "ndvi",
-     "label": "NDVI (vegetation)",
-     "value": 0.04,
-     "unit": "",
-     "status": "pass",
-     "threshold": "< 0.05 pass · < 0.10 warn",
-     "source": {
-      "product": "MODIS MOD13Q1",
-      "resolution": "250 m, 16-day",
-      "date": "2015–2024 median",
-      "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "precip",
-     "label": "Mean annual precipitation",
-     "value": 18,
-     "unit": "mm/yr",
-     "status": "pass",
-     "threshold": "< 25 pass · < 100 warn",
-     "source": {
-      "product": "NASA POWER",
-      "resolution": "0.5° × 0.625°",
-      "date": "1991–2020",
-      "url": "https://power.larc.nasa.gov/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "geology",
-     "label": "Surface geology",
-     "value": "Salt-bearing sedimentary sequence",
-     "unit": "",
-     "status": "pass",
-     "threshold": "Sedimentary / evaporite / volcanic units",
-     "source": {
-      "product": "Mapa Geológico de Chile",
-      "resolution": "1:1,000,000",
-      "date": "2003",
-      "url": "https://www.sernageomin.cl/",
-      "provider": "SERNAGEOMIN"
-     }
-    }
-   ],
-   "feasibility": [
-    {
-     "key": "road",
-     "label": "Distance to nearest road",
-     "value": 4.5,
-     "unit": "km",
-     "status": "pass",
-     "threshold": "< 10 pass · < 25 warn"
-    },
-    {
-     "key": "protected",
-     "label": "Protected area check",
-     "value": "Partial overlap (tourism area)",
-     "unit": "",
-     "status": "warn",
-     "threshold": "No overlap"
-    },
-    {
-     "key": "area",
-     "label": "Contiguous suitable area",
-     "value": 38,
-     "unit": "km²",
-     "status": "pass",
-     "threshold": "> 10 km²"
-    }
-   ],
-   "verify": [
-    "soil_bearing",
-    "traction",
-    "rover_slope"
-   ]
+  "illustrative": true,
+  "epsilon": 0.01,
+  "mars_reference": {
+    "name": "Jezero crater \u00b7 west rim",
+    "center": [
+      18.38,
+      77.58
+    ],
+    "zoom": 10
   },
-  {
-   "id": "yungay",
-   "name": "Yungay",
-   "region": "Atacama Desert · Antofagasta",
-   "center": [
-    -24.07,
-    -70.02
-   ],
-   "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-     [
-      [
-       -70.0401,
-       -23.9286
+  "zones": [
+    {
+      "id": "valle",
+      "name": "Valle de Marte",
+      "region": "San Pedro de Atacama \u00b7 Antofagasta",
+      "center": [
+        -22.9,
+        -68.25
       ],
-      [
-       -70.1436,
-       -24.0017
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -68.1442,
+              -22.9
+            ],
+            [
+              -68.161,
+              -22.7972
+            ],
+            [
+              -68.2845,
+              -22.7609
+            ],
+            [
+              -68.3711,
+              -22.8463
+            ],
+            [
+              -68.3553,
+              -22.9467
+            ],
+            [
+              -68.2832,
+              -23.0339
+            ],
+            [
+              -68.1549,
+              -23.0098
+            ],
+            [
+              -68.1442,
+              -22.9
+            ]
+          ]
+        ]
+      },
+      "S": 94,
+      "C": 64,
+      "F": 71,
+      "params": [
+        {
+          "key": "slope_median",
+          "label": "Median slope",
+          "unit": "\u00b0",
+          "value": 11.2,
+          "ideal": [
+            6,
+            14
+          ],
+          "tolerance": [
+            3,
+            20
+          ],
+          "s": 1.0,
+          "w": 0.3,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 median"
+        },
+        {
+          "key": "slope_p90",
+          "label": "Slope P90",
+          "unit": "\u00b0",
+          "value": 21.5,
+          "ideal": [
+            14,
+            24
+          ],
+          "tolerance": [
+            9,
+            30
+          ],
+          "s": 1.0,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 90th percentile"
+        },
+        {
+          "key": "local_relief",
+          "label": "Local relief",
+          "unit": "m",
+          "value": 310,
+          "ideal": [
+            150,
+            400
+          ],
+          "tolerance": [
+            80,
+            600
+          ],
+          "s": 1.0,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "max \u2212 min elevation in a 5 km moving window \u2192 zone median"
+        },
+        {
+          "key": "tri",
+          "label": "TRI",
+          "unit": "m",
+          "value": 34,
+          "ideal": [
+            12,
+            30
+          ],
+          "tolerance": [
+            6,
+            45
+          ],
+          "s": 0.73,
+          "w": 0.2,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "hypothesis",
+          "method": "Riley terrain ruggedness index on the 463 m grid \u2192 zone mean"
+        }
       ],
-      [
-       -70.121,
-       -24.104
+      "conditions": [
+        {
+          "key": "ndvi",
+          "label": "NDVI (vegetation)",
+          "value": 0.04,
+          "unit": "",
+          "status": "pass",
+          "threshold": "< 0.05 pass \u00b7 < 0.10 warn",
+          "source": {
+            "product": "MODIS MOD13Q1",
+            "resolution": "250 m, 16-day",
+            "date": "2015\u20132024 median",
+            "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "precip",
+          "label": "Mean annual precipitation",
+          "value": 18,
+          "unit": "mm/yr",
+          "status": "pass",
+          "threshold": "< 25 pass \u00b7 < 100 warn",
+          "source": {
+            "product": "NASA POWER",
+            "resolution": "0.5\u00b0 \u00d7 0.625\u00b0",
+            "date": "1991\u20132020",
+            "url": "https://power.larc.nasa.gov/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "geology",
+          "label": "Surface geology",
+          "value": "Salt-bearing sedimentary sequence",
+          "unit": "",
+          "status": "pass",
+          "threshold": "Sedimentary / evaporite / volcanic units",
+          "source": {
+            "product": "Mapa Geol\u00f3gico de Chile",
+            "resolution": "1:1,000,000",
+            "date": "2003",
+            "url": "https://www.sernageomin.cl/",
+            "provider": "SERNAGEOMIN"
+          }
+        }
       ],
-      [
-       -70.065,
-       -24.1943
+      "feasibility": [
+        {
+          "key": "road",
+          "label": "Distance to nearest road",
+          "value": 4.5,
+          "unit": "km",
+          "status": "pass",
+          "threshold": "< 10 pass \u00b7 < 25 warn"
+        },
+        {
+          "key": "protected",
+          "label": "Protected area check",
+          "value": "Partial overlap (tourism area)",
+          "unit": "",
+          "status": "warn",
+          "threshold": "No overlap"
+        },
+        {
+          "key": "area",
+          "label": "Contiguous suitable area",
+          "value": 38,
+          "unit": "km\u00b2",
+          "status": "pass",
+          "threshold": "> 10 km\u00b2"
+        }
       ],
-      [
-       -69.9346,
-       -24.1896
-      ],
-      [
-       -69.8843,
-       -24.0818
-      ],
-      [
-       -69.9386,
-       -23.9931
-      ],
-      [
-       -70.0401,
-       -23.9286
+      "verify": [
+        "soil_bearing",
+        "traction",
+        "rover_slope"
       ]
-     ]
-    ]
-   },
-   "S": 94,
-   "C": 81,
-   "F": 68,
-   "params": [
-    {
-     "key": "slope_median",
-     "label": "Median slope",
-     "unit": "°",
-     "value": 5.1,
-     "ideal": [
-      6,
-      14
-     ],
-     "tolerance": [
-      3,
-      20
-     ],
-     "s": 0.82,
-     "w": 0.3,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → median"
     },
     {
-     "key": "slope_p90",
-     "label": "Slope P90",
-     "unit": "°",
-     "value": 15.8,
-     "ideal": [
-      14,
-      24
-     ],
-     "tolerance": [
-      9,
-      30
-     ],
-     "s": 1,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → 90th percentile"
-    },
-    {
-     "key": "local_relief",
-     "label": "Local relief",
-     "unit": "m",
-     "value": 190,
-     "ideal": [
-      150,
-      400
-     ],
-     "tolerance": [
-      80,
-      600
-     ],
-     "s": 1,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "max − min elevation in a 5 km moving window → zone median"
-    },
-    {
-     "key": "tri",
-     "label": "TRI",
-     "unit": "m",
-     "value": 14,
-     "ideal": [
-      12,
-      30
-     ],
-     "tolerance": [
-      6,
-      45
-     ],
-     "s": 1,
-     "w": 0.2,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "hypothesis",
-     "method": "Riley terrain ruggedness index on the 463 m grid → zone mean"
-    }
-   ],
-   "conditions": [
-    {
-     "key": "ndvi",
-     "label": "NDVI (vegetation)",
-     "value": 0.02,
-     "unit": "",
-     "status": "pass",
-     "threshold": "< 0.05 pass · < 0.10 warn",
-     "source": {
-      "product": "MODIS MOD13Q1",
-      "resolution": "250 m, 16-day",
-      "date": "2015–2024 median",
-      "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "precip",
-     "label": "Mean annual precipitation",
-     "value": 2,
-     "unit": "mm/yr",
-     "status": "pass",
-     "threshold": "< 25 pass · < 100 warn",
-     "source": {
-      "product": "NASA POWER",
-      "resolution": "0.5° × 0.625°",
-      "date": "1991–2020",
-      "url": "https://power.larc.nasa.gov/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "geology",
-     "label": "Surface geology",
-     "value": "Alluvial gravels and evaporites",
-     "unit": "",
-     "status": "pass",
-     "threshold": "Sedimentary / evaporite / volcanic units",
-     "source": {
-      "product": "Mapa Geológico de Chile",
-      "resolution": "1:1,000,000",
-      "date": "2003",
-      "url": "https://www.sernageomin.cl/",
-      "provider": "SERNAGEOMIN"
-     }
-    }
-   ],
-   "feasibility": [
-    {
-     "key": "road",
-     "label": "Distance to nearest road",
-     "value": 12,
-     "unit": "km",
-     "status": "warn",
-     "threshold": "< 10 pass · < 25 warn"
-    },
-    {
-     "key": "protected",
-     "label": "Protected area check",
-     "value": "None",
-     "unit": "",
-     "status": "pass",
-     "threshold": "No overlap"
-    },
-    {
-     "key": "area",
-     "label": "Contiguous suitable area",
-     "value": 52,
-     "unit": "km²",
-     "status": "pass",
-     "threshold": "> 10 km²"
-    }
-   ],
-   "verify": [
-    "soil_bearing",
-    "traction",
-    "rover_slope"
-   ]
-  },
-  {
-   "id": "pajonales",
-   "name": "Salar de Pajonales",
-   "region": "Altiplano · Antofagasta",
-   "center": [
-    -25.15,
-    -68.8
-   ],
-   "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-     [
-      [
-       -68.9166,
-       -25.1779
+      "id": "yungay",
+      "name": "Yungay",
+      "region": "Atacama Desert \u00b7 Antofagasta",
+      "center": [
+        -24.07,
+        -70.02
       ],
-      [
-       -68.8546,
-       -25.2622
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -70.0401,
+              -23.9286
+            ],
+            [
+              -70.1436,
+              -24.0017
+            ],
+            [
+              -70.121,
+              -24.104
+            ],
+            [
+              -70.065,
+              -24.1943
+            ],
+            [
+              -69.9346,
+              -24.1896
+            ],
+            [
+              -69.8843,
+              -24.0818
+            ],
+            [
+              -69.9386,
+              -23.9931
+            ],
+            [
+              -70.0401,
+              -23.9286
+            ]
+          ]
+        ]
+      },
+      "S": 90,
+      "C": 81,
+      "F": 68,
+      "params": [
+        {
+          "key": "slope_median",
+          "label": "Median slope",
+          "unit": "\u00b0",
+          "value": 5.1,
+          "ideal": [
+            6,
+            14
+          ],
+          "tolerance": [
+            3,
+            20
+          ],
+          "s": 0.7,
+          "w": 0.3,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 median"
+        },
+        {
+          "key": "slope_p90",
+          "label": "Slope P90",
+          "unit": "\u00b0",
+          "value": 15.8,
+          "ideal": [
+            14,
+            24
+          ],
+          "tolerance": [
+            9,
+            30
+          ],
+          "s": 1.0,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 90th percentile"
+        },
+        {
+          "key": "local_relief",
+          "label": "Local relief",
+          "unit": "m",
+          "value": 190,
+          "ideal": [
+            150,
+            400
+          ],
+          "tolerance": [
+            80,
+            600
+          ],
+          "s": 1.0,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "max \u2212 min elevation in a 5 km moving window \u2192 zone median"
+        },
+        {
+          "key": "tri",
+          "label": "TRI",
+          "unit": "m",
+          "value": 14,
+          "ideal": [
+            12,
+            30
+          ],
+          "tolerance": [
+            6,
+            45
+          ],
+          "s": 1.0,
+          "w": 0.2,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "hypothesis",
+          "method": "Riley terrain ruggedness index on the 463 m grid \u2192 zone mean"
+        }
       ],
-      [
-       -68.7269,
-       -25.2762
+      "conditions": [
+        {
+          "key": "ndvi",
+          "label": "NDVI (vegetation)",
+          "value": 0.02,
+          "unit": "",
+          "status": "pass",
+          "threshold": "< 0.05 pass \u00b7 < 0.10 warn",
+          "source": {
+            "product": "MODIS MOD13Q1",
+            "resolution": "250 m, 16-day",
+            "date": "2015\u20132024 median",
+            "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "precip",
+          "label": "Mean annual precipitation",
+          "value": 2,
+          "unit": "mm/yr",
+          "status": "pass",
+          "threshold": "< 25 pass \u00b7 < 100 warn",
+          "source": {
+            "product": "NASA POWER",
+            "resolution": "0.5\u00b0 \u00d7 0.625\u00b0",
+            "date": "1991\u20132020",
+            "url": "https://power.larc.nasa.gov/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "geology",
+          "label": "Surface geology",
+          "value": "Alluvial gravels and evaporites",
+          "unit": "",
+          "status": "pass",
+          "threshold": "Sedimentary / evaporite / volcanic units",
+          "source": {
+            "product": "Mapa Geol\u00f3gico de Chile",
+            "resolution": "1:1,000,000",
+            "date": "2003",
+            "url": "https://www.sernageomin.cl/",
+            "provider": "SERNAGEOMIN"
+          }
+        }
       ],
-      [
-       -68.6563,
-       -25.1751
+      "feasibility": [
+        {
+          "key": "road",
+          "label": "Distance to nearest road",
+          "value": 12,
+          "unit": "km",
+          "status": "warn",
+          "threshold": "< 10 pass \u00b7 < 25 warn"
+        },
+        {
+          "key": "protected",
+          "label": "Protected area check",
+          "value": "None",
+          "unit": "",
+          "status": "pass",
+          "threshold": "No overlap"
+        },
+        {
+          "key": "area",
+          "label": "Contiguous suitable area",
+          "value": 52,
+          "unit": "km\u00b2",
+          "status": "pass",
+          "threshold": "> 10 km\u00b2"
+        }
       ],
-      [
-       -68.7168,
-       -25.0857
-      ],
-      [
-       -68.8049,
-       -25.0197
-      ],
-      [
-       -68.9267,
-       -25.0648
-      ],
-      [
-       -68.9166,
-       -25.1779
+      "verify": [
+        "soil_bearing",
+        "traction",
+        "rover_slope"
       ]
-     ]
-    ]
-   },
-   "S": 67,
-   "C": 57,
-   "F": 44,
-   "params": [
-    {
-     "key": "slope_median",
-     "label": "Median slope",
-     "unit": "°",
-     "value": 16.5,
-     "ideal": [
-      6,
-      14
-     ],
-     "tolerance": [
-      3,
-      20
-     ],
-     "s": 0.75,
-     "w": 0.3,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → median"
     },
     {
-     "key": "slope_p90",
-     "label": "Slope P90",
-     "unit": "°",
-     "value": 27,
-     "ideal": [
-      14,
-      24
-     ],
-     "tolerance": [
-      9,
-      30
-     ],
-     "s": 0.7,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → 90th percentile"
-    },
-    {
-     "key": "local_relief",
-     "label": "Local relief",
-     "unit": "m",
-     "value": 520,
-     "ideal": [
-      150,
-      400
-     ],
-     "tolerance": [
-      80,
-      600
-     ],
-     "s": 0.64,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "max − min elevation in a 5 km moving window → zone median"
-    },
-    {
-     "key": "tri",
-     "label": "TRI",
-     "unit": "m",
-     "value": 41,
-     "ideal": [
-      12,
-      30
-     ],
-     "tolerance": [
-      6,
-      45
-     ],
-     "s": 0.56,
-     "w": 0.2,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "hypothesis",
-     "method": "Riley terrain ruggedness index on the 463 m grid → zone mean"
-    }
-   ],
-   "conditions": [
-    {
-     "key": "ndvi",
-     "label": "NDVI (vegetation)",
-     "value": 0.07,
-     "unit": "",
-     "status": "warn",
-     "threshold": "< 0.05 pass · < 0.10 warn",
-     "source": {
-      "product": "MODIS MOD13Q1",
-      "resolution": "250 m, 16-day",
-      "date": "2015–2024 median",
-      "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "precip",
-     "label": "Mean annual precipitation",
-     "value": 60,
-     "unit": "mm/yr",
-     "status": "warn",
-     "threshold": "< 25 pass · < 100 warn",
-     "source": {
-      "product": "NASA POWER",
-      "resolution": "0.5° × 0.625°",
-      "date": "1991–2020",
-      "url": "https://power.larc.nasa.gov/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "geology",
-     "label": "Surface geology",
-     "value": "Volcanic and evaporite deposits",
-     "unit": "",
-     "status": "pass",
-     "threshold": "Sedimentary / evaporite / volcanic units",
-     "source": {
-      "product": "Mapa Geológico de Chile",
-      "resolution": "1:1,000,000",
-      "date": "2003",
-      "url": "https://www.sernageomin.cl/",
-      "provider": "SERNAGEOMIN"
-     }
-    }
-   ],
-   "feasibility": [
-    {
-     "key": "road",
-     "label": "Distance to nearest road",
-     "value": 31,
-     "unit": "km",
-     "status": "fail",
-     "threshold": "< 10 pass · < 25 warn"
-    },
-    {
-     "key": "protected",
-     "label": "Protected area check",
-     "value": "None",
-     "unit": "",
-     "status": "pass",
-     "threshold": "No overlap"
-    },
-    {
-     "key": "area",
-     "label": "Contiguous suitable area",
-     "value": 21,
-     "unit": "km²",
-     "status": "pass",
-     "threshold": "> 10 km²"
-    }
-   ],
-   "verify": [
-    "soil_bearing",
-    "traction",
-    "rover_slope"
-   ]
-  },
-  {
-   "id": "salargrande",
-   "name": "Salar Grande",
-   "region": "Coast · Tarapacá",
-   "center": [
-    -21,
-    -70
-   ],
-   "geometry": {
-    "type": "Polygon",
-    "coordinates": [
-     [
-      [
-       -69.9435,
-       -21.1293
+      "id": "pajonales",
+      "name": "Salar de Pajonales",
+      "region": "Altiplano \u00b7 Antofagasta",
+      "center": [
+        -25.15,
+        -68.8
       ],
-      [
-       -69.8578,
-       -21.039
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -68.9166,
+              -25.1779
+            ],
+            [
+              -68.8546,
+              -25.2622
+            ],
+            [
+              -68.7269,
+              -25.2762
+            ],
+            [
+              -68.6563,
+              -25.1751
+            ],
+            [
+              -68.7168,
+              -25.0857
+            ],
+            [
+              -68.8049,
+              -25.0197
+            ],
+            [
+              -68.9267,
+              -25.0648
+            ],
+            [
+              -68.9166,
+              -25.1779
+            ]
+          ]
+        ]
+      },
+      "S": 44,
+      "C": 57,
+      "F": 44,
+      "params": [
+        {
+          "key": "slope_median",
+          "label": "Median slope",
+          "unit": "\u00b0",
+          "value": 16.5,
+          "ideal": [
+            6,
+            14
+          ],
+          "tolerance": [
+            3,
+            20
+          ],
+          "s": 0.58,
+          "w": 0.3,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 median"
+        },
+        {
+          "key": "slope_p90",
+          "label": "Slope P90",
+          "unit": "\u00b0",
+          "value": 27,
+          "ideal": [
+            14,
+            24
+          ],
+          "tolerance": [
+            9,
+            30
+          ],
+          "s": 0.5,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 90th percentile"
+        },
+        {
+          "key": "local_relief",
+          "label": "Local relief",
+          "unit": "m",
+          "value": 520,
+          "ideal": [
+            150,
+            400
+          ],
+          "tolerance": [
+            80,
+            600
+          ],
+          "s": 0.4,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "max \u2212 min elevation in a 5 km moving window \u2192 zone median"
+        },
+        {
+          "key": "tri",
+          "label": "TRI",
+          "unit": "m",
+          "value": 41,
+          "ideal": [
+            12,
+            30
+          ],
+          "tolerance": [
+            6,
+            45
+          ],
+          "s": 0.27,
+          "w": 0.2,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "hypothesis",
+          "method": "Riley terrain ruggedness index on the 463 m grid \u2192 zone mean"
+        }
       ],
-      [
-       -69.9037,
-       -20.9369
+      "conditions": [
+        {
+          "key": "ndvi",
+          "label": "NDVI (vegetation)",
+          "value": 0.07,
+          "unit": "",
+          "status": "warn",
+          "threshold": "< 0.05 pass \u00b7 < 0.10 warn",
+          "source": {
+            "product": "MODIS MOD13Q1",
+            "resolution": "250 m, 16-day",
+            "date": "2015\u20132024 median",
+            "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "precip",
+          "label": "Mean annual precipitation",
+          "value": 60,
+          "unit": "mm/yr",
+          "status": "warn",
+          "threshold": "< 25 pass \u00b7 < 100 warn",
+          "source": {
+            "product": "NASA POWER",
+            "resolution": "0.5\u00b0 \u00d7 0.625\u00b0",
+            "date": "1991\u20132020",
+            "url": "https://power.larc.nasa.gov/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "geology",
+          "label": "Surface geology",
+          "value": "Volcanic and evaporite deposits",
+          "unit": "",
+          "status": "pass",
+          "threshold": "Sedimentary / evaporite / volcanic units",
+          "source": {
+            "product": "Mapa Geol\u00f3gico de Chile",
+            "resolution": "1:1,000,000",
+            "date": "2003",
+            "url": "https://www.sernageomin.cl/",
+            "provider": "SERNAGEOMIN"
+          }
+        }
       ],
-      [
-       -69.992,
-       -20.8783
+      "feasibility": [
+        {
+          "key": "road",
+          "label": "Distance to nearest road",
+          "value": 31,
+          "unit": "km",
+          "status": "fail",
+          "threshold": "< 10 pass \u00b7 < 25 warn"
+        },
+        {
+          "key": "protected",
+          "label": "Protected area check",
+          "value": "None",
+          "unit": "",
+          "status": "pass",
+          "threshold": "No overlap"
+        },
+        {
+          "key": "area",
+          "label": "Contiguous suitable area",
+          "value": 21,
+          "unit": "km\u00b2",
+          "status": "pass",
+          "threshold": "> 10 km\u00b2"
+        }
       ],
-      [
-       -70.1132,
-       -20.9046
-      ],
-      [
-       -70.1405,
-       -21.0216
-      ],
-      [
-       -70.0522,
-       -21.0871
-      ],
-      [
-       -69.9435,
-       -21.1293
+      "verify": [
+        "soil_bearing",
+        "traction",
+        "rover_slope"
       ]
-     ]
-    ]
-   },
-   "S": 80,
-   "C": 72,
-   "F": 79,
-   "params": [
-    {
-     "key": "slope_median",
-     "label": "Median slope",
-     "unit": "°",
-     "value": 4.2,
-     "ideal": [
-      6,
-      14
-     ],
-     "tolerance": [
-      3,
-      20
-     ],
-     "s": 0.64,
-     "w": 0.3,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → median"
     },
     {
-     "key": "slope_p90",
-     "label": "Slope P90",
-     "unit": "°",
-     "value": 12.5,
-     "ideal": [
-      14,
-      24
-     ],
-     "tolerance": [
-      9,
-      30
-     ],
-     "s": 0.82,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "block-mean elevation to 463 m → Horn slope → 90th percentile"
-    },
-    {
-     "key": "local_relief",
-     "label": "Local relief",
-     "unit": "m",
-     "value": 140,
-     "ideal": [
-      150,
-      400
-     ],
-     "tolerance": [
-      80,
-      600
-     ],
-     "s": 0.91,
-     "w": 0.25,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "data",
-     "method": "max − min elevation in a 5 km moving window → zone median"
-    },
-    {
-     "key": "tri",
-     "label": "TRI",
-     "unit": "m",
-     "value": 11,
-     "ideal": [
-      12,
-      30
-     ],
-     "tolerance": [
-      6,
-      45
-     ],
-     "s": 0.9,
-     "w": 0.2,
-     "source": {
-      "product": "NASADEM",
-      "resolution": "30 m → resampled to 463 m",
-      "date": "2020-02",
-      "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
-      "provider": "NASA Earthdata"
-     },
-     "reference": {
-      "product": "MOLA MEGDR",
-      "resolution": "128 px/° (≈463 m)",
-      "date": "2003",
-      "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
-      "provider": "NASA PDS"
-     },
-     "type": "hypothesis",
-     "method": "Riley terrain ruggedness index on the 463 m grid → zone mean"
+      "id": "salargrande",
+      "name": "Salar Grande",
+      "region": "Coast \u00b7 Tarapac\u00e1",
+      "center": [
+        -21,
+        -70
+      ],
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -69.9435,
+              -21.1293
+            ],
+            [
+              -69.8578,
+              -21.039
+            ],
+            [
+              -69.9037,
+              -20.9369
+            ],
+            [
+              -69.992,
+              -20.8783
+            ],
+            [
+              -70.1132,
+              -20.9046
+            ],
+            [
+              -70.1405,
+              -21.0216
+            ],
+            [
+              -70.0522,
+              -21.0871
+            ],
+            [
+              -69.9435,
+              -21.1293
+            ]
+          ]
+        ]
+      },
+      "S": 64,
+      "C": 72,
+      "F": 79,
+      "params": [
+        {
+          "key": "slope_median",
+          "label": "Median slope",
+          "unit": "\u00b0",
+          "value": 4.2,
+          "ideal": [
+            6,
+            14
+          ],
+          "tolerance": [
+            3,
+            20
+          ],
+          "s": 0.4,
+          "w": 0.3,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 median"
+        },
+        {
+          "key": "slope_p90",
+          "label": "Slope P90",
+          "unit": "\u00b0",
+          "value": 12.5,
+          "ideal": [
+            14,
+            24
+          ],
+          "tolerance": [
+            9,
+            30
+          ],
+          "s": 0.7,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "block-mean elevation to 463 m \u2192 Horn slope \u2192 90th percentile"
+        },
+        {
+          "key": "local_relief",
+          "label": "Local relief",
+          "unit": "m",
+          "value": 140,
+          "ideal": [
+            150,
+            400
+          ],
+          "tolerance": [
+            80,
+            600
+          ],
+          "s": 0.86,
+          "w": 0.25,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "data",
+          "method": "max \u2212 min elevation in a 5 km moving window \u2192 zone median"
+        },
+        {
+          "key": "tri",
+          "label": "TRI",
+          "unit": "m",
+          "value": 11,
+          "ideal": [
+            12,
+            30
+          ],
+          "tolerance": [
+            6,
+            45
+          ],
+          "s": 0.83,
+          "w": 0.2,
+          "source": {
+            "product": "NASADEM",
+            "resolution": "30 m \u2192 resampled to 463 m",
+            "date": "2020-02",
+            "url": "https://lpdaac.usgs.gov/products/nasadem_hgtv001/",
+            "provider": "NASA Earthdata"
+          },
+          "reference": {
+            "product": "MOLA MEGDR",
+            "resolution": "128 px/\u00b0 (\u2248463 m)",
+            "date": "2003",
+            "url": "https://pds-geosciences.wustl.edu/missions/mgs/megdr.html",
+            "provider": "NASA PDS"
+          },
+          "type": "hypothesis",
+          "method": "Riley terrain ruggedness index on the 463 m grid \u2192 zone mean"
+        }
+      ],
+      "conditions": [
+        {
+          "key": "ndvi",
+          "label": "NDVI (vegetation)",
+          "value": 0.01,
+          "unit": "",
+          "status": "pass",
+          "threshold": "< 0.05 pass \u00b7 < 0.10 warn",
+          "source": {
+            "product": "MODIS MOD13Q1",
+            "resolution": "250 m, 16-day",
+            "date": "2015\u20132024 median",
+            "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "precip",
+          "label": "Mean annual precipitation",
+          "value": 1,
+          "unit": "mm/yr",
+          "status": "pass",
+          "threshold": "< 25 pass \u00b7 < 100 warn",
+          "source": {
+            "product": "NASA POWER",
+            "resolution": "0.5\u00b0 \u00d7 0.625\u00b0",
+            "date": "1991\u20132020",
+            "url": "https://power.larc.nasa.gov/",
+            "provider": "NASA"
+          }
+        },
+        {
+          "key": "geology",
+          "label": "Surface geology",
+          "value": "Halite crust over evaporites",
+          "unit": "",
+          "status": "pass",
+          "threshold": "Sedimentary / evaporite / volcanic units",
+          "source": {
+            "product": "Mapa Geol\u00f3gico de Chile",
+            "resolution": "1:1,000,000",
+            "date": "2003",
+            "url": "https://www.sernageomin.cl/",
+            "provider": "SERNAGEOMIN"
+          }
+        }
+      ],
+      "feasibility": [
+        {
+          "key": "road",
+          "label": "Distance to nearest road",
+          "value": 2,
+          "unit": "km",
+          "status": "pass",
+          "threshold": "< 10 pass \u00b7 < 25 warn"
+        },
+        {
+          "key": "protected",
+          "label": "Protected area check",
+          "value": "None",
+          "unit": "",
+          "status": "pass",
+          "threshold": "No overlap"
+        },
+        {
+          "key": "area",
+          "label": "Contiguous suitable area",
+          "value": 64,
+          "unit": "km\u00b2",
+          "status": "pass",
+          "threshold": "> 10 km\u00b2"
+        }
+      ],
+      "verify": [
+        "soil_bearing",
+        "traction",
+        "rover_slope"
+      ]
     }
-   ],
-   "conditions": [
-    {
-     "key": "ndvi",
-     "label": "NDVI (vegetation)",
-     "value": 0.01,
-     "unit": "",
-     "status": "pass",
-     "threshold": "< 0.05 pass · < 0.10 warn",
-     "source": {
-      "product": "MODIS MOD13Q1",
-      "resolution": "250 m, 16-day",
-      "date": "2015–2024 median",
-      "url": "https://lpdaac.usgs.gov/products/mod13q1v061/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "precip",
-     "label": "Mean annual precipitation",
-     "value": 1,
-     "unit": "mm/yr",
-     "status": "pass",
-     "threshold": "< 25 pass · < 100 warn",
-     "source": {
-      "product": "NASA POWER",
-      "resolution": "0.5° × 0.625°",
-      "date": "1991–2020",
-      "url": "https://power.larc.nasa.gov/",
-      "provider": "NASA"
-     }
-    },
-    {
-     "key": "geology",
-     "label": "Surface geology",
-     "value": "Halite crust over evaporites",
-     "unit": "",
-     "status": "pass",
-     "threshold": "Sedimentary / evaporite / volcanic units",
-     "source": {
-      "product": "Mapa Geológico de Chile",
-      "resolution": "1:1,000,000",
-      "date": "2003",
-      "url": "https://www.sernageomin.cl/",
-      "provider": "SERNAGEOMIN"
-     }
-    }
-   ],
-   "feasibility": [
-    {
-     "key": "road",
-     "label": "Distance to nearest road",
-     "value": 2,
-     "unit": "km",
-     "status": "pass",
-     "threshold": "< 10 pass · < 25 warn"
-    },
-    {
-     "key": "protected",
-     "label": "Protected area check",
-     "value": "None",
-     "unit": "",
-     "status": "pass",
-     "threshold": "No overlap"
-    },
-    {
-     "key": "area",
-     "label": "Contiguous suitable area",
-     "value": 64,
-     "unit": "km²",
-     "status": "pass",
-     "threshold": "> 10 km²"
-    }
-   ],
-   "verify": [
-    "soil_bearing",
-    "traction",
-    "rover_slope"
-   ]
-  }
- ]
+  ]
 }
