@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,8 +10,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Martian+Mono:wght@300..700&display=swap">
 <!--
   AnalogOS pitch deck. One slide = one screen.
-  Controls: scroll / ↓ ↑ / PageDown PageUp / Space / clicker · F = fullscreen (or F11) · L = EN|ES · Home/End.
-  ?lang=es opens in Spanish. Data: science-screening-v3 (same figures as the landing). No invented numbers.
+  Controls: scroll / ↓ ↑ / PageDown PageUp / Space / clicker · F = fullscreen (or F11) · L = EN|ES · N = cue line · Home/End.
+  Follows the live pitch script (Rafa + Alien). Spanish by default; ?lang=en for English; ?cues=1 shows the cue line. Data: science-screening-v3 (same figures as the landing). No invented numbers.
 -->
 <style>
 :root{
@@ -61,6 +61,8 @@ p{margin:0}
 #lang{position:fixed;right:calc(var(--u)*2.4);top:calc(var(--u)*2);z-index:6;display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
 #lang button{font-family:var(--mono);font-size:calc(var(--u)*.8);padding:calc(var(--u)*.5) calc(var(--u)*.9);background:transparent;color:var(--dim);border:0;cursor:pointer}
 #lang button[aria-pressed="true"]{background:var(--text);color:var(--navy)}
+#cue{position:fixed;left:50%;top:calc(var(--u)*1.4);transform:translateX(-50%);z-index:7;max-width:70vw;font-family:var(--mono);font-size:calc(var(--u)*.9);color:var(--text);background:rgba(2,7,10,.9);border:1px solid var(--orange);border-radius:8px;padding:calc(var(--u)*.5) calc(var(--u)*1)}#cue span{color:var(--orange)}
+.mars{position:absolute;right:-6vw;top:19vh;width:62vh;height:62vh;border-radius:50%;background-size:cover;background-position:center;opacity:.5;-webkit-mask-image:radial-gradient(circle,#000 55%,transparent 71%);mask-image:radial-gradient(circle,#000 55%,transparent 71%);filter:sepia(.6) saturate(1.6) hue-rotate(-12deg)}
 #hint{position:fixed;left:50%;bottom:calc(var(--u)*2);transform:translateX(-50%);z-index:6;font-family:var(--mono);font-size:calc(var(--u)*.8);color:rgba(242,244,245,.6);transition:opacity .6s}
 :focus-visible{outline:2px solid var(--sky);outline-offset:3px}
 /* slide specifics */
@@ -120,6 +122,7 @@ tr.ref td{color:var(--dim)}
 <nav id="dots" aria-label="Slides"></nav>
 <div id="foot" aria-hidden="true"><span><img src="assets/analogos-emblem.png" alt="">AnalogOS · NASA Space Apps 2026</span><span id="ct"></span></div>
 <div id="hint"></div>
+<div id="cue" hidden></div>
 <main id="deck"></main>
 
 <script src="./halftone-nebula.js"></script>
@@ -132,162 +135,135 @@ tr.ref td{color:var(--dim)}
     ['cl1', '01', 'Antofagasta 25.0° S', '94.87', '77.45'], ['cl2', '02', 'Antofagasta 24.8° S', '91.87', '77.45'], ['cl3', '03', 'Antofagasta 25.2° S', '90.35', '77.36'],
     ['ar1', '04', 'Puna 26.2° S', '63.85', '77.00'], ['ar2', '05', 'Puna 26.4° S', '53.68', '77.25'], ['ar3', '06', 'Puna 25.8° S', '49.43', '77.40'], ['ref', 'REF', 'Pampa Yungay', '75.67', '77.45']];
 
+  var CHILE = 'M149.8 891.2L148.3 945.7L163.3 946.2L171.8 947.3L166.7 956.9L154.5 964L147.8 963L139.7 960.8L129.7 953.4L115.1 949.9L97.1 936.5L82.2 923.9L60.8 897.6L73.2 902.1L94.2 917.6L113.5 926L120.8 914.8L125.6 898.1L139.3 888.1L149.8 891.2ZM143.3 36L154.5 52.7L157.5 70.3L169.5 80.7L162 104.3L173.9 131.8L182.2 165.6L198.5 162.6L201.1 168.7L192.8 193.9L168.4 205.5L168.4 246.2L163.8 254L170.1 263.6L154.6 278.6L140.3 301.3L132.4 323.5L134.4 347.1L121.4 372.1L130.9 414.2L136.1 418.7L135.9 441.2L124.3 464.9L124.8 485.3L110 501.3L110.2 523.7L116.1 547.4L104.8 556.4L100 578.2L96 603.2L99.6 632.9L92.4 638L97.1 666.1L105.2 675.2L99.5 685.5L107.7 690.3L109.7 699.5L102.1 704.2L104.2 718.5L98.5 750.8L90.2 771.8L92.4 784.1L87.7 799.7L75.8 810.9L78.2 836.7L84 845.3L94.2 843.4L94.3 861.7L100.9 875.8L137.2 878.9L150.9 883.1L137.6 882.6L130.4 888.5L117.1 897.3L114.9 920.1L108.8 920.7L92.3 913.2L75 896.8L55.8 883.8L50.1 868.7L53.5 854.1L44.7 838.4L39.9 797L45.3 773.1L61.8 753.3L36 747.7L50.8 725.2L54.7 684.3L74.4 692.2L82.2 641.3L69.9 635.2L65.4 665.9L54 662.9L58.2 627.8L62.7 582.4L70.8 565.4L64.6 541.8L62.1 514.3L70.3 513.3L81.4 473.6L94.6 434.4L102.8 397.9L97.7 361.4L103.8 341.3L101 311.2L113.4 281.3L117.2 234.1L124.3 183.5L131.4 129L129.9 89L125.1 54.7L137 48.5L143.3 36Z';
   var T = {
     en: {
-      hint: 'Scroll or ↓ to advance · F fullscreen · L language',
-      cover: { k: 'NASA Space Apps Challenge 2026 · Santiago, Chile', h: 'We’re not looking for a place that <span class="q">“looks like”</span> Mars.',
-        p: 'AnalogOS finds and justifies Earth test sites for planetary robotics, with the evidence and the limits in writing. Chile–Argentina pilot.',
-        c1: ['50', 'windows searched in Chile and Argentina'], c2: ['94.87', 'similarity of the top candidate'], ch: 'Challenge · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars' },
-      prob: { k: 'The problem', h: 'There is no shortage of Mars-like places. There is no <span class="o">fast, defensible</span> way to know which one works for a specific test.',
-        a: ['Today', 'Test sites are chosen by reputation. “Looks like Mars” is not a test specification.'], b: ['And', 'The data to compare them is scattered across dozens of catalogues.'] },
-      phys: { k: 'Jezero · Mars', h: 'Slope is what transfers between planets.',
-        eq: 'μ · <s>g</s> · cos θ ≥ <s>g</s> · sin θ', why: 'Gravity is on both sides and cancels: a slope demands the same grip on Mars (0.38 g) as on Earth.',
-        f1: ['≥ 20°', 'Jezero rim, driven by Perseverance'], f2: ['μ ≥ 0.36', 'minimum grip = tan 20°'], f3: ['2.2°', 'median slope of the MOLA window we compare against'] },
-      how: { k: 'How it works', h: 'From your words to a prioritized site, in three steps.',
-        s: [['You describe the test', 'In your own words. AI drafts verifiable requirements and keeps the literal quote each one came from. You confirm them.'],
-          ['The engine computes', 'NASADEM averaged to MOLA scale (slope, roughness, relief), 12 monthly Sentinel-2 mosaics, NASA POWER aridity. Every source versioned with SHA-256.'],
-          ['You get the site', 'What it meets, what it fails, what cannot be evaluated, and what to verify in the field. Unmeasurable never counts as met.']],
-        note: 'AI drafts and highlights. It never decides scores, statuses or exclusions.' },
-      ex: { k: 'Real run · dev, 14 Nov 2026', h: 'Not a chatbot: requirements you can check.',
-        q: '“Autonomous navigation test for a Mars rover. Critical: median regional slope of the whole window at most 2.3 degrees. Preference: at least 95 % non-vegetated surface. I also need to check access permits.”',
-        reqs: [['Critical', 'median slope ≤ 2.3°'], ['Preference', '≥ 95 % non-vegetated'], ['Not measured', 'access permits']],
-        best: 'Prioritized for reconnaissance', name: 'Antofagasta interior · 25.0°&nbsp;S 69.7°&nbsp;W',
-        r: [['Slope 2.169° ≤ 2.3°', 'ok', 'Meets'], ['Bare ground ≥ 95 %', 'ok', 'Meets'], ['Access permits', 'na', 'Not evaluable'], ['Pampa Yungay (REF): 3.207°', 'no', 'Fails']] },
-      fun: { k: 'The search', h: 'It searches instead of listing the famous analogs.',
-        rows: [['50', 'Windows evaluated', '~20 km grid · ≈ 22,274 km² in Antofagasta (CL) and the Puna (AR)', 'var(--sky)', 1],
-          ['4', 'Excluded by precedent', 'contain published sampling coordinates; still visible', 'var(--orange)', .08],
-          ['40', 'Not selected', '2 by proximity (< 25 km from a better one), 38 by quota of 3 per country', 'rgba(242,244,245,.4)', .8],
-          ['6', 'Shortlisted', 'three per country, with Sentinel-2 and NASA POWER', 'var(--blue)', .12],
-          ['REF', 'Known reference', 'Pampa Yungay recomputed with the same rules: 75.67', 'var(--text)', .02]] },
-      res: { k: 'Result · science-screening-v3', h: 'Six candidates, three per country.', th: ['No.', 'Sector', 'Region', 'Similarity', 'Confidence', 'Feasibility'],
-        reg: { cl: 'Antofagasta interior · Chile', ar: 'Puna of Catamarca and Salta · Argentina', ref: 'Known reference · out of ranking' }, f: 'review',
-        foot: 'Preliminary, not a site approval. No candidate is declared a new analog: both regions have precedents.' },
-      ss: { k: 'Same scale · two planets', h: '20 km of Jezero next to 20 km of candidate 1.', mars: 'Mars · Jezero (CTX)', earth: 'Earth · candidate 1 (Sentinel-2)',
-        r: [['Median slope', 'Mars 2.23°', 'Earth 2.17°'], ['Roughness', 'Mars 11.0 m', 'Earth 11.3 m'], ['Local relief 3×3', 'Mars 47 m', 'Earth 46.8 m']],
-        note: 'Compared at ~460–480 m (MOLA scale). The score uses elevation, not these images.' },
-      sc: { k: 'Three scores, never combined', h: 'Looking like Mars is not enough.',
-        c: [['Similarity', 'Six criteria vs Jezero: slope, roughness, relief, bare ground, aridity, thermal range.', 'var(--blue)'],
-          ['Confidence', 'How much evidence entered. Missing data lowers confidence, never similarity.', 'var(--sky)'],
-          ['Feasibility', 'A category, never a promise: unknown, review, potentially feasible or excluded.', 'var(--orange)']] },
-      ho: { k: 'Scientific honesty', h: 'Every site comes with its limits in writing.',
-        c: [['What it reproduces', ['Median slope 2.17° vs 2.23°', 'Local relief 46.8 m vs 47 m', '100 % non-vegetated · 11 mm rain/year'], 'var(--blue)'],
-          ['Where the analogy fails', ['Gravity 0.38 g: wheel load and sinkage', 'Atmosphere < 1 % of Earth pressure', '~460 m cannot see wheel-scale hazards'], 'var(--orange)'],
-          ['What to verify in the field', ['Soil, cohesion, sinkage, traction', 'Terrain at cm–dm scale', 'Protected areas, access, permits'], 'var(--sky)']] },
-      uc: { k: 'Who runs these tests', h: 'Analog campaigns are real. Choosing the site comes first.',
-        hl: 'NASA’s ARADS worked at Yungay and also evaluated Salar Grande and María Elena by hand. AnalogOS makes that comparison reproducible.',
-        i: [['Rover mobility', 'NASA ERNEST · ESA Seeker (Atacama)'], ['Drilling & life detection', 'NASA Ames · ARADS'], ['Remote science ops', 'ESA · SAFER, ExoFiT'], ['Moonwalks & Artemis', 'NASA · JETT — next: Moon profile']] },
-      team: { k: 'Team · Santiago, Chile', h: 'Five people, one weekend.', roles: ['Design, narrative & QA', 'Data & engineering', 'Science & scoring model', 'Frontend & map', 'Lead, scope & pitch'] },
-      end: { k: 'Try it', h: 'Tell it your test. Get the site, and why.', p: 'Open data: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 (Copernicus/ESA) · NASA POWER · HLS (NASA CMR)', scan: 'Scan for the landing' }
+      hint: 'Scroll or ↓ to advance · F fullscreen · L language · N cues',
+      cueLabel: 'Press ↓ when they say',
+      cover: { k: 'NASA Space Apps Challenge 2026 · Santiago, Chile', h: 'Want to find a place that looks like Mars?', p: 'We have a question first.', cue: 'What if the next big leap in Mars exploration…' },
+      q: { k: 'The question', h: 'What if the next big leap in Mars exploration started <span class="o">here, in Chile?</span>', cue: 'Before sending a vehicle to another planet, we need to test it.' },
+      hist: { k: 'Chile is already part of this story', h: 'Before going to Mars, we test on Earth.', place: 'Pampa Yungay', coord: '24.10° S 69.97° W · Atacama Desert',
+        p: 'Studied for years as a Mars analog.', facts: [['NASA · ARADS', 'tested a 2 m drill and life-detection instruments, mostly at Yungay'], ['ESA · Seeker', '5.1 km autonomous rover loop in the Atacama (2012)']], cue: 'Not so fast!' },
+      prob: { k: 'The problem', h: 'Looking like Mars <span class="o">does not mean</span> it works for your mission.',
+        a: ['Today', 'Sites are chosen by reputation. “Looks like Mars” is not a test specification.'], b: ['And', 'The data to compare them is scattered across dozens of catalogues.'], cue: 'That’s where AnalogOS comes in!' },
+      intro: { k: 'Our platform', h: 'NASA data + geographic information to <span class="sk">identify and compare</span> test sites.', srcs: ['MOLA · NASA PDS', 'NASADEM · NASA Earthdata', 'Sentinel-2 · Copernicus/ESA', 'NASA POWER'], pilot: 'Chile–Argentina pilot · 50 windows at Mars scale', cue: 'Imagine you need to test the mobility of a Mars rover.' },
+      ask: { k: 'How it works · 1', h: 'You write what you want to test.', q: '“Autonomous navigation test for a Mars rover. Critical: median regional slope of the whole window at most 2.3 degrees. Preference: at least 95 % non-vegetated surface. I also need to check access permits.”',
+        reqs: [['Critical', 'median slope ≤ 2.3°', 'o'], ['Preference', '≥ 95 % non-vegetated', 'sk'], ['Not measured', 'access permits', 'dim']], note: 'AI drafts the requirements and keeps the quote they came from. You confirm. It never decides scores.', cue: 'It analyses scientific data and shows candidate areas on a map.' },
+      res: { k: 'How it works · 2', h: '50 windows searched. Six candidates on the map.', th: ['No.', 'Sector', 'Region', 'S', 'C', 'F'],
+        reg: { cl: 'Antofagasta · Chile', ar: 'Puna · Argentina', ref: 'Known reference' }, f: 'review', foot: 'science-screening-v3 · preliminary, not a site approval', cue: 'We evaluate three aspects…' },
+      sc: { k: 'Three scores, never combined', h: 'Is it reliable? Three separate answers.',
+        c: [['Similarity', 'Six criteria vs Jezero: slope, roughness, relief, bare ground, aridity, thermal range.', 'var(--blue)', '94.87'],
+          ['Confidence', 'How much evidence entered. Missing data lowers confidence, never similarity.', 'var(--sky)', '77.45'],
+          ['Feasibility', 'A category, never a promise. Today every site: requires review.', 'var(--orange)', 'review']], ex: 'Candidate 01 · Antofagasta 25.0° S', cue: 'We use sources like MOLA, NASADEM…' },
+      ev: { k: 'Scientific evidence', h: 'Same scale, two planets.', mars: 'Mars · Jezero (CTX)', earth: 'Earth · candidate 01 (Sentinel-2)',
+        r: [['Median slope', 'Mars 2.23°', 'Earth 2.17°'], ['Roughness', 'Mars 11.0 m', 'Earth 11.3 m'], ['Local relief', 'Mars 47 m', 'Earth 46.8 m']],
+        note: 'MOLA (Mars) vs NASADEM (Earth) at ~460–480 m · bare ground: Sentinel-2 · climate: NASA POWER', cue: 'Not yet!' },
+      ho: { k: 'Not yet', h: 'No place on Earth reproduces all of Mars.',
+        c: [['Where the analogy fails', ['Gravity 0.38 g', 'Atmosphere < 1 % of Earth’s pressure', 'No magnetic field, different radiation'], 'var(--orange)'],
+          ['What comes next', ['Deeper scientific validation', 'Territorial checks: protected areas, access, permits', 'Field checks: soil, traction, cm-scale terrain'], 'var(--sky)']], cue: 'You’re not looking for just any place that looks like Mars…' },
+      claim: { k: 'AnalogOS', h1: 'We’re not looking for a place that <span class="o">“looks like”</span> Mars.', h2: 'We’re looking for one that helps us <span class="sk">prepare to explore it.</span>', cue: 'We are AnalogOS!' },
+      end: { k: 'We are AnalogOS', h: 'The road to other worlds can also start in ours.', url: 'analogos.vercel.app', scan: 'Scan · landing', roles: ['Design, narrative & QA', 'Data & engineering', 'Science & scoring model', 'Frontend & map', 'Lead, scope & pitch'], cue: '— Appendix (Q&A) —' },
+      apx: { k: 'Appendix', phys: { h: 'Why slope? It transfers between planets.', eq: 'μ · <s>g</s> · cos θ ≥ <s>g</s> · sin θ', why: 'Gravity cancels: a slope demands the same grip on Mars as on Earth. Jezero rim ≥ 20° → μ ≥ 0.36.' },
+        fun: { h: 'The search: 50 → 6', rows: [['50', 'Windows evaluated', '~20 km grid · ≈ 22,274 km² in Antofagasta (CL) and the Puna (AR)', 'var(--sky)', 1], ['4', 'Excluded by precedent', 'contain published sampling coordinates; still visible', 'var(--orange)', .08], ['40', 'Not selected', '2 by proximity, 38 by quota of 3 per country', 'rgba(242,244,245,.4)', .8], ['6', 'Shortlisted', 'three per country', 'var(--blue)', .12], ['REF', 'Known reference', 'Pampa Yungay, same rules: 75.67', 'var(--text)', .02]] },
+        vid: { h: 'The 2-minute video', note: 'Recorded with an earlier version of the data and the app; current results are in this deck.' } }
     },
     es: {
-      hint: 'Desliza o ↓ para avanzar · F pantalla completa · L idioma',
-      cover: { k: 'NASA Space Apps Challenge 2026 · Santiago de Chile', h: 'No buscamos un lugar que <span class="q">«parezca»</span> Marte.',
-        p: 'AnalogOS encuentra y justifica sitios de prueba en la Tierra para robótica planetaria, con la evidencia y los límites por escrito. Piloto Chile–Argentina.',
-        c1: ['50', 'ventanas buscadas en Chile y Argentina'], c2: ['94,87', 'similitud del mejor candidato'], ch: 'Desafío · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars' },
-      prob: { k: 'El problema', h: 'No faltan lugares parecidos a Marte. Falta una forma <span class="o">rápida y defendible</span> de saber cuál sirve para una prueba concreta.',
-        a: ['Hoy', 'Los sitios se eligen por reputación. «Parecido a Marte» no es una especificación de prueba.'], b: ['Y', 'Los datos para compararlos están dispersos en decenas de catálogos.'] },
-      phys: { k: 'Jezero · Marte', h: 'La pendiente es lo que se transfiere entre planetas.',
-        eq: 'μ · <s>g</s> · cos θ ≥ <s>g</s> · sen θ', why: 'La gravedad está a ambos lados y se cancela: una pendiente exige el mismo agarre en Marte (0,38 g) que en la Tierra.',
-        f1: ['≥ 20°', 'borde de Jezero, recorrido por Perseverance'], f2: ['μ ≥ 0,36', 'agarre mínimo = tan 20°'], f3: ['2,2°', 'pendiente mediana de la ventana MOLA de referencia'] },
-      how: { k: 'Cómo funciona', h: 'De tus palabras a un sitio priorizado, en tres pasos.',
-        s: [['Describes la prueba', 'Con tus palabras. La IA propone requisitos verificables y guarda la cita literal de donde salió cada uno. Tú los confirmas.'],
-          ['El motor calcula', 'NASADEM promediado a escala MOLA (pendiente, rugosidad, relieve), 12 mosaicos mensuales de Sentinel-2, aridez de NASA POWER. Cada fuente versionada con SHA-256.'],
-          ['Recibes el sitio', 'Qué cumple, qué no, qué no se puede evaluar y qué verificar en terreno. Lo no medible nunca cuenta como cumplido.']],
-        note: 'La IA redacta y destaca. Nunca decide notas, estados ni exclusiones.' },
-      ex: { k: 'Ejecución real · dev, 14 nov 2026', h: 'No es un chatbot: requisitos que se pueden verificar.',
-        q: '«Prueba de navegación autónoma para un rover de Marte. Crítico: pendiente regional mediana de toda la ventana de como máximo 2,3 grados. Preferencia: al menos 95 % de superficie no vegetada. También necesito revisar permisos de acceso.»',
-        reqs: [['Crítico', 'pendiente mediana ≤ 2,3°'], ['Preferencia', '≥ 95 % no vegetada'], ['No medido', 'permisos de acceso']],
-        best: 'Priorizado para reconocimiento', name: 'Interior de Antofagasta · 25,0°&nbsp;S 69,7°&nbsp;W',
-        r: [['Pendiente 2,169° ≤ 2,3°', 'ok', 'Cumple'], ['Suelo desnudo ≥ 95 %', 'ok', 'Cumple'], ['Permisos de acceso', 'na', 'No evaluable'], ['Pampa Yungay (REF): 3,207°', 'no', 'No cumple']] },
-      fun: { k: 'La búsqueda', h: 'Busca en vez de listar los análogos famosos.',
-        rows: [['50', 'Ventanas evaluadas', 'grilla de ~20 km · ≈ 22.274 km² en Antofagasta (CL) y la Puna (AR)', 'var(--sky)', 1],
-          ['4', 'Excluidas por precedente', 'contienen coordenadas de muestreo publicadas; siguen visibles', 'var(--orange)', .08],
-          ['40', 'No seleccionadas', '2 por cercanía (< 25 km de una mejor), 38 por cupo de 3 por país', 'rgba(242,244,245,.4)', .8],
-          ['6', 'Preseleccionadas', 'tres por país, con Sentinel-2 y NASA POWER', 'var(--blue)', .12],
-          ['REF', 'Referencia conocida', 'Pampa Yungay recalculada con las mismas reglas: 75,67', 'var(--text)', .02]] },
-      res: { k: 'Resultado · science-screening-v3', h: 'Seis candidatos, tres por país.', th: ['N.º', 'Sector', 'Región', 'Similitud', 'Confianza', 'Factibilidad'],
-        reg: { cl: 'Interior de Antofagasta · Chile', ar: 'Puna de Catamarca y Salta · Argentina', ref: 'Referencia conocida · fuera del ranking' }, f: 'revisar',
-        foot: 'Preliminar, no es una aprobación de sitio. Ningún candidato se declara análogo nuevo: ambas regiones tienen precedentes.' },
-      ss: { k: 'Misma escala · dos planetas', h: '20 km de Jezero junto a 20 km del candidato 1.', mars: 'Marte · Jezero (CTX)', earth: 'Tierra · candidato 1 (Sentinel-2)',
-        r: [['Pendiente mediana', 'Marte 2,23°', 'Tierra 2,17°'], ['Rugosidad', 'Marte 11,0 m', 'Tierra 11,3 m'], ['Relieve local 3×3', 'Marte 47 m', 'Tierra 46,8 m']],
-        note: 'Comparado a ~460–480 m (escala MOLA). La nota usa elevación, no estas imágenes.' },
-      sc: { k: 'Tres notas, nunca combinadas', h: 'Parecerse a Marte no basta.',
-        c: [['Similitud', 'Seis criterios vs Jezero: pendiente, rugosidad, relieve, suelo desnudo, aridez y rango térmico.', 'var(--blue)'],
-          ['Confianza', 'Cuánta evidencia entró. Los datos faltantes bajan la confianza, nunca la similitud.', 'var(--sky)'],
-          ['Factibilidad', 'Una categoría, nunca una promesa: desconocida, revisar, potencialmente factible o excluida.', 'var(--orange)']] },
-      ho: { k: 'Honestidad científica', h: 'Cada sitio viene con sus límites por escrito.',
-        c: [['Lo que reproduce', ['Pendiente mediana 2,17° vs 2,23°', 'Relieve local 46,8 m vs 47 m', '100 % no vegetado · 11 mm de lluvia al año'], 'var(--blue)'],
-          ['Dónde falla la analogía', ['Gravedad 0,38 g: carga y hundimiento de la rueda', 'Atmósfera < 1 % de la presión terrestre', 'A ~460 m no se ven obstáculos a escala de rueda'], 'var(--orange)'],
-          ['Qué verificar en terreno', ['Suelo, cohesión, hundimiento, tracción', 'Terreno a escala cm–dm', 'Áreas protegidas, acceso, permisos'], 'var(--sky)']] },
-      uc: { k: 'Quién hace estas pruebas', h: 'Las campañas análogas son reales. Elegir el sitio va primero.',
-        hl: 'ARADS de la NASA trabajó en Yungay y también evaluó a mano Salar Grande y María Elena. AnalogOS hace esa comparación reproducible.',
-        i: [['Movilidad de rovers', 'NASA ERNEST · ESA Seeker (Atacama)'], ['Perforación y detección de vida', 'NASA Ames · ARADS'], ['Ciencia remota', 'ESA · SAFER, ExoFiT'], ['Caminatas lunares y Artemis', 'NASA · JETT — siguiente: perfil Luna']] },
-      team: { k: 'Equipo · Santiago de Chile', h: 'Cinco personas, un fin de semana.', roles: ['Diseño, narrativa y QA', 'Datos e ingeniería', 'Ciencia y modelo de notas', 'Frontend y mapa', 'Líder, alcance y pitch'] },
-      end: { k: 'Pruébalo', h: 'Cuéntale tu prueba. Recibe el sitio, y por qué.', p: 'Datos abiertos: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 (Copernicus/ESA) · NASA POWER · HLS (NASA CMR)', scan: 'Escanea para ver la landing' }
+      hint: 'Desliza o ↓ para avanzar · F pantalla completa · L idioma · N pies',
+      cueLabel: 'Aprieta ↓ cuando digan',
+      cover: { k: 'NASA Space Apps Challenge 2026 · Santiago de Chile', h: '¿Quieres encontrar un lugar parecido a Marte?', p: 'Entonces tenemos una pregunta.', cue: '¿Y si el próximo gran avance en la exploración de Marte…' },
+      q: { k: 'La pregunta', h: '¿Y si el próximo gran avance en la exploración de Marte comenzara <span class="o">aquí, en Chile?</span>', cue: 'Antes de enviar un vehículo a otro planeta, necesitamos ponerlo a prueba.' },
+      hist: { k: 'Chile ya es parte de esta historia', h: 'Antes de ir a Marte, se prueba en la Tierra.', place: 'Pampa Yungay', coord: '24,10° S 69,97° W · Desierto de Atacama',
+        p: 'Estudiado hace años como análogo de Marte.', facts: [['NASA · ARADS', 'probó un taladro de 2 m e instrumentos de detección de vida, principalmente en Yungay'], ['ESA · Seeker', 'recorrido autónomo de 5,1 km con un rover en Atacama (2012)']], cue: '¡No tan rápido!' },
+      prob: { k: 'El problema', h: 'Parecerse a Marte <span class="o">no significa</span> que sirva para tu misión.',
+        a: ['Hoy', 'Los sitios se eligen por reputación. «Parecido a Marte» no es una especificación de prueba.'], b: ['Y', 'Los datos para compararlos están dispersos en decenas de catálogos.'], cue: '¡Ahí entra AnalogOS!' },
+      intro: { k: 'Nuestra plataforma', h: 'Datos de la NASA + información geográfica para <span class="sk">identificar y comparar</span> sitios de prueba.', srcs: ['MOLA · NASA PDS', 'NASADEM · NASA Earthdata', 'Sentinel-2 · Copernicus/ESA', 'NASA POWER'], pilot: 'Piloto Chile–Argentina · 50 ventanas a escala de Marte', cue: 'Imagina que necesitas probar la movilidad de un rover marciano.' },
+      ask: { k: 'Cómo funciona · 1', h: 'Escribes qué quieres probar.', q: '«Prueba de navegación autónoma para un rover de Marte. Crítico: pendiente regional mediana de toda la ventana de como máximo 2,3 grados. Preferencia: al menos 95 % de superficie no vegetada. También necesito revisar permisos de acceso.»',
+        reqs: [['Crítico', 'pendiente mediana ≤ 2,3°', 'o'], ['Preferencia', '≥ 95 % no vegetada', 'sk'], ['No medido', 'permisos de acceso', 'dim']], note: 'La IA propone los requisitos y guarda la cita de donde salieron. Tú confirmas. Nunca decide las notas.', cue: 'Analiza datos científicos y muestra áreas candidatas en un mapa.' },
+      res: { k: 'Cómo funciona · 2', h: '50 ventanas buscadas. Seis candidatas en el mapa.', th: ['N.º', 'Sector', 'Región', 'S', 'C', 'F'],
+        reg: { cl: 'Antofagasta · Chile', ar: 'Puna · Argentina', ref: 'Referencia conocida' }, f: 'revisar', foot: 'science-screening-v3 · preliminar, no es una aprobación de sitio', cue: 'Evaluamos tres aspectos…' },
+      sc: { k: 'Tres notas, nunca combinadas', h: '¿Es confiable? Tres respuestas separadas.',
+        c: [['Similitud', 'Seis criterios vs Jezero: pendiente, rugosidad, relieve, suelo desnudo, aridez y rango térmico.', 'var(--blue)', '94,87'],
+          ['Confianza', 'Cuánta evidencia entró. Los datos faltantes bajan la confianza, nunca la similitud.', 'var(--sky)', '77,45'],
+          ['Factibilidad', 'Una categoría, nunca una promesa. Hoy todos los sitios: requiere revisión.', 'var(--orange)', 'revisar']], ex: 'Candidato 01 · Antofagasta 25,0° S', cue: 'Utilizamos fuentes como MOLA, NASADEM…' },
+      ev: { k: 'Evidencia científica', h: 'Misma escala, dos planetas.', mars: 'Marte · Jezero (CTX)', earth: 'Tierra · candidato 01 (Sentinel-2)',
+        r: [['Pendiente mediana', 'Marte 2,23°', 'Tierra 2,17°'], ['Rugosidad', 'Marte 11,0 m', 'Tierra 11,3 m'], ['Relieve local', 'Marte 47 m', 'Tierra 46,8 m']],
+        note: 'MOLA (Marte) vs NASADEM (Tierra) a ~460–480 m · suelo desnudo: Sentinel-2 · clima: NASA POWER', cue: '¡Todavía no!' },
+      ho: { k: 'Todavía no', h: 'Ningún lugar de la Tierra reproduce todo Marte.',
+        c: [['Dónde falla la analogía', ['Gravedad 0,38 g', 'Atmósfera < 1 % de la presión terrestre', 'Sin campo magnético, otra radiación'], 'var(--orange)'],
+          ['Lo que sigue', ['Profundizar la validación científica', 'Validación territorial: áreas protegidas, acceso, permisos', 'Terreno: suelo, tracción, relieve a escala de cm'], 'var(--sky)']], cue: 'No buscan cualquier lugar que parezca Marte…' },
+      claim: { k: 'AnalogOS', h1: 'No buscamos un lugar que <span class="o">«parezca»</span> Marte.', h2: 'Buscamos uno que nos ayude a <span class="sk">prepararnos para explorarlo.</span>', cue: '¡Somos AnalogOS!' },
+      end: { k: 'Somos AnalogOS', h: 'El camino hacia otros mundos también puede comenzar en el nuestro.', url: 'analogos.vercel.app', scan: 'Escanea · landing', roles: ['Diseño, narrativa y QA', 'Datos e ingeniería', 'Ciencia y modelo de notas', 'Frontend y mapa', 'Líder, alcance y pitch'], cue: '— Anexo (preguntas) —' },
+      apx: { k: 'Anexo', phys: { h: '¿Por qué la pendiente? Se transfiere entre planetas.', eq: 'μ · <s>g</s> · cos θ ≥ <s>g</s> · sen θ', why: 'La gravedad se cancela: una pendiente exige el mismo agarre en Marte que en la Tierra. Borde de Jezero ≥ 20° → μ ≥ 0,36.' },
+        fun: { h: 'La búsqueda: 50 → 6', rows: [['50', 'Ventanas evaluadas', 'grilla de ~20 km · ≈ 22.274 km² en Antofagasta (CL) y la Puna (AR)', 'var(--sky)', 1], ['4', 'Excluidas por precedente', 'contienen coordenadas de muestreo publicadas; siguen visibles', 'var(--orange)', .08], ['40', 'No seleccionadas', '2 por cercanía, 38 por cupo de 3 por país', 'rgba(242,244,245,.4)', .8], ['6', 'Preseleccionadas', 'tres por país', 'var(--blue)', .12], ['REF', 'Referencia conocida', 'Pampa Yungay, mismas reglas: 75,67', 'var(--text)', .02]] },
+        vid: { h: 'El video de 2 minutos', note: 'Grabado con una versión anterior de los datos y de la app; los resultados vigentes están en esta presentación.' } }
     }
   };
 
   function nm(s, L) { return L === T.es ? s.replace(/(\d)\.(\d)/g, '$1,$2') : s; }
   function k(n, txt, c) { return '<div class="k rv" style="--c:' + (c || 'var(--blue)') + '"><i></i><b>' + n + '</b><span>' + txt + '</span></div>'; }
+  function sec(cue, inner, cls) { return '<section class="s ' + (cls || '') + '" data-cue="' + String(cue).replace(/"/g, '&quot;') + '">' + inner + '</section>'; }
+  function lbl(t, c) { return '<div class="mono" style="font-size:calc(var(--u)*.8);color:' + (c || 'var(--orange)') + ';text-transform:uppercase;letter-spacing:.06em;margin-bottom:calc(var(--u)*.8)">' + t + '</div>'; }
 
   function slides(L) {
     var S = [];
-    // 1 cover
-    S.push('<section class="s cover" data-name="cover">' + k('AnalogOS', L.cover.k) +
-      '<h1 class="rv">' + L.cover.h + '</h1>' +
-      '<p class="lead rv mt2">' + L.cover.p + '</p>' +
-      '<div class="chips rv mt"><div class="chip"><strong class="sk">' + L.cover.c1[0] + '</strong>' + L.cover.c1[1] + '</div><div class="chip"><strong class="b">' + L.cover.c2[0] + '</strong>' + L.cover.c2[1] + '</div></div>' +
-      '<p class="mono rv mt" style="font-size:calc(var(--u)*.8);color:var(--dim);letter-spacing:.04em">' + L.cover.ch + '</p></section>');
-    // 2 problem
-    S.push('<section class="s">' + k('01', L.prob.k, 'var(--orange)') + '<p class="phrase rv">' + L.prob.h + '</p>' +
-      '<div class="row rv mt">' + [L.prob.a, L.prob.b].map(function (x) { return '<div class="card" style="flex:1"><div class="mono" style="font-size:calc(var(--u)*.8);color:var(--orange);text-transform:uppercase;letter-spacing:.06em;margin-bottom:calc(var(--u)*.8)">' + x[0] + '</div><p style="font-size:calc(var(--u)*1.45);line-height:1.4">' + x[1] + '</p></div>'; }).join('') + '</div></section>');
-    // 3 physics
-    S.push('<section class="s">' + k('02', L.phys.k, 'var(--orange)') +
-      '<div class="row" style="align-items:center;gap:calc(var(--u)*5)"><div style="flex:1.2">' +
-      '<h2 class="rv">' + L.phys.h + '</h2><div class="law rv mt">μ ≥ tan θ</div><div class="eq rv">' + L.phys.eq + '</div>' +
-      '<p class="lead rv mt2" style="font-size:calc(var(--u)*1.3)">' + L.phys.why + '</p></div>' +
-      '<div class="rv" style="flex:1">' + incline() + '<div class="grid3 mt2">' + [L.phys.f1, L.phys.f2, L.phys.f3].map(function (f, i) { return '<div><div class="num ' + ['o', 'sk', 'b'][i] + '" style="font-size:calc(var(--u)*2.4)">' + f[0] + '</div><p style="font-size:calc(var(--u)*.95);color:var(--dim);margin-top:calc(var(--u)*.5);line-height:1.35">' + f[1] + '</p></div>'; }).join('') + '</div></div></div></section>');
-    // 4 how
-    S.push('<section class="s">' + k('03', L.how.k) + '<h2 class="rv">' + L.how.h + '</h2>' +
-      '<div class="grid3 rv mt">' + L.how.s.map(function (s, i) { return '<div class="card step"><div class="n">0' + (i + 1) + '</div><h3>' + s[0] + '</h3><p>' + s[1] + '</p></div>'; }).join('') + '</div>' +
-      '<div class="note rv mt2">' + L.how.note + '</div></section>');
-    // 5 example
-    S.push('<section class="s">' + k('04', L.ex.k, 'var(--sky)') + '<h2 class="rv">' + L.ex.h + '</h2>' +
-      '<div class="row rv mt" style="gap:calc(var(--u)*2.4)"><div style="flex:1;display:flex;flex-direction:column;gap:calc(var(--u)*1.2)"><div class="quote">' + L.ex.q + '</div>' +
-      '<div class="card" style="padding:calc(var(--u)*1.2) calc(var(--u)*1.6)">' + L.ex.reqs.map(function (r, i) { return '<div class="req"' + (i === L.ex.reqs.length - 1 ? ' style="border:0"' : '') + '><span class="tag ' + ['o', 'sk', ''][i] + '"' + (i === 2 ? ' style="color:var(--dim)"' : '') + '>' + r[0] + '</span>' + r[1] + '</div>'; }).join('') + '</div></div>' +
-      '<div class="card" style="flex:1;border-color:rgba(2,151,222,.5)"><div class="mono" style="font-size:calc(var(--u)*.8);color:var(--sky);text-transform:uppercase;letter-spacing:.06em">' + L.ex.best + '</div><h3 style="margin-top:calc(var(--u)*.8);font-size:calc(var(--u)*1.7)">' + L.ex.name + '</h3>' +
-      L.ex.r.map(function (r) { return '<div class="req" style="justify-content:space-between"><span>' + r[0] + '</span><span class="st ' + r[1] + '">' + r[2] + '</span></div>'; }).join('') + '</div></div></section>');
-    // 6 funnel
-    S.push('<section class="s">' + k('50 → 6', L.fun.k) + '<h2 class="rv">' + L.fun.h + '</h2>' +
-      '<div class="fun rv mt">' + L.fun.rows.map(function (r) { return '<div class="v" style="color:' + r[3] + '">' + r[0] + '</div><div><div class="tr"><span style="width:' + (r[4] * 100) + '%;background:' + r[3] + '"></span></div><div class="d"><strong style="color:var(--text)">' + r[1] + '</strong> · ' + r[2] + '</div></div>'; }).join('') + '</div></section>');
-    // 7 results
-    S.push('<section class="s">' + k('05', L.res.k) + '<h2 class="rv">' + L.res.h + '</h2>' +
-      '<div class="rv mt"><table><thead><tr>' + L.res.th.map(function (h, i) { return '<th' + (i > 2 ? ' style="text-align:right"' : '') + '>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
+    // 1 · RAFA: ¿Quieres encontrar un lugar parecido a Marte?
+    S.push(sec(L.cover.cue, '<img class="rv" src="assets/analogos-logo.png" alt="AnalogOS" style="height:calc(var(--u)*7);width:auto;align-self:flex-start;margin-bottom:calc(var(--u)*3)">' +
+      k('AnalogOS', L.cover.k) + '<h1 class="rv" style="max-width:16ch">' + L.cover.h + '</h1><p class="lead rv mt2">' + L.cover.p + '</p>', 'cover'));
+    // 2 · ¿Y si el próximo gran avance… en Chile?
+    S.push(sec(L.q.cue, '<div class="mars rv" style="background-image:url(' + IMG.mars + ')"></div>' + k('?', L.q.k, 'var(--orange)') + '<p class="phrase rv" style="font-size:calc(var(--u)*4.6);max-width:18ch;position:relative">' + L.q.h + '</p>'));
+    // 3 · Antes de enviar un vehículo… Yungay
+    S.push(sec(L.hist.cue, k('01', L.hist.k, 'var(--orange)') + '<h2 class="rv">' + L.hist.h + '</h2>' +
+      '<div class="row rv mt" style="align-items:flex-end;gap:calc(var(--u)*4)"><div style="flex:1"><div style="font-weight:800;font-stretch:118%;font-size:calc(var(--u)*6.4);letter-spacing:-.04em;line-height:1">' + L.hist.place + '</div><div class="mono sk" style="font-size:calc(var(--u)*1.1);margin-top:calc(var(--u)*1)">' + nm(L.hist.coord, L) + '</div><p class="lead mt2">' + L.hist.p + '</p></div>' +
+      '<div style="flex:1;display:flex;flex-direction:column;gap:calc(var(--u)*1.2)">' + L.hist.facts.map(function (f) { return '<div class="card">' + lbl(f[0], 'var(--sky)') + '<p style="font-size:calc(var(--u)*1.3);line-height:1.4">' + f[1] + '</p></div>'; }).join('') + '</div></div>'));
+    // 4 · ¡No tan rápido!
+    S.push(sec(L.prob.cue, k('02', L.prob.k, 'var(--orange)') + '<p class="phrase rv">' + L.prob.h + '</p>' +
+      '<div class="row rv mt">' + [L.prob.a, L.prob.b].map(function (x) { return '<div class="card" style="flex:1">' + lbl(x[0]) + '<p style="font-size:calc(var(--u)*1.45);line-height:1.4">' + x[1] + '</p></div>'; }).join('') + '</div>'));
+    // 5 · ¡Ahí entra AnalogOS!
+    S.push(sec(L.intro.cue, '<img class="rv" src="assets/analogos-logo.png" alt="AnalogOS" style="height:calc(var(--u)*9);width:auto;align-self:flex-start;margin-bottom:calc(var(--u)*2.4)">' + k('03', L.intro.k) +
+      '<h2 class="rv" style="max-width:24ch">' + L.intro.h + '</h2><div class="chips rv mt">' + L.intro.srcs.map(function (s) { return '<div class="chip mono" style="font-size:calc(var(--u)*1)">' + s + '</div>'; }).join('') + '</div>' +
+      '<p class="mono rv mt2" style="font-size:calc(var(--u)*.95);color:var(--sky)">' + L.intro.pilot + '</p>'));
+    // 6 · Imagina que necesitas probar la movilidad de un rover
+    S.push(sec(L.ask.cue, k('04', L.ask.k, 'var(--sky)') + '<h2 class="rv">' + L.ask.h + '</h2>' +
+      '<div class="row rv mt" style="gap:calc(var(--u)*2.4);align-items:flex-start"><div class="quote" style="flex:1.1">' + L.ask.q + '</div>' +
+      '<div style="flex:1;display:flex;flex-direction:column;gap:calc(var(--u)*1.2)"><div class="card" style="padding:calc(var(--u)*1.2) calc(var(--u)*1.6)">' + L.ask.reqs.map(function (r, i) { return '<div class="req"' + (i === 2 ? ' style="border:0"' : '') + '><span class="tag ' + (r[2] === 'dim' ? '' : r[2]) + '"' + (r[2] === 'dim' ? ' style="color:var(--dim)"' : '') + '>' + r[0] + '</span>' + r[1] + '</div>'; }).join('') + '</div>' +
+      '<div class="note" style="max-width:none">' + L.ask.note + '</div></div></div>'));
+    // 7 · Analiza datos y muestra candidatas en un mapa
+    S.push(sec(L.res.cue, k('05', L.res.k, 'var(--sky)') + '<h2 class="rv">' + L.res.h + '</h2>' +
+      '<div class="row rv mt" style="gap:calc(var(--u)*3);align-items:center"><div style="flex:0 0 auto">' + miniMap() + '</div><div style="flex:1"><table><thead><tr>' + L.res.th.map(function (h, i) { return '<th' + (i > 2 ? ' style="text-align:right"' : '') + '>' + h + '</th>'; }).join('') + '</tr></thead><tbody>' +
       ROWS.map(function (r, i) { var reg = r[0] === 'ref' ? L.res.reg.ref : L.res.reg[r[0].slice(0, 2)]; return '<tr class="' + (i === 0 ? 'top' : r[0] === 'ref' ? 'ref' : '') + '"><td class="m" style="color:var(--dim)">' + r[1] + '</td><td style="font-weight:600">' + nm(r[2], L) + '</td><td style="color:var(--dim);font-size:calc(var(--u)*1)">' + reg + '</td><td class="m b" style="text-align:right">' + nm(r[3], L) + '</td><td class="m sk" style="text-align:right">' + nm(r[4], L) + '</td><td class="m o" style="text-align:right">' + L.res.f + '</td></tr>'; }).join('') +
-      '</tbody></table><p class="mono mt2" style="font-size:calc(var(--u)*.85);color:var(--sky)">' + L.res.foot + '</p></div></section>');
-    // 8 same scale
-    S.push('<section class="s">' + k('2 × 20 km', L.ss.k, 'var(--orange)') + '<h2 class="rv">' + L.ss.h + '</h2>' +
-      '<div class="row rv mt" style="gap:calc(var(--u)*3)"><div class="pics" style="flex:1.4"><div class="pic"><img src="' + IMG.mars + '" alt="' + L.ss.mars + '"><span class="lab o">' + L.ss.mars + '</span></div><div class="pic"><img src="' + IMG.earth + '" alt="' + L.ss.earth + '"><span class="lab sk">' + L.ss.earth + '</span></div></div>' +
-      '<div class="cmp" style="flex:1">' + L.ss.r.map(function (r) { return '<div class="r"><span>' + r[0] + '</span><b class="o">' + r[1] + '</b><b class="sk">' + r[2] + '</b></div>'; }).join('') + '<p class="mono" style="font-size:calc(var(--u)*.85);color:var(--dim);line-height:1.5">' + L.ss.note + '</p></div></div></section>');
-    // 9 scores
-    S.push('<section class="s">' + k('S · C · F', L.sc.k) + '<h2 class="rv">' + L.sc.h + '</h2>' +
-      '<div class="grid3 rv mt">' + L.sc.c.map(function (c) { return '<div class="card" style="border-top:3px solid ' + c[2] + '"><h3 style="color:' + c[2] + ';font-size:calc(var(--u)*2.2)">' + c[0] + '</h3><p style="font-size:calc(var(--u)*1.3)">' + c[1] + '</p></div>'; }).join('') + '</div></section>');
-    // 10 honesty
-    S.push('<section class="s">' + k('06', L.ho.k, 'var(--orange)') + '<h2 class="rv">' + L.ho.h + '</h2>' +
-      '<div class="grid3 rv mt">' + L.ho.c.map(function (c) { return '<div class="card" style="border-top:3px solid ' + c[2] + '"><h3>' + c[0] + '</h3><ul>' + c[1].map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div></section>');
-    // 11 use cases
-    S.push('<section class="s">' + k('NASA · ESA', L.uc.k, 'var(--orange)') + '<h2 class="rv">' + L.uc.h + '</h2>' +
-      '<div class="card rv mt" style="background:linear-gradient(120deg,rgba(252,115,77,.16),rgba(252,115,77,.04));border-color:rgba(252,115,77,.45)"><p style="font-size:calc(var(--u)*1.7);font-weight:800;line-height:1.25;color:var(--text)">' + L.uc.hl + '</p></div>' +
-      '<div class="rv mt2" style="display:grid;grid-template-columns:repeat(4,1fr);gap:calc(var(--u)*1.2)">' + L.uc.i.map(function (u) { return '<div class="card" style="padding:calc(var(--u)*1.4)"><h3 style="font-size:calc(var(--u)*1.35)">' + u[0] + '</h3><p class="mono" style="font-size:calc(var(--u)*.8);color:var(--dim)">' + u[1] + '</p></div>'; }).join('') + '</div></section>');
-    // 12 team
-    S.push('<section class="s">' + k('07', L.team.k, 'var(--sky)') + '<h2 class="rv">' + L.team.h + '</h2>' +
-      '<div class="team rv mt">' + TEAM.map(function (m, i) { return '<div><div class="ph">' + (m[1] ? '<img src="assets/team/' + m[1] + '.jpg" alt="' + m[0] + '">' : m[0].charAt(0)) + '</div><div class="who"><b>' + m[0] + '</b><span>' + L.team.roles[i] + '</span></div></div>'; }).join('') + '</div></section>');
-    // 13 close
-    S.push('<section class="s">' + k('→', L.end.k, 'var(--orange)') +
-      '<div class="close"><div><h2 class="rv" style="max-width:18ch">' + L.end.h + '</h2><div class="url rv mt">analogos.vercel.app</div>' +
-      '<p class="mono rv mt" style="font-size:calc(var(--u)*.8);color:var(--dim);line-height:1.6;max-width:70ch">' + L.end.p + '</p></div>' +
-      '<div class="rv" style="text-align:center"><div class="qr"><img src="assets/qr-landing.svg" alt="QR · analogos-landing.vercel.app"></div><p class="mono" style="font-size:calc(var(--u)*.8);color:var(--dim);margin-top:calc(var(--u)*.8)">' + L.end.scan + '</p></div></div></section>');
+      '</tbody></table><p class="mono mt2" style="font-size:calc(var(--u)*.85);color:var(--sky)">' + L.res.foot + '</p></div></div>'));
+    // 8 · Evaluamos tres aspectos
+    S.push(sec(L.sc.cue, k('S · C · F', L.sc.k) + '<h2 class="rv">' + L.sc.h + '</h2>' +
+      '<div class="grid3 rv mt">' + L.sc.c.map(function (c) { return '<div class="card" style="border-top:3px solid ' + c[2] + '"><div class="num" style="color:' + c[2] + ';margin-bottom:calc(var(--u)*1)">' + c[3] + '</div><h3>' + c[0] + '</h3><p style="font-size:calc(var(--u)*1.2)">' + c[1] + '</p></div>'; }).join('') + '</div>' +
+      '<p class="mono rv mt2" style="font-size:calc(var(--u)*.85);color:var(--dim)">' + L.sc.ex + '</p>'));
+    // 9 · Utilizamos fuentes como MOLA, NASADEM, Sentinel-2 y NASA POWER
+    S.push(sec(L.ev.cue, k('2 × 20 km', L.ev.k, 'var(--orange)') + '<h2 class="rv">' + L.ev.h + '</h2>' +
+      '<div class="row rv mt" style="gap:calc(var(--u)*3)"><div class="pics" style="flex:1.4"><div class="pic"><img src="' + IMG.mars + '" alt="' + L.ev.mars + '"><span class="lab o">' + L.ev.mars + '</span></div><div class="pic"><img src="' + IMG.earth + '" alt="' + L.ev.earth + '"><span class="lab sk">' + L.ev.earth + '</span></div></div>' +
+      '<div class="cmp" style="flex:1">' + L.ev.r.map(function (r) { return '<div class="r"><span>' + r[0] + '</span><b class="o">' + r[1] + '</b><b class="sk">' + r[2] + '</b></div>'; }).join('') + '<p class="mono" style="font-size:calc(var(--u)*.85);color:var(--dim);line-height:1.5">' + L.ev.note + '</p></div></div>'));
+    // 10 · ¡Todavía no!
+    S.push(sec(L.ho.cue, k('06', L.ho.k, 'var(--orange)') + '<h2 class="rv">' + L.ho.h + '</h2>' +
+      '<div class="row rv mt">' + L.ho.c.map(function (c) { return '<div class="card" style="flex:1;border-top:3px solid ' + c[2] + '"><h3>' + c[0] + '</h3><ul>' + c[1].map(function (x) { return '<li style="font-size:calc(var(--u)*1.3)">' + x + '</li>'; }).join('') + '</ul></div>'; }).join('') + '</div>'));
+    // 11 · No buscamos… / Buscamos uno que nos ayude…
+    S.push(sec(L.claim.cue, k('AnalogOS', L.claim.k) + '<h1 class="rv" style="font-size:calc(var(--u)*5.2);max-width:20ch">' + L.claim.h1 + '</h1><h1 class="rv mt" style="font-size:calc(var(--u)*5.2);max-width:22ch">' + L.claim.h2 + '</h1>'));
+    // 12 · ¡Somos AnalogOS! + equipo + QR
+    S.push(sec(L.end.cue, k('→', L.end.k, 'var(--orange)') +
+      '<div class="close"><div><h2 class="rv" style="max-width:20ch;font-size:calc(var(--u)*3.6)">' + L.end.h + '</h2>' +
+      '<div class="team rv mt" style="gap:calc(var(--u)*1.2)">' + TEAM.map(function (m, i) { return '<div><div class="ph" style="aspect-ratio:1">' + (m[1] ? '<img src="assets/team/' + m[1] + '.jpg" alt="' + m[0] + '">' : m[0].charAt(0)) + '</div><div class="who" style="margin-top:calc(var(--u)*.6)"><b style="font-size:calc(var(--u)*1.15)">' + m[0] + '</b><span style="font-size:calc(var(--u)*.68)">' + L.end.roles[i] + '</span></div></div>'; }).join('') + '</div></div>' +
+      '<div class="rv" style="text-align:center"><div class="qr"><img src="assets/qr-landing.svg" alt="QR · analogos-landing.vercel.app"></div><div class="url" style="font-size:calc(var(--u)*1.5);margin-top:calc(var(--u)*1.2)">' + L.end.url + '</div><p class="mono" style="font-size:calc(var(--u)*.8);color:var(--dim);margin-top:calc(var(--u)*.4)">' + L.end.scan + '</p></div></div>'));
+    // --- Appendix (Q&A) ---
+    S.push(sec('', k('A1', L.apx.k, 'var(--orange)') + '<div class="row" style="align-items:center;gap:calc(var(--u)*5)"><div style="flex:1.2"><h2 class="rv">' + L.apx.phys.h + '</h2><div class="law rv mt">μ ≥ tan θ</div><div class="eq rv">' + L.apx.phys.eq + '</div><p class="lead rv mt2" style="font-size:calc(var(--u)*1.3)">' + L.apx.phys.why + '</p></div><div class="rv" style="flex:1">' + incline() + '</div></div>'));
+    S.push(sec('', k('A2', L.apx.k) + '<h2 class="rv">' + L.apx.fun.h + '</h2><div class="fun rv mt">' + L.apx.fun.rows.map(function (r) { return '<div class="v" style="color:' + r[3] + '">' + r[0] + '</div><div><div class="tr"><span style="width:' + (r[4] * 100) + '%;background:' + r[3] + '"></span></div><div class="d"><strong style="color:var(--text)">' + r[1] + '</strong> · ' + r[2] + '</div></div>'; }).join('') + '</div>'));
+    S.push(sec('', k('A3', L.apx.k, 'var(--sky)') + '<h2 class="rv">' + L.apx.vid.h + '</h2><div class="rv mt2" style="display:flex;flex-direction:column;align-items:flex-start;gap:calc(var(--u)*1)"><video data-vid controls preload="none" playsinline poster="assets/analogos-video-poster.jpg" style="height:min(56vh,calc(var(--u)*30));aspect-ratio:16/9;border-radius:calc(var(--u)*1);border:1px solid rgba(242,244,245,.14);background:#000"><source src="assets/analogos-video.mp4" type="video/mp4"></video><p class="mono" style="font-size:calc(var(--u)*.8);color:var(--dim)">' + L.apx.vid.note + '</p></div>'));
     return S.join('');
+  }
+
+  function miniMap() {
+    // Chile–Argentina pilot area: dots at the landing map positions (viewBox crop of the 501×1000 map)
+    var pts = [['ref', 133.8, 194.9, '#F2F4F5'], ['cl2', 143.8, 212.6, '#0297DE'], ['cl1', 139.2, 217.4, '#0297DE'], ['cl3', 143.7, 222.3, '#0297DE'], ['ar3', 197.5, 237.5, '#7FC8EF'], ['ar1', 188.4, 247.2, '#7FC8EF'], ['ar2', 192.9, 252.1, '#7FC8EF']];
+    return '<svg viewBox="95 150 140 140" style="width:calc(var(--u)*20);height:calc(var(--u)*20);display:block" role="img" aria-label="map">' +
+      '<path d="' + CHILE + '" fill="rgba(127,200,239,.13)" stroke="#7FC8EF" stroke-width="1"/>' +
+      pts.map(function (p) { return '<circle cx="' + p[1] + '" cy="' + p[2] + '" r="2.6" fill="' + p[3] + '"><animate attributeName="r" values="2.6;4;2.6" dur="2.4s" repeatCount="indefinite"/></circle>'; }).join('') +
+      '<text x="200" y="228" fill="#7FC8EF" font-family="Martian Mono,monospace" font-size="6">AR</text><text x="104" y="232" fill="#7FC8EF" font-family="Martian Mono,monospace" font-size="6">CL</text></svg>';
   }
 
   function incline() {
@@ -305,8 +281,8 @@ tr.ref td{color:var(--dim)}
   // ---------- deck engine ----------
   var deck = document.getElementById('deck'), dotsEl = document.getElementById('dots'), bar = document.getElementById('bar'), ct = document.getElementById('ct'), hint = document.getElementById('hint');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var lang = 'en', cur = 0, secs = [], io;
-  try { var q = new URLSearchParams(location.search).get('lang'); lang = q === 'es' ? 'es' : (localStorage.getItem('analogos-pitch-lang') || 'en'); } catch (e) {}
+  var lang = 'es', cur = 0, secs = [], io, cues = false, cueEl = document.getElementById('cue');
+  try { var q = new URLSearchParams(location.search).get('lang'); lang = q === 'en' || q === 'es' ? q : (localStorage.getItem('analogos-pitch-lang') || 'es'); cues = new URLSearchParams(location.search).get('cues') === '1'; } catch (e) {}
 
   function render() {
     var L = T[lang];
@@ -333,6 +309,10 @@ tr.ref td{color:var(--dim)}
     bar.style.width = ((cur + 1) / secs.length * 100) + '%';
     ct.textContent = String(cur + 1).padStart(2, '0') + ' / ' + String(secs.length).padStart(2, '0');
     if (cur > 0) hint.style.opacity = '0';
+    var c = secs[cur] && secs[cur].getAttribute('data-cue');
+    cueEl.hidden = !cues || !c;
+    if (c) cueEl.innerHTML = '<span>' + T[lang].cueLabel + '</span> «' + c + '»';
+    [].forEach.call(document.querySelectorAll('video[data-vid]'), function (v) { if (!secs[cur].contains(v) && !v.paused) v.pause(); });
   }
   function go(i) {
     i = Math.max(0, Math.min(secs.length - 1, i));
@@ -356,6 +336,7 @@ tr.ref td{color:var(--dim)}
     else if (key === 'End') { e.preventDefault(); go(secs.length - 1); }
     else if (key === 'f' || key === 'F') { if (!document.fullscreenElement) document.documentElement.requestFullscreen && document.documentElement.requestFullscreen().catch(function () {}); else document.exitFullscreen(); }
     else if (key === 'l' || key === 'L') setLang(lang === 'en' ? 'es' : 'en');
+    else if (key === 'n' || key === 'N') { cues = !cues; mark(); }
   });
   // touch: swipe one slide
   var ty = null;
