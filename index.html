@@ -1075,6 +1075,10 @@ class Component extends DCLogic {
     g.renderer.setSize(g.w, g.h, false);
     g.camera.aspect = g.w / g.h;
     g.camera.position.z = (g.w / g.h < 1 ? 2 * 3.5 / Math.max(0.6, g.w / g.h) : 2 * 3.5) * (g.narrow ? 1.12 : 1);
+    // phones: smaller globe pushed left so the label column on the right never covers it
+    const phone = g.w < 560;
+    if (phone) { g.camera.position.z *= 1.18; g.camera.setViewOffset(g.w, g.h, g.w * 0.17, 0, g.w, g.h); } else if (g.camera.view) g.camera.clearViewOffset();
+    g.phone = phone;
     g.camera.updateProjectionMatrix();
     this.renderGlobe();
   }
@@ -1115,8 +1119,8 @@ class Component extends DCLogic {
       const vis2 = pts.filter((p) => p.on).sort((p, q) => p.y - q.y);
       const maxW = vis2.length ? Math.max(...vis2.map((p) => p.m.el.offsetWidth || 180)) : 0;
       const right = vis2.length ? Math.max(...vis2.map((p) => p.x)) + 28 : 0, leftX = vis2.length ? Math.min(...vis2.map((p) => p.x)) - 28 - maxW : 0;
-      const flip = right + maxW > g.w - 4 && leftX >= 4;
-      const colX = flip ? leftX : Math.min(right, g.w - maxW - 4);
+      const flip = !g.phone && right + maxW > g.w - 4 && leftX >= 4;
+      const colX = g.phone ? g.w - maxW - 4 : flip ? leftX : Math.min(right, g.w - maxW - 4);
       const gap = 26, total = (vis2.length - 1) * gap;
       const mid = vis2.length ? vis2.reduce((s, p) => s + p.y, 0) / vis2.length : 0;
       let prev = -1e9;
