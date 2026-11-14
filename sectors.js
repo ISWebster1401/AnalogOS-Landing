@@ -100,7 +100,7 @@
     prev.type = next.type = 'button';
     nav.appendChild(prev); nav.appendChild(dots); nav.appendChild(next);
     var list = el('div', 'display:none; flex-direction:column; gap:8px;');
-    var foot = el('p', 'margin:0; text-align:center; ' + MONO + ' font-size:10px; line-height:1.6; color:rgba(242,244,245,0.55);');
+    var foot = el('p', 'margin:0; text-align:center; ' + MONO + ' font-size:10px; line-height:1.6; color:rgba(242,244,245,0.72);');
     stage.appendChild(frame); stage.appendChild(list); stage.appendChild(nav); stage.appendChild(foot);
     var panel = el('div', 'flex:1 1 340px; max-width:460px; min-width:0; display:flex; flex-direction:column; gap:16px;');
     wrap.appendChild(stage); wrap.appendChild(panel); root.appendChild(wrap);
@@ -156,9 +156,9 @@
     function renderPanel() {
       var s = SECTORS[idx], sm = sims(s.v);
       var h = '';
-      h += '<div style="' + MONO + ' font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.6);">' + L.profile + '</div>';
+      h += '<div style="' + MONO + ' font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.72);">' + L.profile + '</div>';
       h += '<h3 style="margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(30px,3vw,44px); line-height:1; letter-spacing:-0.02em;">' + s.name + '</h3>';
-      h += '<div style="' + MONO + ' font-size:11px; color:rgba(242,244,245,0.6);">' + s.ll + ' · ' + L.area + ' ' + f(s.area, 1) + ' km²</div>';
+      h += '<div style="' + MONO + ' font-size:11px; color:rgba(242,244,245,0.72);">' + s.ll + ' · ' + L.area + ' ' + f(s.area, 1) + ' km²</div>';
       h += '<div style="display:grid; grid-template-columns:repeat(3,1fr); gap:12px; padding:16px; border-radius:16px; background:rgba(242,244,245,0.05); border:1px solid rgba(242,244,245,0.1);">' +
         stat(f(s.S, 2), L.sim, '#0297DE') + stat(f(s.C, 2), L.conf, '#7FC8EF') + stat(f(s.stab, 2), L.stab, '#F2F4F5') + '</div>';
       h += '<div role="radiogroup" aria-label="' + L.pick + '" style="display:flex; flex-direction:column; border-radius:16px; border:2px solid #F2F4F5; padding:8px 6px;">';
@@ -174,10 +174,10 @@
       ['slope', 'rough', 'relief', 'bare', 'arid', 'therm'].forEach(function (k) {
         var val = { slope: f(s.v.slope, 1) + '°', rough: f(s.v.rough, 1) + ' m', relief: f(s.v.relief, 0) + ' m', bare: f(s.v.bare * 100, s.v.bare < 1 ? 1 : 0) + ' %', arid: f(s.v.arid, 1) + ' mm', therm: f(s.v.therm, 1) + ' °C' }[k];
         var p = Math.round(sm[k] * 100);
-        h += '<div style="display:flex; flex-direction:column; gap:4px;"><div style="display:flex; justify-content:space-between; gap:8px; font-size:13px;"><span>' + L.names[k] + ' <span style="color:rgba(242,244,245,0.5); ' + MONO + ' font-size:10px;">· ' + L.weight + ' ' + f(W[k], 2) + '</span></span><span style="' + MONO + ' font-size:12px; color:rgba(242,244,245,0.85);">' + val + '</span></div>' +
+        h += '<div style="display:flex; flex-direction:column; gap:4px;"><div style="display:flex; justify-content:space-between; gap:8px; font-size:13px;"><span>' + L.names[k] + ' <span style="color:rgba(242,244,245,0.72); ' + MONO + ' font-size:10px;">· ' + L.weight + ' ' + f(W[k], 2) + '</span></span><span style="' + MONO + ' font-size:12px; color:rgba(242,244,245,0.85);">' + val + '</span></div>' +
           '<div style="height:6px; border-radius:6px; background:rgba(242,244,245,0.1); overflow:hidden;"><span style="display:block; height:100%; width:' + p + '%; background:linear-gradient(90deg,#0297DE,#7FC8EF); border-radius:6px; transition:width .5s ease;"></span></div></div>';
       });
-      h += '<div style="' + MONO + ' font-size:10px; color:rgba(242,244,245,0.5);">' + L.notScored + '</div></div>';
+      h += '<div style="' + MONO + ' font-size:10px; color:rgba(242,244,245,0.72);">' + L.notScored + '</div></div>';
       h += '<div style="display:flex; flex-direction:column; gap:8px; padding:16px; border-radius:16px; background:rgba(252,115,77,0.08); border:1px solid rgba(252,115,77,0.35);"><div style="display:flex; justify-content:space-between; font-size:14px;"><strong>' + L.feas + '</strong><span style="color:#FC734D; font-weight:600;">' + L.feasV + '</span></div>' +
         L.checks.map(function (c) { return '<div style="display:flex; gap:8px; font-size:13px; color:rgba(242,244,245,0.82);"><span style="color:#FC734D;">○</span>' + c + '</div>'; }).join('') + '</div>';
       h += '<a href="' + (window.TRY_URL || '#') + '" style="display:flex; justify-content:space-between; align-items:center; padding:15px 18px; border-radius:12px; background:#FC734D; color:#02070A; font-family:var(--font-heading); font-weight:800; font-size:15px; text-decoration:none;">' + L.cta + '<span>→</span></a>';
