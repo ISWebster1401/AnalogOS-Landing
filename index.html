@@ -27,6 +27,7 @@
 <script src="./halftone-nebula.js"></script>
 <script src="./asmr-bg.js"></script>
 <script src="./fluid-bg.js"></script>
+<script src="./mesh-bg.js"></script>
 <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#071827"></rect><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36 L100 100 L0 100 Z" fill="#02070A"></path><path d="M0 72 L30 70 L48 62 L58 46 L70 38 L100 36" fill="none" stroke="#FC734D" stroke-width="2"></path><rect x="66" y="34" width="6" height="6" fill="#0297DE"></rect><rect x="30" y="30" width="8" height="8" fill="#FC734D"></rect></svg></template>
 <style>
 html,body{margin:0;background:#02070A;color:#F2F4F5}
@@ -658,13 +659,13 @@ class Component extends DCLogic {
     this._rmq = window.matchMedia('(prefers-reduced-motion: reduce)');
     this._onRm = () => this.rebuild();
     this._rmq.addEventListener('change', this._onRm);
-    // Full-page space background: ?bg=nebula (default) | asmr | fluid | none. Change SPACE_BG to fix one.
+    // Full-page space background: ?bg=nebula (default) | asmr | fluid | mesh | none. Change SPACE_BG to fix one.
     const SPACE_BG = 'nebula';
     let bg = SPACE_BG;
-    try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'asmr' || q === 'nebula' || q === 'fluid' || q === 'none') bg = q; } catch (e) {}
+    try { const q = new URLSearchParams(window.location.search).get('bg'); if (q === 'asmr' || q === 'nebula' || q === 'fluid' || q === 'mesh' || q === 'none') bg = q; } catch (e) {}
     const sp = this.k('space');
     if (sp && bg !== 'none') {
-      const ctor = bg === 'asmr' ? window.AnalogASMR : bg === 'fluid' ? window.AnalogFluid : window.AnalogNebula;
+      const ctor = bg === 'asmr' ? window.AnalogASMR : bg === 'fluid' ? window.AnalogFluid : bg === 'mesh' ? window.AnalogMesh : window.AnalogNebula;
       if (ctor) { try { this._nebula = ctor(sp, { root: document, clicks: false, subtle: true }); const st = this.k('stars'); if (this._nebula && st) st.style.display = 'none'; } catch (e) { console.error(e); } }
     }
     this.introHero(this.isReduced());
