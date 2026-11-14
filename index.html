@@ -88,7 +88,7 @@ a:hover{color:#FD9A7D}
       </span>
     </h1>
     <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; margin-top:clamp(28px,5vh,56px);">
-      <div data-hr="" style="display:flex; flex-direction:column; gap:14px; max-width:56ch;"><p style="margin:0; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.86); text-wrap:pretty;">{{ t.hero.sub }}</p><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.hero.forWho }}</span></div>
+      <div data-hr="" style="display:flex; flex-direction:column; gap:14px; max-width:56ch;"><p style="margin:0; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.86); text-wrap:pretty;">{{ t.hero.sub }}</p><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.hero.forWho }}</span><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; width:max-content; max-width:100%; padding:8px 14px; border-radius:9999px; background:rgba(2,151,222,0.14); border:1px solid rgba(2,151,222,0.45); font-size:13.5px; color:#F2F4F5;"><span>{{ t.hero.stat1 }}</span><span style="color:rgba(242,244,245,0.4);">·</span><span>{{ t.hero.stat2 }} <strong style="color:#7FC8EF;">{{ bestS }}</strong></span></span></div>
       <div data-hr="" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px 28px;">
         <button type="button" class="btn btn-primary" onClick="{{ goDemo }}" style="min-width:210px; justify-content:space-between; padding:15px 16px; font-size:15px;">{{ t.nav.demo }}<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
         <a href="#problema" onClick="{{ go }}" style="display:flex; align-items:center; gap:10px; color:#F2F4F5; text-decoration:none; font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase;"><svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2;"><path d="M12 4v15"></path><path d="m19 12-7 7-7-7"></path></svg>{{ t.hero.scroll }}</a>
@@ -403,6 +403,30 @@ a:hover{color:#FD9A7D}
     <div data-k="sectors" style="margin-top:clamp(56px,8vh,88px);"></div>
   </div>
 </section>
+<section id="usos" data-hud="chile" data-screen-label="Use cases" style="position:relative; background:transparent; padding:clamp(80px,12vh,140px) 0;">
+  <div style="max-width:1440px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
+    <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.7);"><span style="width:10px; height:10px; flex:none; background:#FC734D;"></span><span style="color:#F2F4F5;">NASA · ESA</span><span>{{ t.uc.kicker }}</span></div>
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; gap:24px clamp(24px,4vw,64px); margin-top:clamp(28px,4vh,48px);">
+      <h2 data-rv="" style="flex:1 1 360px; margin:0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(32px,4.6vw,72px); line-height:1; letter-spacing:-0.03em;">{{ t.uc.h }}</h2>
+      <p data-rv="" style="flex:1 1 320px; margin:0; max-width:52ch; font-size:clamp(16px,1.2vw,18px); line-height:1.55; color:rgba(242,244,245,0.82);">{{ t.uc.p }}</p>
+    </div>
+    <div data-rv="" style="margin-top:clamp(40px,6vh,64px); padding:clamp(18px,2.4vw,28px); border-radius:20px; background:linear-gradient(120deg, rgba(252,115,77,0.16), rgba(252,115,77,0.04)); border:1px solid rgba(252,115,77,0.45); display:flex; flex-wrap:wrap; gap:12px 28px; align-items:center;">
+      <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:#FC734D;">{{ t.uc.hlKicker }}</span>
+      <p style="flex:1 1 420px; margin:0; font-family:var(--font-heading); font-weight:800; font-size:clamp(20px,2vw,28px); line-height:1.2; letter-spacing:-0.01em;">{{ t.uc.hl }}</p>
+    </div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap:16px; margin-top:20px;">
+      <sc-for list="{{ ucItems }}" as="u" hint-placeholder-count="4">
+        <article data-rv="" style="display:flex; flex-direction:column; gap:12px; padding:22px; border-radius:18px; background:rgba(10,26,38,0.78); border:1px solid rgba(242,244,245,0.12);">
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:10px;"><span style="font-family:var(--font-heading); font-weight:800; font-size:28px; color:#7FC8EF; line-height:1;">{{ u.n }}</span><span style="padding:3px 9px; border-radius:9999px; border:1px solid {{ u.tc }}; color:{{ u.tc }}; font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; letter-spacing:0.03em; white-space:nowrap;">{{ u.tag }}</span></div>
+          <h3 style="margin:0; font-family:var(--font-heading); font-weight:800; font-size:clamp(19px,1.5vw,22px); line-height:1.15;">{{ u.t }}</h3>
+          <p style="margin:0; font-size:14.5px; line-height:1.55; color:rgba(242,244,245,0.8);">{{ u.b }}</p>
+          <span style="margin-top:auto; padding-top:10px; border-top:1px solid rgba(242,244,245,0.12); font-family:'Martian Mono', ui-monospace, monospace; font-size:10px; line-height:1.5; color:rgba(242,244,245,0.55);">{{ u.src }}</span>
+        </article>
+      </sc-for>
+    </div>
+    <p data-rv="" style="margin:24px 0 0; max-width:70ch; font-size:14px; line-height:1.55; color:rgba(242,244,245,0.7);">{{ t.uc.foot }}</p>
+  </div>
+</section>
 <section id="honestidad" data-hud="chile" data-screen-label="08 Scientific honesty" style="position:relative; background:transparent; padding:clamp(48px,8vh,96px) 0 clamp(64px,10vh,120px);">
   <div style="max-width:1440px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
     <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.7);"><span style="width:10px; height:10px; flex:none; background:#7FC8EF;"></span><span style="color:#F2F4F5;">06</span><span>{{ t.ho.kicker }}</span></div>
@@ -560,7 +584,7 @@ class Component extends DCLogic {
       nav: { problem: 'Problem', jezero: 'Jezero', how: 'How it works', scores: 'Scores', team: 'Team', demo: 'Try', try: 'Try' },
       hero: { challenge: 'Challenge · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago, Chile',
         l1: ['Where','to','test','in','Chile'], l2: ["what's",'going','to','Mars.'],
-        sub: 'Describe your test in your own words. AnalogOS turns it into verifiable criteria, compares open NASA and ESA data with Mars at the same scale, and returns the best site on Earth with its similarity, the reasons and what to verify in the field.', forWho: 'For teams running planetary robotics test campaigns',
+        sub: 'Describe your test in your own words. AnalogOS turns it into verifiable criteria, compares open NASA and ESA data with Mars at the same scale, and returns the best site on Earth with its similarity, the reasons and what to verify in the field.', forWho: 'For teams running planetary robotics test campaigns', stat1: '3 sectors evaluated with real data', stat2: 'Best match: Pampa Yungay',
         scroll: 'Scroll · from Jezero to northern Chile', marker: 'Perseverance · Jezero rim', caption: 'Jezero crater · Ø 45 km · 18.38° N 77.58° E' },
       p: { kicker: 'The problem', phrase: "The problem isn't a lack of Mars-like places, it's that there's no fast, defensible way to know which one works for a specific test.", acc: ['fast,','defensible'],
         today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
@@ -614,6 +638,15 @@ class Component extends DCLogic {
         tableLabel: 'Preliminary result · science-screening-v2 · three 0.2° sectors · sorted by Similarity', no: 'No.', teamPin: 'Team · Santiago', proj: 'Natural Earth · transverse Mercator',
         alt: 'Map of Chile with the three science-screening-v2 sectors in the Antofagasta region',
         regions: { yungay: 'Screening sector · Antofagasta', domeyko: 'Interior sector · Antofagasta', mariaelena: 'Screening sector · Antofagasta' } },
+      uc: { kicker: 'Who runs these tests', h: 'Analog field tests are real, and choosing the site is hard.',
+        p: 'Space agencies travel to deserts and volcanic fields before every campaign. AnalogOS helps the step that comes first: deciding where to go and why.',
+        hlKicker: 'Same sectors, done by hand', hl: 'NASA’s ARADS project worked at Yungay and also evaluated Salar Grande and María Elena as candidate sites. AnalogOS makes that comparison reproducible.',
+        items: [
+          ['Rover mobility and autonomy', 'NASA drove the ERNEST prototype about 26 km over slopes, loose soil and rock fields in California (2026). ESA ran a 5.1 km autonomous loop in the Atacama (2012).', 'NASA · ESA StarTiger “Seeker”', 'Profile available'],
+          ['Drilling and life detection', 'NASA ARADS tested a 2 m drill and life-detection instruments in the hyper-arid Atacama, mostly at Yungay Station.', 'NASA Ames · ARADS', 'Next profile'],
+          ['Remote science operations', 'ESA teleoperated ExoMars-like rover prototypes in the Atacama from the UK (SAFER, ExoFiT), after scouting several sites to choose where to start.', 'ESA · SAFER, ExoFiT', 'Uses rover profile'],
+          ['Moonwalks and Artemis', 'NASA simulated moonwalks in Arizona’s San Francisco Volcanic Field and evaluated several volcanic fields to train for Artemis.', 'NASA · JETT, Artemis', 'Next: Moon profile']],
+        foot: 'Catalogues tell you where analogs are. AnalogOS tells you which one fits your test, with the evidence and what is still missing. Sources in docs/USE_CASES.md.' },
       cf: { kicker: 'Explore the sectors', h: 'Every sector, explained part by part.', p: 'Pick a sector. The arms point to what matters for a rover test, and the panel shows each criterion against the Jezero reference, its weight and what is still missing.' },
       ss: { kicker: 'Same scale · two planets', h: '20 km of Jezero next to 20 km of Pampa Yungay.',
         p: 'Same frame, same metres per pixel. Drag to compare. Switch to MOLA scale to see the ~460 m pixels at which AnalogOS actually compares terrain.',
@@ -632,7 +665,7 @@ class Component extends DCLogic {
       nav: { problem: 'Problema', jezero: 'Jezero', how: 'Cómo funciona', scores: 'Notas', team: 'Equipo', demo: 'Probar', try: 'Probar' },
       hero: { challenge: 'Desafío · Identify Earth Locations that Analog the Permanent Moon Base Locations and Mars', city: 'Santiago de Chile',
         l1: ['Dónde','probar','en','Chile'], l2: ['lo','que','irá','a','Marte.'],
-        sub: 'Describe tu prueba con tus palabras. AnalogOS la convierte en criterios verificables, compara datos abiertos de NASA y ESA con Marte a la misma escala y te devuelve el mejor lugar en la Tierra con su similitud, los motivos y qué verificar en terreno.', forWho: 'Para equipos que preparan campañas de prueba de robótica planetaria',
+        sub: 'Describe tu prueba con tus palabras. AnalogOS la convierte en criterios verificables, compara datos abiertos de NASA y ESA con Marte a la misma escala y te devuelve el mejor lugar en la Tierra con su similitud, los motivos y qué verificar en terreno.', forWho: 'Para equipos que preparan campañas de prueba de robótica planetaria', stat1: '3 sectores evaluados con datos reales', stat2: 'Mejor opción: Pampa Yungay',
         scroll: 'Desliza · de Jezero al norte de Chile', marker: 'Perseverance · borde de Jezero', caption: 'Cráter Jezero · Ø 45 km · 18,38° N 77,58° E' },
       p: { kicker: 'El problema', phrase: 'El problema no es que falten lugares parecidos a Marte, sino que no hay forma rápida y defendible de saber cuál sirve para una prueba concreta.', acc: ['rápida','y','defendible'],
         today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
@@ -686,6 +719,15 @@ class Component extends DCLogic {
         tableLabel: 'Resultado preliminar · science-screening-v2 · tres sectores de 0,2° · ordenado por Similitud', no: 'N.º', teamPin: 'Equipo · Santiago', proj: 'Natural Earth · Mercator transversa',
         alt: 'Mapa de Chile con los tres sectores de science-screening-v2 en la región de Antofagasta',
         regions: { yungay: 'Sector de screening · Antofagasta', domeyko: 'Sector interior · Antofagasta', mariaelena: 'Sector de screening · Antofagasta' } },
+      uc: { kicker: 'Quién hace estas pruebas', h: 'Las pruebas en análogos existen, y elegir el sitio es difícil.',
+        p: 'Las agencias espaciales viajan a desiertos y campos volcánicos antes de cada campaña. AnalogOS ayuda en el paso que viene primero: decidir dónde ir y por qué.',
+        hlKicker: 'Los mismos sectores, hechos a mano', hl: 'El proyecto ARADS de NASA trabajó en Yungay y también evaluó Salar Grande y María Elena como sitios candidatos. AnalogOS vuelve reproducible esa comparación.',
+        items: [
+          ['Movilidad y autonomía de rovers', 'NASA condujo el prototipo ERNEST unos 26 km por pendientes, suelo suelto y campos de rocas en California (2026). ESA hizo un recorrido autónomo de 5,1 km en Atacama (2012).', 'NASA · ESA StarTiger «Seeker»', 'Perfil disponible'],
+          ['Perforación y detección de vida', 'NASA ARADS probó un taladro de 2 m e instrumentos de detección de vida en el Atacama hiperárido, sobre todo en la Estación Yungay.', 'NASA Ames · ARADS', 'Próximo perfil'],
+          ['Operaciones científicas remotas', 'ESA teleoperó prototipos de rover tipo ExoMars en Atacama desde el Reino Unido (SAFER, ExoFiT), después de recorrer varios sitios para elegir dónde partir.', 'ESA · SAFER, ExoFiT', 'Usa el perfil de rover'],
+          ['Caminatas lunares y Artemis', 'NASA simuló caminatas lunares en el Campo Volcánico de San Francisco (Arizona) y evaluó varios campos volcánicos para entrenar Artemis.', 'NASA · JETT, Artemis', 'Próximo: perfil lunar']],
+        foot: 'Los catálogos dicen dónde hay análogos. AnalogOS dice cuál sirve para tu prueba, con la evidencia y lo que todavía falta. Fuentes en docs/USE_CASES.md.' },
       cf: { kicker: 'Explora los sectores', h: 'Cada sector, explicado parte por parte.', p: 'Elige un sector. Los brazos apuntan a lo que importa para una prueba de rover y el panel muestra cada criterio frente a la referencia de Jezero, su peso y lo que todavía falta.' },
       ss: { kicker: 'Misma escala · dos planetas', h: '20 km de Jezero junto a 20 km de Pampa Yungay.',
         p: 'Mismo encuadre, mismos metros por píxel. Arrastra para comparar. Cambia a escala MOLA para ver los píxeles de ~460 m a los que AnalogOS compara realmente el terreno.',
@@ -1306,6 +1348,7 @@ class Component extends DCLogic {
       cands, cands3: cands.slice(0, 3),
       ssRows: L.ss.rows.map((r) => ({ k: r[0], m: r[1], e: r[2] })),
       reqs: L.how.reqs.map((r) => ({ k: r[0], v: r[1] })),
+      ucItems: L.uc.items.map((u, i) => ({ n: '0' + (i + 1), t: u[0], b: u[1], src: u[2], tag: u[3], tc: i === 0 ? '#0297DE' : '#7FC8EF' })),
       bestS: (en ? '75.67' : '75,67') + ' %',
       people: this.NAMES.map((n, i) => ({ id: i + 1, n, r: L.team.roles[i], ph: L.team.photo + ' · ' + n, ini: n.charAt(0), ...this.photoOf(n) })),
       narrow,
