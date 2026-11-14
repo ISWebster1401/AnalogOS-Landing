@@ -566,7 +566,7 @@ class Component extends DCLogic {
         alt: 'Map of Chile with four illustrative candidate zones in the Atacama region',
         regions: { valle: 'San Pedro de Atacama · Antofagasta', yungay: 'Atacama Desert · Antofagasta', pajonales: 'Altiplano · Antofagasta', salargrande: 'Coast · Tarapacá' } },
       team: { kicker: 'Team', sub: 'Five members · Santiago, Chile', photo: 'Photo',
-        roles: ['Lead, scope & pitch','Science & scoring model','Data & engineering','Frontend & map','Design, narrative & QA'] },
+        roles: ['Design, narrative & QA','Data & engineering','Science & scoring model','Frontend & map','Lead, scope & pitch'] },
       foot: 'Open data: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Copernicus DEM (ESA) · MODIS (NASA) · Geological Map of Chile (SERNAGEOMIN) · Cartography: Natural Earth'
     },
     es: {
@@ -626,12 +626,12 @@ class Component extends DCLogic {
         alt: 'Mapa de Chile con cuatro zonas candidatas ilustrativas en la región de Atacama',
         regions: { valle: 'San Pedro de Atacama · Antofagasta', yungay: 'Desierto de Atacama · Antofagasta', pajonales: 'Altiplano · Antofagasta', salargrande: 'Costa · Tarapacá' } },
       team: { kicker: 'Equipo', sub: 'Cinco integrantes · Santiago de Chile', photo: 'Foto',
-        roles: ['Líder, alcance y pitch','Ciencia y modelo de notas','Datos e ingeniería','Frontend y mapa','Diseño, narrativa y QA'] },
+        roles: ['Diseño, narrativa y QA','Datos e ingeniería','Ciencia y modelo de notas','Frontend y mapa','Líder, alcance y pitch'] },
       foot: 'Datos abiertos: MOLA (NASA PDS) · NASADEM (NASA Earthdata) · Copernicus DEM (ESA) · MODIS (NASA) · Mapa Geológico de Chile (SERNAGEOMIN) · Cartografía: Natural Earth'
     }
   };
   SRC = [['MOLA','NASA PDS'],['NASADEM','NASA Earthdata'],['Copernicus DEM','ESA'],['MODIS','NASA'],[null,'SERNAGEOMIN']];
-  NAMES = ['Danilo','Sebastián','Joaco','Gustavo','Ro'];
+  NAMES = ['Rafa','Joaco','Sebastián','Gustavo','Danilo'];
   HUDC = { mars: '#FC734D', chile: '#7FC8EF' };
 
   get L() { return this.I18N[this.state.lang]; }
