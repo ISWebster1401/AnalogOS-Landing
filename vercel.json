@@ -1,1 +1,1 @@
-{"cleanUrls": true, "rewrites": [{"source": "/qr", "destination": "/index.html"}]}
+{"cleanUrls": true, "rewrites": [{"source": "/qr", "destination": "/"}]}
