@@ -93,15 +93,24 @@ a:hover{color:#FD9A7D}
       <div style="border-top:2px solid rgba(242,244,245,0.3); padding-top:10px;">{{ t.hero.challenge }}</div>
       <div style="border-top:2px solid rgba(242,244,245,0.3); padding-top:10px;">{{ t.hero.city }}</div>
     </div>
-    <h1 style="margin:clamp(40px,9vh,112px) 0 0; display:flex; flex-direction:column; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(34px,6.6vw,104px); line-height:0.96; letter-spacing:-0.035em; color:#F2F4F5;">
-      <span style="display:flex; flex-wrap:wrap; column-gap:0.24em;">
+    <h1 style="margin:clamp(28px,6vh,72px) 0 0; display:flex; flex-direction:column; align-items:center; text-align:center; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(32px,5.4vw,88px); line-height:0.96; letter-spacing:-0.035em; color:#F2F4F5;">
+      <span style="display:flex; flex-wrap:wrap; justify-content:center; column-gap:0.24em;">
         <sc-for list="{{ t.hero.l1 }}" as="w" hint-placeholder-count="5"><span style="display:block; overflow:hidden; padding:0.08em 0 0.12em; margin:-0.08em 0 -0.12em;"><span data-hw="" style="display:block; color:{{ w.c }};">{{ w.w }}</span></span></sc-for>
       </span>
-      <span style="display:flex; flex-wrap:wrap; column-gap:0.24em;">
+      <span style="display:flex; flex-wrap:wrap; justify-content:center; column-gap:0.24em;">
         <sc-for list="{{ t.hero.l2 }}" as="w" hint-placeholder-count="4"><span style="display:block; overflow:hidden; padding:0.08em 0 0.12em; margin:-0.08em 0 -0.12em;"><span data-hw="" style="display:block; color:{{ w.c }};">{{ w.w }}</span></span></sc-for>
       </span>
     </h1>
-    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; margin-top:clamp(28px,5vh,56px);">
+    <div id="video" data-hr="" style="align-self:center; width:min(100%, 1180px, calc((100svh - 250px) * 1.778)); min-width:min(100%, 320px); margin-top:clamp(22px,4vh,44px); display:flex; flex-direction:column; align-items:center; gap:12px;">
+      <div style="position:relative; width:100%; padding:2px; border-radius:22px; background:linear-gradient(120deg, #0297DE, #7FC8EF 45%, #FC734D); box-shadow:0 0 0 1px rgba(127,200,239,0.25), 0 30px 120px rgba(2,151,222,0.38), 0 0 90px rgba(252,115,77,0.22);">
+        <div style="position:relative; border-radius:20px; overflow:hidden; background:#000; aspect-ratio:16 / 9;">
+          <video data-k="heroVideo" playsinline muted loop preload="metadata" poster="assets/hero-video-poster.jpg" aria-label="{{ t.vid.alt }}" style="display:block; width:100%; height:100%; object-fit:cover; background:#000;"><source src="assets/hero-video.mp4" type="video/mp4"></video>
+          <button type="button" data-k="heroSound" style="position:absolute; left:50%; bottom:clamp(12px,3%,24px); transform:translateX(-50%); display:flex; align-items:center; gap:10px; padding:12px 20px; border:0; border-radius:9999px; background:#FC734D; color:#02070A; font-family:var(--font-heading); font-weight:800; font-size:clamp(14px,1.2vw,16px); cursor:pointer; box-shadow:0 10px 30px rgba(0,0,0,0.45);"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:currentColor;"><path d="M4 9v6h4l5 4V5L8 9z"></path><path d="M16 8.5a5 5 0 0 1 0 7" style="fill:none; stroke:currentColor; stroke-width:2;"></path></svg>{{ t.vid.sound }}</button>
+        </div>
+      </div>
+      <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.06em; text-transform:uppercase; color:rgba(242,244,245,0.7);"><span style="color:#FC734D;">● </span>{{ t.vid.kicker }}</span>
+    </div>
+    <div style="display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:24px 48px; margin-top:clamp(36px,6vh,72px);">
       <div data-hr="" style="display:flex; flex-direction:column; gap:14px; max-width:56ch; flex:1 1 280px; min-width:0;"><p style="margin:0; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.86); text-wrap:pretty;">{{ t.hero.sub }}</p><span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:#7FC8EF;">{{ t.hero.forWho }}</span><span style="display:inline-flex; flex-wrap:wrap; align-items:baseline; gap:6px 12px; align-self:flex-start; max-width:100%; box-sizing:border-box; padding:8px 14px; border-radius:9999px; background:rgba(2,151,222,0.14); border:1px solid rgba(2,151,222,0.45); font-size:13.5px; color:#F2F4F5;"><span>{{ t.hero.stat1 }}</span><span style="color:rgba(242,244,245,0.4);">·</span><span>{{ t.hero.stat2 }} <strong style="color:#7FC8EF;">{{ bestS }}</strong></span></span></div>
       <div data-hr="" style="display:flex; flex-wrap:wrap; align-items:center; gap:16px 28px;">
         <button type="button" class="btn btn-primary" onClick="{{ goDemo }}" style="min-width:210px; justify-content:space-between; padding:15px 16px; font-size:15px;">{{ t.nav.demo }}<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
@@ -633,8 +642,7 @@ class Component extends DCLogic {
         l1: ["We're",'not','looking','for','a','place'], l2: ['that','“looks','like”','Mars.'],
         sub: 'Describe your test in your own words. AI drafts verifiable requirements that you confirm, and a deterministic engine checks them against windows searched across Chile and Argentina at Mars scale. You get the site prioritized for reconnaissance, what it meets, what it does not and what to verify in the field.', forWho: 'Chile–Argentina pilot · for teams running planetary robotics test campaigns', stat1: '50 windows searched in Chile and Argentina', stat2: 'Top candidate:',
         video: 'Watch · 2 min', scroll: 'Scroll · from Jezero to Chile and Argentina', marker: 'Perseverance · Jezero rim', caption: 'Jezero crater · Ø 45 km · 18.38° N 77.58° E' },
-      vid: { kicker: 'The idea in two minutes', h: 'Before the details, the whole story.', alt: 'AnalogOS video, 2 minutes, narrated in Spanish with subtitles',
-        note: 'Narrated in Spanish with subtitles. Recorded with an earlier version of the data and the app (for example, Yungay appears as candidate 1); the current science-screening-v3 results are on this page.' },
+      vid: { kicker: '30 s · the idea in half a minute', sound: 'Watch with sound', alt: 'AnalogOS video, 30 seconds' },
       p: { kicker: 'The problem', phrase: "The problem isn't a lack of Mars-like places, it's that there's no fast, defensible way to know which one works for a specific test.", acc: ['fast,','defensible'],
         today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
       src: [['Mars elevation · Jezero reference','~451 m'],['Earth elevation, averaged to MOLA scale','30 m → ~475 m'],['Non-vegetated surface · 12 monthly mosaics','~30 m'],['Aridity and surface temperature range','regional · 2001–2025'],['Lithology · next, not scored yet','1:1,000,000']],
@@ -713,7 +721,7 @@ class Component extends DCLogic {
         note: 'The score compares elevation (MOLA vs NASADEM), not these images. MOLA mode only block-averages each picture to 463 m so you can see the scale of the comparison. Tracks visible in the candidate must still be checked against official mapping.',
         attr: 'Mars: MRO CTX, NASA/JPL/MSSS, "Jezero_CTX_BlockAdj_dd" via NASA Mars Trek, centre 18.45° N 77.34° E. Earth: contains modified Copernicus Sentinel-2 data (Dec 2025 mosaic), AnalogOS visual context, centre 25.0° S 69.7° W.' },
       team: { kicker: 'Team', sub: 'Five members · Santiago, Chile', photo: 'Photo', minor: 'Under 18 · avatar instead of photo (Space Apps rules)',
-        roles: ['Design, narrative & QA','Data & engineering','Science & scoring model','Frontend & map','Lead, scope & pitch'] },
+        roles: ['Design, narrative, QA & pitch','Data & engineering','Science & scoring model','Frontend, map & pitch','Lead & scope'] },
       foot: 'Open data: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · HLS inventory (NASA CMR) · Cartography: Natural Earth'
     },
     es: {
@@ -724,8 +732,7 @@ class Component extends DCLogic {
         l1: ['No','buscamos','un','lugar'], l2: ['que','«parezca»','Marte.'],
         sub: 'Describe tu prueba con tus palabras. La IA propone requisitos verificables que tú confirmas, y un motor determinista los contrasta con ventanas buscadas en Chile y Argentina a escala de Marte. Recibes el lugar priorizado para reconocimiento, qué cumple, qué no y qué verificar en terreno.', forWho: 'Piloto Chile–Argentina · para equipos que preparan campañas de robótica planetaria', stat1: '50 ventanas buscadas en Chile y Argentina', stat2: 'Mejor candidato:',
         video: 'Ver video · 2 min', scroll: 'Desliza · de Jezero a Chile y Argentina', marker: 'Perseverance · borde de Jezero', caption: 'Cráter Jezero · Ø 45 km · 18,38° N 77,58° E' },
-      vid: { kicker: 'La idea en dos minutos', h: 'Antes de los detalles, la historia completa.', alt: 'Video de AnalogOS, 2 minutos, narrado en español con subtítulos',
-        note: 'Grabado con una versión anterior de los datos y de la app (por ejemplo, Yungay aparece como candidato 1); los resultados vigentes de science-screening-v3 están en esta página.' },
+      vid: { kicker: '30 s · la idea en medio minuto', sound: 'Ver con sonido', alt: 'Video de AnalogOS, 30 segundos' },
       p: { kicker: 'El problema', phrase: 'El problema no es que falten lugares parecidos a Marte, sino que no hay forma rápida y defendible de saber cuál sirve para una prueba concreta.', acc: ['rápida','y','defendible'],
         today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
       src: [['Elevación de Marte · referencia Jezero','~451 m'],['Elevación terrestre, promediada a escala MOLA','30 m → ~475 m'],['Superficie no vegetada · 12 mosaicos mensuales','~30 m'],['Aridez y rango térmico superficial','regional · 2001–2025'],['Litología · siguiente, aún no puntúa','1:1.000.000']],
@@ -804,7 +811,7 @@ class Component extends DCLogic {
         note: 'La nota compara elevación (MOLA frente a NASADEM), no estas imágenes. El modo MOLA solo promedia cada imagen a 463 m para que veas la escala de la comparación. Las trazas visibles en el candidato todavía deben contrastarse con cartografía oficial.',
         attr: 'Marte: MRO CTX, NASA/JPL/MSSS, «Jezero_CTX_BlockAdj_dd» vía NASA Mars Trek, centro 18,45° N 77,34° E. Tierra: contiene datos modificados de Copernicus Sentinel-2 (mosaico de dic. 2025), contexto visual de AnalogOS, centro 25,0° S 69,7° O.' },
       team: { kicker: 'Equipo', sub: 'Cinco integrantes · Santiago de Chile', photo: 'Foto', minor: 'Menor de edad · avatar en vez de foto (reglas de Space Apps)',
-        roles: ['Diseño, narrativa y QA','Datos e ingeniería','Ciencia y modelo de notas','Frontend y mapa','Líder, alcance y pitch'] },
+        roles: ['Diseño, narrativa, QA y pitch','Datos e ingeniería','Ciencia y modelo de notas','Frontend, mapa y pitch','Líder y alcance'] },
       foot: 'Datos abiertos: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · inventario HLS (NASA CMR) · Cartografía: Natural Earth'
     }
   };
@@ -819,6 +826,7 @@ class Component extends DCLogic {
   get L() { return this.I18N[this.state.lang]; }
 
   componentDidMount() {
+    this.initHeroVideo();
     let lang = 'en';
     try { const s = window.localStorage.getItem('analogos-lang'); if (s === 'es' || s === 'en') lang = s; } catch (e) {}
     this.applyDoc(lang);
@@ -867,7 +875,17 @@ class Component extends DCLogic {
     if (prev.showHud !== this.props.showHud) { this._hudEls = null; if (this._hudPreset) setTimeout(() => this.setHudPreset(this._hudPreset), 0); }
   }
 
+  initHeroVideo() {
+    const v = this.k('heroVideo'), b = this.k('heroSound');
+    if (!v || !b) return;
+    if (!this.isReduced()) { v.muted = true; const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); }
+    this._heroSound = () => { v.loop = false; v.muted = false; v.controls = true; try { v.currentTime = 0; } catch (e) {} const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); b.style.display = 'none'; };
+    b.addEventListener('click', this._heroSound);
+    const src = v.querySelector('source'); if (src) src.addEventListener('error', () => { b.style.display = 'none'; });
+    v.addEventListener('ended', () => { v.controls = true; });
+  }
   componentWillUnmount() {
+    try { const b = this.k('heroSound'); if (b && this._heroSound) b.removeEventListener('click', this._heroSound); } catch (e) {}
     this._dead = true;
     clearTimeout(this._safety);
     if (this._mq) this._mq.removeEventListener('change', this._onMq);
