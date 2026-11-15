@@ -352,6 +352,28 @@ a:hover{color:#FD9A7D}
   </div>
 </section>
 
+<section id="app" data-hud="chile" data-screen-label="The app" style="position:relative; background:transparent; padding:clamp(80px,12vh,140px) 0;">
+  <div style="max-width:1200px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
+    <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.72);"><span style="width:10px; height:10px; flex:none; background:#0297DE;"></span><span style="color:#F2F4F5;">{{ t.app.live }}</span><span>{{ t.app.kicker }}</span></div>
+    <h2 data-rv="" style="margin:clamp(20px,3vh,32px) 0 0; font-family:var(--font-heading); font-weight:800; font-stretch:112%; font-size:clamp(30px,4.2vw,60px); line-height:1.02; letter-spacing:-0.03em; max-width:20ch;">{{ t.app.h }}</h2>
+    <p data-rv="" style="margin:clamp(16px,2.4vh,24px) 0 0; max-width:62ch; font-size:clamp(16px,1.2vw,19px); line-height:1.55; color:rgba(242,244,245,0.84);">{{ t.app.p }}</p>
+    <div data-rv="" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap:14px; margin-top:clamp(28px,4vh,44px);">
+      <sc-for list="{{ t.app.f }}" as="f" hint-placeholder-count="4"><div style="padding:18px 18px 20px; border-radius:14px; background:rgba(10,26,38,0.78); border:1px solid rgba(242,244,245,0.12); border-top:3px solid {{ f.c }};"><div style="font-family:var(--font-heading); font-weight:800; font-size:20px; line-height:1.15; color:#F2F4F5;">{{ f.t }}</div><p style="margin:8px 0 0; font-size:15px; line-height:1.5; color:rgba(242,244,245,0.8);">{{ f.b }}</p></div></sc-for>
+    </div>
+    <figure data-rv="" style="margin:clamp(32px,5vh,56px) 0 0;">
+      <div style="padding:2px; border-radius:18px; background:linear-gradient(120deg, #0297DE, #7FC8EF 50%, rgba(252,115,77,0.8)); box-shadow:0 30px 100px rgba(2,151,222,0.25);"><img src="assets/app/explorar.jpg" alt="{{ t.app.alt1 }}" loading="lazy" width="1600" height="893" style="display:block; width:100%; height:auto; border-radius:16px; background:#02070A;"></div>
+      <figcaption style="margin-top:12px; font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.6; color:rgba(242,244,245,0.72);"><span style="color:#7FC8EF;">{{ t.app.m1 }} · </span>{{ t.app.cap1 }}</figcaption>
+    </figure>
+    <figure data-rv="" style="margin:clamp(28px,4vh,44px) 0 0;">
+      <div style="padding:2px; border-radius:18px; background:linear-gradient(120deg, rgba(252,115,77,0.8), #7FC8EF 50%, #0297DE); box-shadow:0 30px 100px rgba(252,115,77,0.16);"><img src="assets/app/mision.jpg" alt="{{ t.app.alt2 }}" loading="lazy" width="1600" height="893" style="display:block; width:100%; height:auto; border-radius:16px; background:#02070A;"></div>
+      <figcaption style="margin-top:12px; font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.6; color:rgba(242,244,245,0.72);"><span style="color:#FC734D;">{{ t.app.m2 }} · </span>{{ t.app.cap2 }}</figcaption>
+    </figure>
+    <div data-rv="" style="display:flex; flex-wrap:wrap; align-items:center; gap:14px 24px; margin-top:clamp(28px,4vh,44px);">
+      <button type="button" class="btn btn-primary" onClick="{{ goDemo }}" style="min-width:210px; justify-content:space-between; padding:15px 16px; font-size:15px;">{{ t.nav.demo }}<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="fill:none; stroke:currentColor; stroke-width:2.2;"><path d="M5 12h14"></path><path d="m13 5 7 7-7 7"></path></svg></button>
+      <span style="font-family:'Martian Mono', ui-monospace, monospace; font-size:10.5px; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.6);">{{ t.app.shot }}</span>
+    </div>
+  </div>
+</section>
 <section id="busqueda" data-hud="chile" data-screen-label="Search funnel" style="position:relative; background:transparent; padding:clamp(80px,12vh,140px) 0;">
   <div style="max-width:1440px; margin:0 auto; box-sizing:border-box; padding:0 clamp(16px,4vw,56px);">
     <div data-rv="" style="display:flex; align-items:center; gap:12px; padding-top:14px; border-top:2px solid rgba(242,244,245,0.24); font-family:'Martian Mono', ui-monospace, monospace; font-size:11px; line-height:1.4; letter-spacing:0.05em; text-transform:uppercase; color:rgba(242,244,245,0.72);"><span style="width:10px; height:10px; flex:none; background:#0297DE;"></span><span style="color:#F2F4F5;">50 → 6</span><span>{{ t.fn.kicker }}</span></div>
@@ -645,8 +667,8 @@ class Component extends DCLogic {
       vid: { kicker: '30 s · the idea in half a minute', sound: 'Watch with sound', alt: 'AnalogOS video, 30 seconds' },
       p: { kicker: 'The problem', phrase: "The problem isn't a lack of Mars-like places, it's that there's no fast, defensible way to know which one works for a specific test.", acc: ['fast,','defensible'],
         today: 'Today', t1: 'Test sites are chosen by reputation. But "looks like Mars" is not a test specification.', t2: 'The data to compare them is scattered across dozens of catalogues.', srcLabel: 'The open data we actually use' },
-      src: [['Mars elevation · Jezero reference','~451 m'],['Earth elevation, averaged to MOLA scale','30 m → ~475 m'],['Non-vegetated surface · 12 monthly mosaics','~30 m'],['Aridity and surface temperature range','regional · 2001–2025'],['Lithology · next, not scored yet','1:1,000,000']],
-      srcNames: ['Geological Map of Chile'],
+      src: [['Mars elevation · Jezero reference','~451 m'],['Earth elevation, averaged to MOLA scale','30 m → ~475 m'],['Non-vegetated surface · 12 monthly mosaics','~30 m'],['Aridity and surface temperature range','regional · 2001–2025'],['Geological units per sector · descriptive, not scored','1:1,000,000 (CL) · 1:250,000 (AR)']],
+      srcNames: ['Official geological maps'],
       j: { kicker: 'Jezero · Mars', h: 'Slope is what transfers between planets. Perseverance proves it on Jezero’s rim.', law: 'Slope transfers between planets (μ ≥ tan θ)', minmu: 'slope ≥ 20° → minimum μ = tan 20° ≈ 0.36',
         why: 'Gravity appears on both sides of the inequality and cancels out: the friction a slope demands is the same on Mars and on Earth.',
         dist: 'Distance', elev: 'Elevation gain', avg: 'Average slope of the segment', mu: 'μ needed = tan θ', r0d: '0.00 km', r0t: '0.0°', r0m: '0.00', a1: '21.8°', a2: '22.8°',
@@ -667,14 +689,25 @@ class Component extends DCLogic {
         formTitle: 'New query', type: 'Test type', rover: 'Rover', drill: 'Drilling · soon', habitat: 'Habitat · soon', search: 'Try it in AnalogOS',
         note: 'AI drafts and highlights; it never decides scores, statuses or exclusions. The manual path works without AI or internet.',
         s2t: 'The engine computes', s2b: 'NASADEM elevation is averaged to MOLA scale before computing slope, roughness and relief. Twelve monthly Sentinel-2 mosaics measure bare ground and NASA POWER adds aridity. Every source keeps its version and SHA-256.',
-        s3t: 'You get a prioritized site', s3b: 'Critical requirements are checked first, and anything that cannot be measured never counts as met. You see what each site meets, fails or cannot evaluate, and what to verify on site. Optional AI only highlights facts already computed.',
+        s3t: 'You get a prioritized site', s3b: 'Critical requirements are checked first, and anything that cannot be measured never counts as met. You see what each site meets, fails or cannot evaluate, and what to verify on site. Optional AI only highlights facts already computed. The official geology suggests what to check on site, and you can export the report as JSON or print it to PDF.',
         example: 'Real run · dev, 14 Nov 2026' },
+      app: { live: 'Live', kicker: 'The app · analogos.vercel.app', h: 'Explore the terrain. Define your mission.',
+        p: 'One interface for both. The globe turns into a 2D map as you zoom in, the carousel walks through the sites, and each sector card gathers its metrics against Jezero, images, geology and sources.',
+        f: [{ t: 'Explore', b: 'Browse the six candidates and the Yungay reference, filter by country and compare every metric with Jezero.', c: '#0297DE' },
+          { t: 'Mission', b: 'Describe your test or start from a sector. Confirm the requirements and get a prioritization backed by data.', c: '#FC734D' },
+          { t: 'Official geology', b: 'SERNAGEOMIN (1:1,000,000) and SEGEMAR (1:250,000) units per sector, with field checks for your test. Descriptive: it does not enter the score.', c: '#7FC8EF' },
+          { t: 'Shareable report', b: 'Export JSON with requirements, results, provenance and pending checks, or print the full report to PDF.', c: '#F2F4F5' }],
+        m1: 'Explore', cap1: 'candidate 1, Antofagasta interior: 94.9 % similarity, confidence 77.5, stability 99.3, feasibility requires review. Metrics side by side with Jezero (MOLA).',
+        m2: 'Mission', cap2: 'a confirmed test prioritizes Puna of Catamarca and Salta for reconnaissance; preferences that cannot be measured, like traction, stay pending.',
+        alt1: 'AnalogOS Explore mode: globe over South America, the Antofagasta interior candidate with its metrics against Jezero and the candidate carousel',
+        alt2: 'AnalogOS Mission mode: a confirmed test, the prioritized sector, the reading of results and the geology guidance',
+        shot: 'Screenshots from production · 15 Nov 2026' },
       tests: {
         rover: [['Mars reference','MOLA · Jezero, 1.6° window'],['Median slope · local relief','2.2° · 47 m'],['Conditions','Bare ground, hyper-arid']],
         drill: [['Status','Next profile · not scored yet'],['Target lithology','Sedimentary rock (SERNAGEOMIN)'],['Local relief','< 50 m']],
         habitat: [['Status','Next profile · not scored yet'],['Target slope','≤ 5°'],['Flat area','≥ 1 ha']] },
       sc: { kicker: 'The three scores', h: 'Three separate scores',
-        p: 'A place can look a lot like Mars and still have sparse data or be hard to use. That is why each candidate zone gets three scores instead of one.',
+        p: 'A place can look a lot like Mars and still have sparse data or be hard to use. That is why each candidate zone gets three scores instead of one, plus a stability check: how much the score moves if any weight shifts ±20 %.',
         exTest: 'Profile: Mars Rover Screening v3', exZone: 'Candidate 1 · Antofagasta interior 25.0° S',
         items: [['Similarity','Weighted geometric mean of six criteria: slope, roughness and local relief vs MOLA Jezero, bare ground, aridity and thermal range. Geology is not scored yet.','MOLA · NASADEM · Sentinel-2 · NASA POWER'],
           ['Confidence','How much evidence entered the score. Missing data lowers confidence, never similarity, and the two are never combined.','Quality per source · ADR-003'],
@@ -735,8 +768,8 @@ class Component extends DCLogic {
       vid: { kicker: '30 s · la idea en medio minuto', sound: 'Ver con sonido', alt: 'Video de AnalogOS, 30 segundos' },
       p: { kicker: 'El problema', phrase: 'El problema no es que falten lugares parecidos a Marte, sino que no hay forma rápida y defendible de saber cuál sirve para una prueba concreta.', acc: ['rápida','y','defendible'],
         today: 'Hoy', t1: 'Los sitios de prueba se eligen por reputación. Pero «parecido a Marte» no es una especificación de prueba.', t2: 'Los datos para compararlos están dispersos en decenas de catálogos.', srcLabel: 'Los datos abiertos que realmente usamos' },
-      src: [['Elevación de Marte · referencia Jezero','~451 m'],['Elevación terrestre, promediada a escala MOLA','30 m → ~475 m'],['Superficie no vegetada · 12 mosaicos mensuales','~30 m'],['Aridez y rango térmico superficial','regional · 2001–2025'],['Litología · siguiente, aún no puntúa','1:1.000.000']],
-      srcNames: ['Mapa Geológico de Chile'],
+      src: [['Elevación de Marte · referencia Jezero','~451 m'],['Elevación terrestre, promediada a escala MOLA','30 m → ~475 m'],['Superficie no vegetada · 12 mosaicos mensuales','~30 m'],['Aridez y rango térmico superficial','regional · 2001–2025'],['Unidades geológicas por sector · descriptivas, no puntúan','1:1.000.000 (CL) · 1:250.000 (AR)']],
+      srcNames: ['Mapas geológicos oficiales'],
       j: { kicker: 'Jezero · Marte', h: 'La pendiente es lo que se transfiere entre planetas. Perseverance lo demuestra en el borde de Jezero.', law: 'Pendiente: se transfiere entre planetas (μ ≥ tan θ)', minmu: 'pendiente ≥ 20° → μ mínimo = tan 20° ≈ 0,36',
         why: 'La gravedad aparece a ambos lados de la desigualdad y se cancela: la fricción que exige una pendiente es la misma en Marte y en la Tierra.',
         dist: 'Distancia', elev: 'Desnivel', avg: 'Pendiente media del tramo', mu: 'μ necesario = tan θ', r0d: '0,00 km', r0t: '0,0°', r0m: '0,00', a1: '21,8°', a2: '22,8°',
@@ -757,14 +790,25 @@ class Component extends DCLogic {
         formTitle: 'Nueva consulta', type: 'Tipo de prueba', rover: 'Rover', drill: 'Perforación · pronto', habitat: 'Hábitat · pronto', search: 'Pruébalo en AnalogOS',
         note: 'La IA propone y destaca; nunca decide notas, estados ni exclusiones. El recorrido manual funciona sin IA ni internet.',
         s2t: 'El motor calcula', s2b: 'Promediamos la elevación NASADEM a escala MOLA antes de calcular pendiente, rugosidad y relieve. Doce mosaicos mensuales de Sentinel-2 miden el suelo desnudo y NASA POWER agrega la aridez. Cada fuente guarda su versión y su SHA-256.',
-        s3t: 'Recibes un lugar priorizado', s3b: 'Primero se revisan los requisitos imprescindibles, y lo que no se puede medir nunca cuenta como cumplido. Ves qué cumple, qué incumple y qué no se puede evaluar en cada lugar, y qué verificar en terreno. La IA opcional solo destaca hechos ya calculados.',
+        s3t: 'Recibes un lugar priorizado', s3b: 'Primero se revisan los requisitos imprescindibles, y lo que no se puede medir nunca cuenta como cumplido. Ves qué cumple, qué incumple y qué no se puede evaluar en cada lugar, y qué verificar en terreno. La IA opcional solo destaca hechos ya calculados. La geología oficial sugiere qué comprobar en terreno, y puedes exportar el informe en JSON o imprimirlo en PDF.',
         example: 'Ejecución real · dev, 14 nov 2026' },
+      app: { live: 'En vivo', kicker: 'La app · analogos.vercel.app', h: 'Explora el terreno. Define tu misión.',
+        p: 'Una sola interfaz para ambas cosas. El globo pasa a un mapa 2D al acercarte, el carrusel recorre los lugares y la ficha de cada sector reúne sus métricas frente a Jezero, imágenes, geología y fuentes.',
+        f: [{ t: 'Explorar', b: 'Recorre los seis candidatos y la referencia Yungay, filtra por país y compara cada métrica con Jezero.', c: '#0297DE' },
+          { t: 'Misión', b: 'Describe tu prueba o parte desde un sector. Confirma los requisitos y recibe una priorización respaldada por datos.', c: '#FC734D' },
+          { t: 'Geología oficial', b: 'Unidades de SERNAGEOMIN (1:1.000.000) y SEGEMAR (1:250.000) por sector, con comprobaciones de terreno para tu prueba. Es descriptiva: no entra en la nota.', c: '#7FC8EF' },
+          { t: 'Informe para compartir', b: 'Exporta un JSON con requisitos, resultados, procedencia y verificaciones pendientes, o imprime el informe completo en PDF.', c: '#F2F4F5' }],
+        m1: 'Explorar', cap1: 'candidato 1, interior de Antofagasta: 94,9 % de similitud, confianza 77,5, estabilidad 99,3, factibilidad requiere revisión. Métricas lado a lado con Jezero (MOLA).',
+        m2: 'Misión', cap2: 'una prueba confirmada prioriza la Puna de Catamarca y Salta para reconocimiento; las preferencias que no se pueden medir, como la tracción, quedan pendientes.',
+        alt1: 'Modo Explorar de AnalogOS: globo sobre Sudamérica, el candidato del interior de Antofagasta con sus métricas frente a Jezero y el carrusel de candidatos',
+        alt2: 'Modo Misión de AnalogOS: una prueba confirmada, el sector priorizado, la lectura de resultados y la orientación geológica',
+        shot: 'Capturas de producción · 15 nov 2026' },
       tests: {
         rover: [['Referencia marciana','MOLA · Jezero, ventana de 1,6°'],['Pendiente mediana · relieve local','2,2° · 47 m'],['Condiciones','Suelo desnudo, hiperárido']],
         drill: [['Estado','Próximo perfil · aún no puntúa'],['Litología objetivo','Roca sedimentaria (SERNAGEOMIN)'],['Relieve local','< 50 m']],
         habitat: [['Estado','Próximo perfil · aún no puntúa'],['Pendiente objetivo','≤ 5°'],['Superficie plana','≥ 1 ha']] },
       sc: { kicker: 'Las tres notas', h: 'Tres notas separadas',
-        p: 'Un lugar puede parecerse mucho a Marte y, aun así, tener datos escasos o ser difícil de usar. Por eso cada zona candidata recibe tres notas en vez de una.',
+        p: 'Un lugar puede parecerse mucho a Marte y, aun así, tener datos escasos o ser difícil de usar. Por eso cada zona candidata recibe tres notas en vez de una, más un control de estabilidad: cuánto se mueve la nota si cualquier peso cambia ±20 %.',
         exTest: 'Perfil: Mars Rover Screening v3', exZone: 'Candidato 1 · Interior de Antofagasta 25,0° S',
         items: [['Similitud','Media geométrica ponderada de seis criterios: pendiente, rugosidad y relieve local frente a MOLA Jezero, suelo desnudo, aridez y rango térmico. La geología aún no puntúa.','MOLA · NASADEM · Sentinel-2 · NASA POWER'],
           ['Confianza','Cuánta evidencia entró a la nota. Un dato faltante baja la confianza, nunca la similitud, y ambas nunca se combinan.','Calidad por fuente · ADR-003'],
@@ -815,7 +859,7 @@ class Component extends DCLogic {
       foot: 'Datos abiertos: MOLA MEGDR (NASA PDS) · NASADEM (NASA Earthdata) · Sentinel-2 L2A (Copernicus / ESA) · NASA POWER · inventario HLS (NASA CMR) · Cartografía: Natural Earth'
     }
   };
-  SRC = [['MOLA MEGDR','NASA PDS'],['NASADEM','NASA Earthdata'],['Sentinel-2 L2A','Copernicus · ESA'],['POWER','NASA'],[null,'SERNAGEOMIN']];
+  SRC = [['MOLA MEGDR','NASA PDS'],['NASADEM','NASA Earthdata'],['Sentinel-2 L2A','Copernicus · ESA'],['POWER','NASA'],[null,'SERNAGEOMIN · SEGEMAR']];
   NAMES = ['Rafa','Joaco','Sebastián','Gustavo','Danilo'];
   /* team photos available in assets/team/<slug>.jpg — add a slug here when a new photo is uploaded */
   PHOTOS = ['joaco','sebastian','gustavo','danilo'];
